@@ -1,0 +1,77 @@
+@font-face 
+{
+    font-family: 'PixelFont';
+    src: url('https://cdnjs.cloudflare.com/ajax/libs/vt323/3.0.0/vt323.min.css');
+}
+
+* 
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+button,
+a,
+.file-item,
+.start-button 
+{
+    cursor: url('https://cdnjs.cloudflare.com/ajax/libs/winbox/0.2.0/img/cursor.png'), auto;
+}
+
+body 
+{
+    font-family: 'Tahoma', sans-serif;
+    background-color: #008080;
+    background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="%23008080"/><path d="M0 0h100v100H0z" fill="%23009393" fill-opacity=".1"/></svg>');
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.desktop 
+{
+    width: 100%;
+    max-width: 900px;
+    position: relative;
+    padding: 10px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) 
+{
+    .desktop {
+        padding: 5px;
+    }
+
+    .file-grid {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    }
+
+    .main-title {
+        font-size: 32px;
+    }
+
+    .taskbar {
+        height: 30px;
+        padding: 2px 5px;
+    }
+
+    .start-button {
+        height: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .file-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .main-title {
+        font-size: 26px;
+    }
+}

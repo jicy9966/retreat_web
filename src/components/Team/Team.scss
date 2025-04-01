@@ -1,0 +1,36 @@
+@import "../Title/Title.scss";
+
+/* Team Section */
+.chat-ui 
+{
+    background-color: white;
+    border: 1px solid #999;
+}
+
+.buddy-list 
+{
+    list-style-type: none;
+    padding: 0;
+}
+
+.buddy-list-item 
+{
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+}
+
+.status-icon 
+{
+    width: 10px;
+    height: 10px;
+    background-color: #8BC34A;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.status-away 
+{
+    background-color: #FFC107;
+}

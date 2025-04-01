@@ -1,0 +1,126 @@
+@import "../../App.scss";
+
+.window 
+{
+    background-color: #ECE9D8;
+    border: 2px solid #0055E5;
+    border-radius: 8px;
+    box-shadow: 2px 4px 15px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+    overflow: hidden;
+    animation: windowAppear 0.5s ease-out;
+}
+
+.title-bar 
+{
+    background: linear-gradient(to right, #0A246A, #3A6EA5);
+    color: white;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    height: 28px;
+}
+
+.title-bar-text 
+{
+    font-weight: bold;
+}
+
+.title-bar-controls 
+{
+    display: flex;
+
+    button 
+    {
+        width: 16px;
+        height: 16px;
+        margin-left: 4px;
+        border: 1px solid #fff;
+        background-color: #D4D0C8;
+        cursor: pointer;
+    }
+}
+
+.window-content 
+{
+    padding: 10px;
+}
+
+/* Main Title Section */
+.main-title 
+{
+    font-family: 'PixelFont', 'Courier New', monospace;
+    font-size: 48px;
+    text-align: center;
+    margin-bottom: 5px;
+    color: #000;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.7);
+}
+
+.loading-bar 
+{
+    height: 20px;
+    background-color: #ECE9D8;
+    border: 1px solid #888;
+    border-radius: 2px;
+    margin: 10px auto;
+    width: 80%;
+    overflow: hidden;
+    position: relative;
+}
+
+.loading-progress 
+{
+    height: 100%;
+    background-color: #0A246A;
+    width: 0%;
+    animation: loading 3s forwards;
+}
+
+@keyframes loading 
+{
+    0% {
+        width: 0%;
+    }
+
+    50% {
+        width: 70%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+/* Animation for windows appearing */
+@keyframes windowAppear 
+{
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.blinking-cursor 
+{
+    display: inline-block;
+    width: 10px;
+    height: 30px;
+    background-color: #000;
+    margin-left: 5px;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink 
+{
+    50% {
+        opacity: 0;
+    }
+}

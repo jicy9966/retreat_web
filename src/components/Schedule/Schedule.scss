@@ -1,0 +1,20 @@
+@import "../Title/Title.scss";
+
+/* Schedule Section */
+.notepad 
+{
+    font-family: 'Courier New', monospace;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid #999;
+    height: 200px;
+    overflow-y: auto;
+}
+
+.notepad-header 
+{
+    background-color: #D4D0C8;
+    padding: 5px;
+    border-bottom: 1px solid #999;
+    margin-bottom: 10px;
+}

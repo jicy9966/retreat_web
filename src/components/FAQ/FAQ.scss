@@ -1,0 +1,25 @@
+@import "../Title/Title.scss";
+
+/* FAQ Section */
+.system-alert 
+{
+    background-color: #F5F5F5;
+    border: 1px solid #999;
+    border-radius: 2px;
+    padding: 10px;
+    margin: 15px 0;
+}
+
+.alert-header 
+{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.alert-icon 
+{
+    font-size: 24px;
+    margin-right: 10px;
+    color: #0A246A;
+}
