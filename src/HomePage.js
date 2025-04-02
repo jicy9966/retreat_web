@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Title, MsgBox, Program, Schedule, Team, FAQ } from "./components/components";
+import { Title, MsgBox, Program, Schedule, Team, FAQ, LoadingTitle } from "./components/components";
 
 const HomePage = () => {
     // State to control visibility of elements
@@ -29,7 +29,10 @@ const HomePage = () => {
 
     return (
         <div className="windows-startup">
-            <Title onAnimationEnd={handleAnimationEnd} />
+
+            {!showWindows && (
+                <LoadingTitle onAnimationEnd={handleAnimationEnd} />
+            )}
 
             {/* Conditionally render MsgBox when loadingComplete is true */}
             {loadingComplete && !showPopup && (
@@ -39,6 +42,7 @@ const HomePage = () => {
             {/* Other windows - only shown after confirmation */}
             {showWindows && (
                 <>
+                    <Title/>
                     <Program />
                     <Schedule />
                     <Team />
