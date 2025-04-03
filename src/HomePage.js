@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Title, MsgBox, Program, Schedule, Team, FAQ, LoadingTitle } from "./components/components";
 
 const HomePage = () => {
@@ -7,19 +7,10 @@ const HomePage = () => {
     const [showWindows, setShowWindows] = useState(false);
     const [loadingComplete, setLoadingComplete] = useState(false);
 
-    // Ref for the audio element
-    const startupSoundRef = useRef(null);
-
     // Handle confirmation button click
     const handleCloseMsgBox = () => {
         setShowPopup(true);
         setShowWindows(true);
-
-        // Play startup sound
-        if (startupSoundRef.current) {
-            startupSoundRef.current.volume = 0.3;
-            startupSoundRef.current.play().catch(e => console.log('Audio play failed:', e));
-        }
     };
 
     // Function passed to Title to update loadingComplete state
@@ -49,13 +40,6 @@ const HomePage = () => {
                     <FAQ />
                 </>
             )}
-
-            {/* Audio element for startup sound */}
-            <audio
-                ref={startupSoundRef}
-                src="https://cdn.freesound.org/previews/351/351334_6358781-lq.mp3"
-                preload="auto"
-            />
         </div>
     );
 };

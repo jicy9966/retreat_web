@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "./Program.scss";
+import { fileItems } from "../../config/fileItems";
 
 const Program = () => {
     // Create a state to track which file item is being hovered
     const [hoveredItem, setHoveredItem] = useState(null);
-    
+
     // Style object for hovered items
     const getHoverStyle = (index) => {
         return hoveredItem === index ? {
@@ -14,7 +15,7 @@ const Program = () => {
             border: '1px solid transparent'
         };
     };
-    
+
     return (
         <div className="window">
             <div className="title-bar">
@@ -31,51 +32,18 @@ const Program = () => {
                 </div>
                 <div className="file-explorer">
                     <div className="file-grid">
-                        <div 
-                            className="file-item" 
-                            style={getHoverStyle(0)}
-                            onMouseOver={() => setHoveredItem(0)}
-                            onMouseOut={() => setHoveredItem(null)}
-                        >
-                            <div className="file-icon">📄</div>
-                            <div>예배.log</div>
-                        </div>
-                        <div 
-                            className="file-item"
-                            style={getHoverStyle(1)}
-                            onMouseOver={() => setHoveredItem(1)}
-                            onMouseOut={() => setHoveredItem(null)}
-                        >
-                            <div className="file-icon">⚙️</div>
-                            <div>활동.bat</div>
-                        </div>
-                        <div 
-                            className="file-item"
-                            style={getHoverStyle(2)}
-                            onMouseOver={() => setHoveredItem(2)}
-                            onMouseOut={() => setHoveredItem(null)}
-                        >
-                            <div className="file-icon">🗂️</div>
-                            <div>팀미션_final.zip</div>
-                        </div>
-                        <div 
-                            className="file-item"
-                            style={getHoverStyle(3)}
-                            onMouseOver={() => setHoveredItem(3)}
-                            onMouseOut={() => setHoveredItem(null)}
-                        >
-                            <div className="file-icon">💾</div>
-                            <div>data.ini</div>
-                        </div>
-                        <div 
-                            className="file-item"
-                            style={getHoverStyle(4)}
-                            onMouseOver={() => setHoveredItem(4)}
-                            onMouseOut={() => setHoveredItem(null)}
-                        >
-                            <div className="file-icon">🔒</div>
-                            <div>config.sys</div>
-                        </div>
+                        {fileItems.map((item, index) => (
+                            <div
+                                key={index}
+                                className="file-item"
+                                style={getHoverStyle(index)}
+                                onMouseOver={() => setHoveredItem(index)}
+                                onMouseOut={() => setHoveredItem(null)}
+                            >
+                                <div className="file-icon">{item.icon}</div>
+                                <div>{item.name}</div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>

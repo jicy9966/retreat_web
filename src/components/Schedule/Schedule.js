@@ -1,4 +1,5 @@
 import "./Schedule.scss"
+import Content from "./content";
 
 const Schedule = () => {
     return (
@@ -16,15 +17,7 @@ const Schedule = () => {
                     File {">"} Edit {">"} Format {">"} View {">"} Help
                 </div>
                 <div class="notepad">
-                    -- 수양회 일정표 --<br /><br />
-                    Day 1: 금요일<br />
-                    TBD ...<br />
-                    <br />
-                    Day 2: 토요일<br />
-                    TBD ...<br />
-                    <br />
-                    Day 3: 일요일<br />
-                    TBD ...<br />
+                    <Content />
                 </div>
             </div>
         </div>

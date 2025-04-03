@@ -1,0 +1,75 @@
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .team-popup {
+    background-color: #c0c0c0;
+    border: 2px outset #fff;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    width: 300px;
+    max-width: 90%;
+  }
+  
+  .popup-title-bar {
+    background: linear-gradient(to right, #000080, #1084d0);
+    color: white;
+    padding: 3px 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .popup-title-controls button {
+    background-color: #c0c0c0;
+    border: 1px outset #fff;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  
+  .popup-content {
+    padding: 15px;
+  }
+  
+  .team-members {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 15px 0;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  .team-member {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .member-icon {
+    margin-right: 10px;
+  }
+  
+  .popup-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  .popup-button {
+    padding: 4px 12px;
+    background-color: #c0c0c0;
+    border: 2px outset #fff;
+    cursor: pointer;
+    &:active {
+      border: 2px inset #fff;
+    }
+  }

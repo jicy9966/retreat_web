@@ -1,44 +1,53 @@
-import "./Team.scss"
+import React, { useState } from 'react';
+import "./Team.scss";
+import { team_data } from "../../config/team_data"
+import TeamPopup from './TeamPopup';
 
 const Team = () => {
-    return (
-        <div class="window">
-            <div class="title-bar">
-                <div class="title-bar-text">Messenger - Teams (5/12 Online)</div>
-                <div class="title-bar-controls">
-                    <button>-</button>
-                    <button>□</button>
-                    <button>×</button>
-                </div>
-            </div>
-            <div class="window-content">
-                <div class="chat-ui">
-                    <ul class="buddy-list">
-                        <li class="buddy-list-item">
-                            <div class="status-icon"></div>
-                            <div>팀 1: 비전 (온라인)</div>
-                        </li>
-                        <li class="buddy-list-item">
-                            <div class="status-icon"></div>
-                            <div>팀 2: 믿음 (온라인)</div>
-                        </li>
-                        <li class="buddy-list-item">
-                            <div class="status-icon status-away"></div>
-                            <div>팀 3: 소망 (자리비움)</div>
-                        </li>
-                        <li class="buddy-list-item">
-                            <div class="status-icon"></div>
-                            <div>팀 4: 사랑 (온라인)</div>
-                        </li>
-                        <li class="buddy-list-item">
-                            <div class="status-icon"></div>
-                            <div>스텝 (온라인)</div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+  const [selectedTeam, setSelectedTeam] = useState(null);
+  
+  // Calculate how many are online
+  const onlineCount = team_data.filter(buddy => !buddy.isAway).length;
+  const totalCount = team_data.length;
+  
+  const handleTeamClick = (team) => {
+    setSelectedTeam(team);
+  };
+  
+  const closePopup = () => {
+    setSelectedTeam(null);
+  };
+  
+  return (
+    <div className="window">
+      <div className="title-bar">
+        <div className="title-bar-text">Messenger - Teams ({onlineCount}/{totalCount} Online)</div>
+        <div className="title-bar-controls">
+          <button>-</button>
+          <button>□</button>
+          <button>×</button>
         </div>
-    )
-}
+      </div>
+      <div className="window-content">
+        <div className="chat-ui">
+          <ul className="buddy-list">
+            {team_data.map(buddy => (
+              <li 
+                key={buddy.id} 
+                className="buddy-list-item"
+                onClick={() => handleTeamClick(buddy)}
+              >
+                <div className={`status-icon ${buddy.isAway ? 'status-away' : ''}`}></div>
+                <div>{buddy.name} ({buddy.leader})</div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      
+      {selectedTeam && <TeamPopup team={selectedTeam} onClose={closePopup} />}
+    </div>
+  );
+};
 
-export default Team
+export default Team;
