@@ -14,8 +14,8 @@ const Title = () => {
             <div className="window-content">
                 <div className="main-title">수양회.exe<span className="blinking-cursor"></span></div>
             </div>
-            <div className="popup">
-                청1 수양회 안내 서비스 페이지
+            <div className="popup main">
+                2025 청1 수양회 안내 서비스 웹페이지
             </div>
         </div>
     );

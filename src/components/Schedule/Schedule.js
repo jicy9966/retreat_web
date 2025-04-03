@@ -14,7 +14,7 @@ const Schedule = () => {
             </div>
             <div class="window-content">
                 <div class="notepad-header">
-                    File {">"} Edit {">"} Format {">"} View {">"} Help
+                    베델 {">"} 예삶 {">"} 청1 {">"} 수양회 2025 {">"} 일정표
                 </div>
                 <div class="notepad">
                     <Content />

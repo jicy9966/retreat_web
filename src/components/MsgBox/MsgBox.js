@@ -13,7 +13,7 @@ const MsgBox = ({ onClose }) => {
             <div className="popup-title">
                 <span className="popup-icon">⚠️</span> System Alert
             </div>
-            <p>파일을 잃어버리지 마세요 – 지금, 마음에 저장하세요!</p>
+            <p>파일을 잃어버리지 마세요<br/>지금, 마음에 저장하세요!</p>
             <div style={{ textAlign: "right", marginTop: 10 }}>
                 <button
                     style={{

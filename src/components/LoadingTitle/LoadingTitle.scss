@@ -1,56 +1,7 @@
 @import "../../App.scss";
 
-.window 
-{
-    background-color: #ECE9D8;
-    border: 2px solid #0055E5;
-    border-radius: 8px;
-    box-shadow: 2px 4px 15px rgba(0, 0, 0, 0.3);
-    margin-bottom: 20px;
-    overflow: hidden;
-    animation: windowAppear 0.5s ease-out;
-}
-
-.title-bar 
-{
-    background: linear-gradient(to right, #0A246A, #3A6EA5);
-    color: white;
-    padding: 5px 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 12px;
-    height: 28px;
-}
-
-.title-bar-text 
-{
-    font-weight: bold;
-}
-
-.title-bar-controls 
-{
-    display: flex;
-
-    button 
-    {
-        width: 16px;
-        height: 16px;
-        margin-left: 4px;
-        border: 1px solid #fff;
-        background-color: #D4D0C8;
-        cursor: pointer;
-    }
-}
-
-.window-content 
-{
-    padding: 10px;
-}
-
 /* Main Title Section */
-.main-title 
-{
+.main-title {
     font-family: 'PixelFont', 'Courier New', monospace;
     font-size: 48px;
     text-align: center;
@@ -59,8 +10,7 @@
     text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.7);
 }
 
-.loading-bar 
-{
+.loading-bar {
     height: 20px;
     background-color: #ECE9D8;
     border: 1px solid #888;
@@ -71,22 +21,28 @@
     position: relative;
 }
 
-.loading-progress 
-{
+.loading-progress {
     height: 100%;
     background-color: #0A246A;
     width: 0%;
-    animation: loading 3s forwards;
+    animation: loading 6s forwards;
 }
 
-@keyframes loading 
-{
+@keyframes loading {
     0% {
         width: 0%;
     }
 
+    25%{
+        width: 20%;
+    }
+
     50% {
-        width: 70%;
+        width: 50%;
+    }
+
+    75% {
+        width: 90%;
     }
 
     100% {
@@ -95,8 +51,7 @@
 }
 
 /* Animation for windows appearing */
-@keyframes windowAppear 
-{
+@keyframes windowAppear {
     from {
         opacity: 0;
         transform: scale(0.9);
@@ -108,8 +63,7 @@
     }
 }
 
-.blinking-cursor 
-{
+.blinking-cursor {
     display: inline-block;
     width: 10px;
     height: 30px;
@@ -118,8 +72,13 @@
     animation: blink 1s step-end infinite;
 }
 
-@keyframes blink 
-{
+.loading-message {
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 18px;
+}
+
+@keyframes blink {
     50% {
         opacity: 0;
     }

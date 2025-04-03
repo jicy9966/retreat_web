@@ -6,6 +6,7 @@ const Content = () => {
             Day 1: 금요일 <br /><br />
             3:00 - 선발대 출발 <br />
             6:00 - 본대 출발 <br />
+            TBD ... <br />
 
             <br />
 

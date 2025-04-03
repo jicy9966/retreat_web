@@ -36,8 +36,15 @@ export const team_data = [
     },
     {
         id: 6,
-        name: "스태프",
-        leader: "도우미분들!",
+        name: "목희진",
+        leader: "항상 감사합니다 ❤️",
+        isAway: true,
+        members: ["목사님", "전도사님", "전도사님"]
+    },
+    {
+        id: 7,
+        name: "도우미",
+        leader: "같이 해줘서 감사합니다!",
         isAway: true,
         members: ["사람1", "사람2", "사람3"]
     }
