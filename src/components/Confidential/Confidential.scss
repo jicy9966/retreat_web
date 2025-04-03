@@ -1,0 +1,70 @@
+@import "../../App.scss";
+
+.under-construction {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    min-height: 200px;
+  }
+  
+  .construction-container {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    padding: 10px 0;
+  }
+  
+  .police-line-top,
+  .police-line-bottom {
+    height: 25px;
+    width: 100%;
+    background: repeating-linear-gradient(
+      45deg,
+      #000,
+      #000 10px,
+      #f8d000 10px,
+      #f8d000 20px
+    );
+  }
+  
+  .police-line-top {
+    margin-bottom: 30px;
+  }
+  
+  .police-line-bottom {
+    margin-top: 30px;
+  }
+  
+  .construction-content {
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .construction-icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+  
+  .construction-title {
+    font-size: 24px;
+    margin-bottom: 15px;
+    font-family: "Pixelated MS Sans Serif", Arial;
+    font-weight: bold;
+  }
+  
+  .construction-message {
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-family: "Pixelated MS Sans Serif", Arial;
+  }
+  
+  .construction-submessage {
+    font-size: 14px;
+    color: #666;
+    font-family: "Pixelated MS Sans Serif", Arial;
+  }

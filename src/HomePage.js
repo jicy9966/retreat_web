@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Title, MsgBox, Program, Schedule, Team, FAQ, LoadingTitle } from "./components/components";
+import { Title, MsgBox, Program, Schedule, Team, FAQ, LoadingTitle, Confidential } from "./components/components";
 
 const HomePage = () => {
     // State to control visibility of elements
@@ -33,11 +33,12 @@ const HomePage = () => {
             {/* Other windows - only shown after confirmation */}
             {showWindows && (
                 <>
-                    <Title/>
+                    <Title />
                     <Program />
+                    <FAQ />
+                    <Confidential />
                     <Schedule />
                     <Team />
-                    <FAQ />
                 </>
             )}
         </div>

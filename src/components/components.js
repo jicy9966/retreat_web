@@ -6,5 +6,6 @@ import Team from "./Team/Team";
 import FAQ from "./FAQ/FAQ";
 import Footer from "./Footer/Footer";
 import LoadingTitle from "./LoadingTitle/LoadingTitle";
+import Confidential from "./Confidential/Confidential";
 
-export {Title, MsgBox, Program, Schedule, Team, FAQ, Footer, LoadingTitle}
+export {Title, MsgBox, Program, Schedule, Team, FAQ, Footer, LoadingTitle, Confidential}

@@ -34,9 +34,9 @@ const LoadingTitle = ({ onAnimationEnd }) => {
         // Set up loading message sequence
         const messageSequence = [
             { message: "예배.log 불러오는중...", time: 0 },
-            { message: "찬양.mp3 연습 중...", time: 1500 },
-            { message: "은혜.buff 적용 중 ...", time: 3000 },
-            { message: "성령님과 연결 안정화...", time: 4500 }
+            { message: "찬양.mp3 연습 중...", time: 1250 },
+            { message: "은혜.buff 적용 중 ...", time: 2500 },
+            { message: "성령님과 연결 안정화...", time: 3750 }
         ];
 
         // Set up the message timers
