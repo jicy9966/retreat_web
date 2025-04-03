@@ -2,19 +2,14 @@ import React, { useState } from "react";
 import "./Program.scss";
 import { fileItems } from "../../config/fileItems";
 
-const Program = () => {
-    // Create a state to track which file item is being hovered
+const Program = ({ onFileClick }) => {
     const [hoveredItem, setHoveredItem] = useState(null);
 
-    // Style object for hovered items
-    const getHoverStyle = (index) => {
-        return hoveredItem === index ? {
-            backgroundColor: '#e8e8e8',
-            border: '1px dotted #000'
-        } : {
-            border: '1px solid transparent'
-        };
-    };
+    const getHoverStyle = (index) => ({
+        ...(hoveredItem === index
+            ? { backgroundColor: '#e8e8e8', border: '1px dotted #000' }
+            : { border: '1px solid transparent' })
+    });
 
     return (
         <div className="window">
@@ -33,22 +28,23 @@ const Program = () => {
                 <div className="file-explorer">
                     <div className="file-grid">
                         {fileItems.map((item, index) => (
-                            <div
+                            <button
                                 key={index}
                                 className="file-item"
                                 style={getHoverStyle(index)}
                                 onMouseOver={() => setHoveredItem(index)}
                                 onMouseOut={() => setHoveredItem(null)}
+                                onClick={() => onFileClick(item)}
                             >
                                 <div className="file-icon">{item.icon}</div>
                                 <div>{item.name}</div>
-                            </div>
+                            </button>
                         ))}
                     </div>
                 </div>
             </div>
         </div>
     );
-}
+};
 
-export default Program;
+export default Program

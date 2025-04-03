@@ -9,7 +9,15 @@ export const fileItems = [
     },
     {
         icon: "🎮",
-        name: "recreation.vpk",
+        name: "레크레이션.bat",
+    },
+    {
+        icon: "⏰",
+        name: "시간표.png",
+    },
+    {
+        icon: "🍽️",
+        name: "음식.menu"
     },
     {
         icon: "🗂️",
@@ -23,5 +31,4 @@ export const fileItems = [
         icon: "🔒",
         name: "config.sys",
     },
-    
 ];
