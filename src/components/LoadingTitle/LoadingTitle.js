@@ -58,7 +58,7 @@ const LoadingTitle = ({ onAnimationEnd }) => {
     return (
         <div className="window">
             <div className="title-bar">
-                <div className="title-bar-text">수양회.exe - System Process</div>
+                <div className="title-bar-text">청1_수양회.exe - System Process</div>
                 <div className="title-bar-controls">
                     <button>-</button>
                     <button>□</button>
@@ -66,7 +66,7 @@ const LoadingTitle = ({ onAnimationEnd }) => {
                 </div>
             </div>
             <div className="window-content loading">
-                <div className="main-title">수양회.exe<span className="blinking-cursor"></span></div>
+                <div className="main-title">청1_수양회.exe<span className="blinking-cursor"></span></div>
 
                 {/* Loading message appears above the loading bar and hides when popup shows */}
                 {showLoadingMessage && <div className="loading-message">{loadingMessage}</div>}

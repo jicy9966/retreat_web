@@ -18,9 +18,9 @@ const FAQ = () => {
                         <strong>FAQ - 자주 묻는 질문들</strong>
                     </div>
                     <p><strong>Q: 수양회 장소는 어디인가요?</strong><br />
-                        A: 베델 갈릴리 수양관, <br />&nbsp;&nbsp;&nbsp;&nbsp;
-                        31640 El Cariso Trail, <br />&nbsp;&nbsp;&nbsp;&nbsp;
-                        Lake Elsinore, CA 92530</p>
+                        A: 베델 갈릴리 수양관<br />&nbsp;&nbsp;&nbsp;&nbsp;
+                            31640 El Cariso Trail, <br />&nbsp;&nbsp;&nbsp;&nbsp;
+                            Lake Elsinore, CA 92530</p>
 
                     <hr style={{ margin: "10px 0", borderTop: "1px dotted #999" }} />
 
