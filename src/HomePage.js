@@ -34,10 +34,13 @@ const HomePage = () => {
     const handleFileClick = (item) => {
         if (item.action) {
             switch (item.action) {
-                // case "page":
-                //     // Navigate to a new page
-                //     navigate(item.path);
-                //     return;
+                case "page":
+                    // Navigate to a new page
+                    window.location.href = `${window.location.origin}${item.path}`;
+                    // or we can use the below code for new tab
+                    // const newUrl = `${window.location.origin}${item.path}`;
+                    // window.open(newUrl, "_blank");
+                    return;
                 case "external":
                     // Open an external URL in a new tab
                     window.open(item.url, '_blank');
@@ -97,9 +100,9 @@ const HomePage = () => {
                     ))} */}
                     <FAQ />
                     <Confidential />
-                    
-                    <Schedule />
-                    <Team />
+
+                    {/* <Schedule />
+                    <Team /> */}
                 </>
             )}
         </div>

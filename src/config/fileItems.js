@@ -2,7 +2,7 @@ export const fileItems = [
     {
         icon: "📄",
         name: "예배.log",
-        action: "page",
+        action: "none",
         path: "none" // Path to the worship page
     },
     {
@@ -12,27 +12,28 @@ export const fileItems = [
         url: "https://www.youtube.com/watch?v=EXAMPLE" // Replace with actual YouTube URL
     },
     {
+        icon: "✝️",
+        name: "큐티.qtin",
+        action: "none",
+        // action: "page",
+        path: "/qt"
+    },
+    {
         icon: "🎮",
         name: "레크레이션.bat",
-        action: "page",
+        action: "none",
         path: "none"
     },
     {
         icon: "⏰",
         name: "시간표.png",
-        action: "page",
+        action: "none",
         path: "none"
     },
     {
         icon: "🍽️",
         name: "음식.menu",
-        action: "page",
-        path: "none"
-    },
-    {
-        icon: "🗂️",
-        name: "팀미션_final.zip",
-        action: "page",
+        action: "default",
         path: "none"
     },
     {
@@ -41,14 +42,20 @@ export const fileItems = [
         action: "page",
         path: "/retreat-four-cuts"
     },
-    {
-        icon: "💾",
-        name: "data.ini",
-        action: "none" // Does nothing on click
-    },
-    {
-        icon: "🔒",
-        name: "config.sys",
-        action: "none" // Does nothing on click
-    },
+    // {
+    //     icon: "🗂️",
+    //     name: "팀미션_final.zip",
+    //     action: "none",
+    //     path: "none"
+    // },
+    // {
+    //     icon: "💾",
+    //     name: "data.ini",
+    //     action: "none" // Does nothing on click
+    // },
+    // {
+    //     icon: "🔒",
+    //     name: "config.sys",
+    //     action: "none" // Does nothing on click
+    // },
 ];
