@@ -4,42 +4,42 @@ html body.dark-mode {
     background-color: #050505 !important;
     background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="%23050505"/><path d="M0 0h100v100H0z" fill="%23111111" fill-opacity=".05"/></svg>') !important;
     color: #eeeeee !important;
-    
+
     /* Global reset for all elements */
     * {
         color-scheme: dark;
     }
-    
+
     /* Windows styling */
     .window {
         background-color: #050505;
         border: 1px solid #eeeeee;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
     }
-    
+
     .title-bar {
         background: linear-gradient(to right, #050505, #111111);
         color: #eeeeee;
         border-bottom: 1px solid #333333;
     }
-    
+
     .title-bar-controls button {
         background-color: #111111;
         border: 1px solid #333333;
         color: #eeeeee;
     }
-    
+
     .window-content {
         background-color: #050505 !important;
         color: #eeeeee !important;
     }
-    
+
     /* Ensure all content within windows gets dark styling */
     .window-content * {
         background-color: #050505;
         color: #eeeeee;
     }
-    
+
     /* Specific fixes for file explorer and other nested elements */
     .window-content .explorer-header,
     .window-content .file-explorer,
@@ -48,38 +48,39 @@ html body.dark-mode {
         color: #eeeeee;
         border-color: #333333;
     }
-    
+
     /* File explorer elements */
     .explorer-header {
         background-color: #050505 !important;
         color: #eeeeee !important;
         border-color: #333333;
     }
-    
+
     .file-explorer {
         background-color: #050505 !important;
     }
-    
+
     .file-grid {
         background-color: #050505;
     }
-    
+
     .file-grid .file-item {
         background-color: #050505 !important;
         color: #eeeeee !important;
-        
-        &:hover, &:focus {
+
+        &:hover,
+        &:focus {
             background-color: #111111 !important;
             border-color: #333333 !important;
             box-shadow: 0 0 3px rgba(238, 238, 238, 0.2);
         }
     }
-    
+
     /* File item icons should remain visible */
     .file-item .file-icon {
         color: #eeeeee;
     }
-    
+
     /* Message box */
     .message-box,
     div[class*="message"],
@@ -88,64 +89,64 @@ html body.dark-mode {
         color: #eeeeee !important;
         border-color: #333333 !important;
     }
-    
+
     /* Buttons */
     button {
         background-color: #111111;
         color: #eeeeee;
         border-color: #333333 #222222 #222222 #333333;
-        
+
         &:hover {
             background-color: #1a1a1a;
         }
-        
+
         &:active {
             background-color: #222222;
             border-color: #222222 #333333 #333333 #222222;
         }
     }
-    
+
     /* Taskbar */
     .taskbar {
         background: #050505 !important;
         border-top: 1px solid #333333 !important;
         box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.4) !important;
     }
-    
+
     .start-button {
         background-color: #111111;
         color: #eeeeee;
         border-color: #333333 #222222 #222222 #333333;
-        
+
         &:hover {
             background-color: #1a1a1a;
         }
-        
+
         &:active {
             background-color: #222222;
             border-color: #222222 #333333 #333333 #222222;
         }
     }
-    
+
     .taskbar-time {
         color: #eeeeee;
         border-color: #222222 #333333 #333333 #222222;
     }
-    
+
     /* Loading screen */
     .loading-screen {
         background-color: #050505;
         color: #eeeeee;
     }
-    
+
     .loading-progress {
         height: 100%;
-        background-color: #444444 !important; 
+        background-color: #444444 !important;
         width: 0%;
         animation: loading 5s forwards;
         box-shadow: 0 0 5px rgba(238, 238, 238, 0.2) !important;
     }
-    
+
     .popup button[style*="backgroundColor"],
     .popup button[style*="background-color"],
     button[style*="backgroundColor"],
@@ -154,37 +155,52 @@ html body.dark-mode {
         color: #eeeeee !important;
         border: 1px solid #333333 !important;
     }
-    
+
     /* Make sure the animation still works in dark mode */
     @keyframes loading {
-        0% { width: 0%; }
-        25% { width: 20%; }
-        50% { width: 50%; }
-        75% { width: 90%; }
-        100% { width: 100%; }
+        0% {
+            width: 0%;
+        }
+
+        25% {
+            width: 20%;
+        }
+
+        50% {
+            width: 50%;
+        }
+
+        75% {
+            width: 90%;
+        }
+
+        100% {
+            width: 100%;
+        }
     }
-    
+
     /* Table styling */
     table {
         border-color: #333333;
-        
-        th, td {
+
+        th,
+        td {
             border-color: #333333;
             background-color: #050505;
         }
-        
+
         th {
             background-color: #111111;
         }
     }
-    
+
     /* Page content */
     .page-content {
         background-color: #050505 !important;
         color: #eeeeee !important;
         border-color: #333333;
     }
-    
+
     /* Form controls and inputs within windows */
     .window-content input,
     .window-content textarea,
@@ -194,14 +210,14 @@ html body.dark-mode {
         border: 1px solid #333333;
         outline: none;
     }
-    
+
     .window-content input:focus,
     .window-content textarea:focus,
     .window-content select:focus {
         border-color: #555555;
         box-shadow: 0 0 3px rgba(238, 238, 238, 0.2);
     }
-    
+
     /* Popup elements */
     .popup,
     .popup.main {
@@ -210,75 +226,85 @@ html body.dark-mode {
         border: 1px solid #333333 !important;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6) !important;
     }
-    
+
     /* Main title and blinking cursor */
     .main-title {
         color: #eeeeee !important;
     }
-    
+
     .blinking-cursor {
         background-color: #eeeeee !important;
     }
-    
+
     /* Links within windows */
     .window-content a {
         color: #aaccff;
         text-decoration: none;
     }
-    
+
     .window-content a:hover {
         text-decoration: underline;
     }
-    
+
     /* Lists within windows */
     .window-content ul,
     .window-content ol {
         color: #eeeeee;
     }
-    
+
     /* Dividers */
     .window-content hr {
         border-color: #333333;
         border-style: solid;
         border-width: 1px 0 0 0;
     }
-    
+
     /* Windows startup screen */
     .windows-startup {
         background-color: #050505 !important;
     }
-    
+
     /* Desktop background */
     .desktop {
         background-color: #050505 !important;
     }
-    
+
+    .file-explorer {
+        .file-tree {
+            .file-entry {
+                a {
+                    color: #00e235;
+                }
+            }
+        }
+    }
+
     /* Scrollbars */
     ::-webkit-scrollbar {
         width: 8px;
         height: 8px;
     }
-    
+
     ::-webkit-scrollbar-track {
         background: #111111;
     }
-    
+
     ::-webkit-scrollbar-thumb {
         background: #333333;
         border-radius: 4px;
     }
-    
+
     ::-webkit-scrollbar-thumb:hover {
         background: #444444;
     }
-    
+
     /* Preserve responsive adjustments from App.scss */
     @media (max-width: 768px) {
         .desktop {
             padding: 5px;
         }
     }
-    
+
     @media (max-width: 480px) {
         .file-grid {
             grid-template-columns: repeat(2, 1fr);
