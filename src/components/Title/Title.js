@@ -15,7 +15,7 @@ const Title = () => {
                 <div className="main-title">수양회.exe<span className="blinking-cursor"></span></div>
             </div>
             <div className="popup main">
-                로딩 완료 ...
+                로딩 완료!
             </div>
         </div>
     );

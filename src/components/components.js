@@ -8,5 +8,18 @@ import FAQ from "./FAQ/FAQ";
 import Footer from "./Footer/Footer";
 import LoadingTitle from "./LoadingTitle/LoadingTitle";
 import Confidential from "./Confidential/Confidential";
+import RSVP from "./RSVP/RSVP";
 
-export {Title, MsgBox, Program, ProgramWindow, Schedule, Team, FAQ, Footer, LoadingTitle, Confidential}
+export {
+    Title,
+    MsgBox,
+    Program,
+    ProgramWindow,
+    Schedule,
+    Team,
+    FAQ,
+    Footer,
+    LoadingTitle,
+    Confidential,
+    RSVP
+}

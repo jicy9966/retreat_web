@@ -8,7 +8,8 @@ import {
     Team,
     FAQ,
     LoadingTitle,
-    Confidential
+    Confidential,
+    RSVP
 } from "./components/components";
 
 const HomePage = () => {
@@ -80,6 +81,7 @@ const HomePage = () => {
             {showWindows && (
                 <>
                     <Title />
+                    <RSVP />
                     {/* <Program onFileClick={handleFileClick} />
                     {openFileItems.map((item) => (
                         <div
