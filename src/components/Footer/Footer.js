@@ -31,7 +31,7 @@ const Footer = () => {
     return (
         <div className="taskbar">
             <div className="start-button">
-                <div>전원 ON</div>
+                <div>전원 OFF</div>
             </div> 
             <div className="taskbar-time" id="taskbar-time">
                 {time}
