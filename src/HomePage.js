@@ -96,8 +96,8 @@ const HomePage = () => {
                     ))} */}
                     <FAQ />
                     <Confidential />
-                    {/* 
-                    <Schedule />
+                    
+                    {/* <Schedule />
                     <Team /> */}
                 </>
             )}

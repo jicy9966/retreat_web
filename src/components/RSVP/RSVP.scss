@@ -15,14 +15,14 @@
             position: relative;
 
             &:before {
-                content: "├─";
+                content: "├";
                 position: absolute;
                 left: 0;
                 color: #555;
             }
 
             &:last-child:before {
-                content: "└─";
+                content: "└";
             }
 
             a {
