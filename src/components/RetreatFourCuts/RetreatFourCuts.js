@@ -4,13 +4,13 @@ import "./RetreatFourCuts.scss";
 const RetreatFourCuts = () => {
     // State to store the uploaded photos
     const [photos, setPhotos] = useState([null, null, null, null]);
-    
+
     // State to track which photo is selected
     const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(null);
-    
+
     // Refs for the file inputs
     const fileInputRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
-    
+
     // Function to handle photo upload
     const handlePhotoUpload = (index, e) => {
         const file = e.target.files[0];
@@ -31,7 +31,7 @@ const RetreatFourCuts = () => {
             reader.readAsDataURL(file);
         }
     };
-    
+
     // Function to handle photo click for selecting
     const handlePhotoClick = (index) => {
         if (photos[index]) {
@@ -59,7 +59,7 @@ const RetreatFourCuts = () => {
         newPhotos[index] = null;
         setPhotos(newPhotos);
         setSelectedPhotoIndex(null); // Deselect after deletion
-        
+
         // Reset the file input value so the same file can be selected again
         if (fileInputRefs[index] && fileInputRefs[index].current) {
             fileInputRefs[index].current.value = "";
@@ -75,7 +75,7 @@ const RetreatFourCuts = () => {
             fileInputRefs[index].current.click();
         }
     };
-    
+
     // Function to download the completed frame
     const handleDownload = () => {
         // Check if there are any photos to download
@@ -83,25 +83,25 @@ const RetreatFourCuts = () => {
             alert('Please add at least one photo before downloading.');
             return;
         }
-        
+
         // Get the actual frame element dimensions
         const frameElement = document.querySelector('.four-cuts-frame');
         if (!frameElement) {
             alert('Error: Could not find the frame element.');
             return;
         }
-        
+
         // Get the frame's aspect ratio
         const frameRect = frameElement.getBoundingClientRect();
         const frameAspectRatio = frameRect.width / frameRect.height;
-        
+
         // Detect if we're on mobile
         const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-        
+
         // First, load all original images at full resolution
         const imagePromises = photos.map((photo, index) => {
             if (!photo) return Promise.resolve(null);
-            
+
             return new Promise((resolve) => {
                 const img = new Image();
                 img.onload = () => resolve({
@@ -114,48 +114,48 @@ const RetreatFourCuts = () => {
                 img.src = photo;
             });
         });
-        
+
         Promise.all(imagePromises).then(imageData => {
             // Filter out any null results
             const validImageData = imageData.filter(data => data !== null);
-            
+
             if (validImageData.length === 0) {
                 alert('No valid images to download.');
                 return;
             }
-            
+
             // Set a mobile-friendly target width (most mobile devices can handle 2048px)
             const targetWidth = isMobile ? 1800 : 3000;
             const targetHeight = Math.round(targetWidth / frameAspectRatio);
-            
+
             // Scale factors
             const scaleX = targetWidth / frameRect.width;
             const scaleY = targetHeight / frameRect.height;
-            
+
             // Create the canvas with the target dimensions
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
             canvas.width = targetWidth;
             canvas.height = targetHeight;
-            
+
             // Draw white background
             ctx.fillStyle = 'white';
             ctx.fillRect(0, 0, targetWidth, targetHeight);
-            
+
             // Get all photo spots
             const photoSpots = document.querySelectorAll('.photo-spot');
             if (!photoSpots.length) {
                 alert('Error: Could not find photo elements.');
                 return;
             }
-            
+
             // Draw each photo at highest possible quality
             const drawPromises = [];
-            
+
             photoSpots.forEach((spot, index) => {
                 const imageData = validImageData.find(data => data.index === index);
                 if (!imageData || !photos[index]) return;
-                
+
                 const promise = new Promise((resolve) => {
                     // Get positions relative to the frame
                     const spotRect = spot.getBoundingClientRect();
@@ -163,17 +163,17 @@ const RetreatFourCuts = () => {
                     const y = Math.round((spotRect.top - frameRect.top) * scaleY);
                     const width = Math.round(spotRect.width * scaleX);
                     const height = Math.round(spotRect.height * scaleY);
-                    
+
                     // Get original image dimensions
                     const imgWidth = imageData.naturalWidth;
                     const imgHeight = imageData.naturalHeight;
-                    
+
                     // Calculate cropping parameters (simulating object-fit: cover)
                     const spotAspect = spotRect.width / spotRect.height;
                     const imgAspect = imgWidth / imgHeight;
-                    
+
                     let sX = 0, sY = 0, sWidth = imgWidth, sHeight = imgHeight;
-                    
+
                     if (imgAspect > spotAspect) {
                         // Image is wider than spot - crop sides
                         sWidth = imgHeight * spotAspect;
@@ -183,7 +183,7 @@ const RetreatFourCuts = () => {
                         sHeight = imgWidth / spotAspect;
                         sY = (imgHeight - sHeight) / 2;
                     }
-                    
+
                     // Draw the image directly to the main canvas, using the original data
                     // but cropped to match what's visible on screen
                     ctx.drawImage(
@@ -191,18 +191,18 @@ const RetreatFourCuts = () => {
                         Math.round(sX), Math.round(sY), Math.round(sWidth), Math.round(sHeight),
                         x, y, width, height
                     );
-                    
+
                     // Add the border
                     ctx.strokeStyle = '#999';
                     ctx.lineWidth = Math.max(1, Math.round(scaleX / 2));
                     ctx.strokeRect(x, y, width, height);
-                    
+
                     resolve();
                 });
-                
+
                 drawPromises.push(promise);
             });
-            
+
             Promise.all(drawPromises).then(() => {
                 // Draw the title text
                 const titleElement = document.querySelector('.frame-title');
@@ -210,21 +210,21 @@ const RetreatFourCuts = () => {
                     // Calculate position based on the scaled dimensions
                     const x = targetWidth / 2;
                     const y = targetHeight - Math.round(20 * scaleY);
-                    
+
                     // Scale text size based on the width scale
                     const fontSize = Math.round(24 * scaleX);
-                    
+
                     ctx.fillStyle = '#333';
                     ctx.font = `bold ${fontSize}px Arial`;
                     ctx.textAlign = 'center';
                     ctx.fillText('RETREAT 4 CUTS', x, y);
                 }
-                
+
                 // Add a border around the entire frame
                 ctx.strokeStyle = '#ccc';
                 ctx.lineWidth = Math.max(1, Math.round(scaleX / 2));
                 ctx.strokeRect(0, 0, targetWidth, targetHeight);
-                
+
                 try {
                     // Use blob instead of dataURL for better mobile compatibility
                     canvas.toBlob(
@@ -238,20 +238,20 @@ const RetreatFourCuts = () => {
                             try {
                                 // Create a blob URL
                                 const blobUrl = URL.createObjectURL(blob);
-                                
+
                                 // Create download link
                                 const link = document.createElement('a');
                                 link.download = 'retreat-four-cuts.png';
                                 link.href = blobUrl;
                                 link.click();
-                                
+
                                 // Clean up the blob URL after download starts
                                 setTimeout(() => {
                                     URL.revokeObjectURL(blobUrl);
                                 }, 5000);
                             } catch (linkError) {
                                 console.error('Error creating download:', linkError);
-                                
+
                                 // Fallback for iOS Safari which may not support the download attribute
                                 if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
                                     alert('For iOS devices: tap and hold on the image that appears next, then select "Save Image"');
@@ -260,7 +260,7 @@ const RetreatFourCuts = () => {
                                     img.style.maxWidth = '100%';
                                     img.style.display = 'block';
                                     img.style.margin = '10px auto';
-                                    
+
                                     const container = document.createElement('div');
                                     container.style.position = 'fixed';
                                     container.style.top = '0';
@@ -271,14 +271,14 @@ const RetreatFourCuts = () => {
                                     container.style.zIndex = '9999';
                                     container.style.padding = '20px';
                                     container.style.overflow = 'auto';
-                                    
+
                                     const closeBtn = document.createElement('button');
                                     closeBtn.textContent = 'Close';
                                     closeBtn.style.display = 'block';
                                     closeBtn.style.margin = '10px auto';
                                     closeBtn.style.padding = '10px 20px';
                                     closeBtn.onclick = () => document.body.removeChild(container);
-                                    
+
                                     container.appendChild(img);
                                     container.appendChild(closeBtn);
                                     document.body.appendChild(container);
@@ -290,20 +290,20 @@ const RetreatFourCuts = () => {
                     );
                 } catch (error) {
                     console.error('Error in canvas operation:', error);
-                    
+
                     // Try with a smaller canvas as fallback
                     if (targetWidth > 1024) {
                         alert('Creating high-resolution image failed. Trying with lower resolution...');
-                        
+
                         // Create a smaller canvas
                         const smallCanvas = document.createElement('canvas');
                         const smallCtx = smallCanvas.getContext('2d');
                         smallCanvas.width = 1024;
                         smallCanvas.height = Math.round(1024 / frameAspectRatio);
-                        
+
                         // Draw the larger canvas scaled down to the smaller one
                         smallCtx.drawImage(canvas, 0, 0, smallCanvas.width, smallCanvas.height);
-                        
+
                         // Try to download the smaller version
                         const dataUrl = smallCanvas.toDataURL('image/png', 0.9);
                         const link = document.createElement('a');
@@ -323,7 +323,7 @@ const RetreatFourCuts = () => {
             alert('There was an error loading your images. Please try again.');
         });
     };
-    
+
     return (
         <div className="page-container windows-style" onClick={() => setSelectedPhotoIndex(null)}>
             <div className="window" onClick={(e) => e.stopPropagation()}>
@@ -341,12 +341,12 @@ const RetreatFourCuts = () => {
                     </div>
                     <div className="page-content">
                         <h2>수양회 네컷</h2>
-                        
+
                         <div className="frame-container">
                             <div className="four-cuts-frame">
                                 {photos.map((photo, index) => (
-                                    <div 
-                                        key={index} 
+                                    <div
+                                        key={index}
                                         className={`photo-spot ${photo ? 'has-photo' : ''} ${selectedPhotoIndex === index ? 'selected' : ''}`}
                                         onClick={(e) => {
                                             e.stopPropagation();
@@ -390,10 +390,10 @@ const RetreatFourCuts = () => {
                                 <div className="frame-title">RETREAT 4 CUTS</div>
                             </div>
                         </div>
-                        
+
                         <div className="action-buttons">
-                            <button 
-                                onClick={handleDownload} 
+                            <button
+                                onClick={handleDownload}
                                 disabled={!photos.some(photo => photo)}
                                 className="download-button"
                             >
