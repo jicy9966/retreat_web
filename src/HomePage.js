@@ -9,7 +9,8 @@ import {
     FAQ,
     LoadingTitle,
     Confidential,
-    RSVP
+    RSVP,
+    RetreatFourCuts
 } from "./components/components";
 
 const HomePage = () => {

@@ -9,6 +9,7 @@ import Footer from "./Footer/Footer";
 import LoadingTitle from "./LoadingTitle/LoadingTitle";
 import Confidential from "./Confidential/Confidential";
 import RSVP from "./RSVP/RSVP";
+import RetreatFourCuts from "./RetreatFourCuts/RetreatFourCuts";
 
 export {
     Title,
@@ -21,5 +22,6 @@ export {
     Footer,
     LoadingTitle,
     Confidential,
-    RSVP
+    RSVP,
+    RetreatFourCuts
 }

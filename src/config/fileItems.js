@@ -36,6 +36,12 @@ export const fileItems = [
         path: "none"
     },
     {
+        icon: "📸",
+        name: "포토부스.exe",
+        action: "page",
+        path: "/retreat-four-cuts"
+    },
+    {
         icon: "💾",
         name: "data.ini",
         action: "none" // Does nothing on click
