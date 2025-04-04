@@ -30,6 +30,22 @@ const HomePage = () => {
     };
 
     const handleFileClick = (item) => {
+        if (item.action) {
+            switch (item.action) {
+                // case "page":
+                //     // Navigate to a new page
+                //     navigate(item.path);
+                //     return;
+                case "external":
+                    // Open an external URL in a new tab
+                    window.open(item.url, '_blank');
+                    return;
+                case "none":
+                    // Do nothing for items that should not lead anywhere
+                    return;
+                // Default case is to open a window, handled below
+            }
+        }
         setOpenFileItems((prev) => {
             if (prev.some((openItem) => openItem.name === item.name)) return prev;
             return [...prev, item];
