@@ -98,8 +98,8 @@ const HomePage = () => {
                     <FAQ />
                     <Confidential />
                     
-                    {/* <Schedule />
-                    <Team /> */}
+                    <Schedule />
+                    <Team />
                 </>
             )}
         </div>

@@ -2,22 +2,23 @@ import React, { useState } from 'react';
 import "./Team.scss";
 import { team_data } from "../../config/team_data"
 import TeamPopup from './TeamPopup';
+import msnIcon from "../../assets/msn_icon.png";
 
 const Team = () => {
   const [selectedTeam, setSelectedTeam] = useState(null);
-  
+
   // Calculate how many are online
   const onlineCount = team_data.filter(buddy => !buddy.isAway).length;
   const totalCount = team_data.length;
-  
+
   const handleTeamClick = (team) => {
     setSelectedTeam(team);
   };
-  
+
   const closePopup = () => {
     setSelectedTeam(null);
   };
-  
+
   return (
     <div className="window">
       <div className="title-bar">
@@ -32,8 +33,8 @@ const Team = () => {
         <div className="chat-ui">
           <ul className="buddy-list">
             {team_data.map(buddy => (
-              <li 
-                key={buddy.id} 
+              <li
+                key={buddy.id}
                 className="buddy-list-item"
                 onClick={() => handleTeamClick(buddy)}
               >
@@ -44,7 +45,7 @@ const Team = () => {
           </ul>
         </div>
       </div>
-      
+
       {selectedTeam && <TeamPopup team={selectedTeam} onClose={closePopup} />}
     </div>
   );
