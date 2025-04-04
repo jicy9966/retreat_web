@@ -76,9 +76,9 @@ const LoadingTitle = ({ onAnimationEnd }) => {
                 </div>
 
                 {/* Popup that will be shown after animation */}
-                <div className="popup loading" ref={popupRef} style={{ display: 'none' }}>
+                <div className="popup loading" ref={popupRef} style={{ display: 'none', fontSize: "13px" }}>
                     수양회.exe 모듈 설치 완료! <br />
-                    은혜 충만함 느낄 준비 되었나요?
+                    은혜 충만함 느낄 준비 됐나요?
                 </div>
             </div>
         </div>

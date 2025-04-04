@@ -1,4 +1,5 @@
 @import "../../App.scss";
+@import "../Confidential/Confidential.scss";
 
 .explorer-header {
     background-color: #D4D0C8;
@@ -10,4 +11,8 @@
     border: 1px solid #999;
     background-color: white;
     margin: 15px 0;
+}
+
+.program-container {
+    margin: 20px auto 10px;
 }

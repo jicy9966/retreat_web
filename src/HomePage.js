@@ -80,8 +80,7 @@ const HomePage = () => {
             {showWindows && (
                 <>
                     <Title />
-                    <Program onFileClick={handleFileClick} />
-
+                    {/* <Program onFileClick={handleFileClick} />
                     {openFileItems.map((item) => (
                         <div
                             key={item.name}
@@ -92,12 +91,12 @@ const HomePage = () => {
                                 onClose={() => handleCloseWindow(item.name)}
                             />
                         </div>
-                    ))}
-
+                    ))} */}
                     <FAQ />
                     <Confidential />
+                    {/* 
                     <Schedule />
-                    <Team />
+                    <Team /> */}
                 </>
             )}
         </div>
