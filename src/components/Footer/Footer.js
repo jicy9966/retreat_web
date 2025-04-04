@@ -3,6 +3,8 @@ import "./Footer.scss";
 
 const Footer = () => {
     const [time, setTime] = useState("");
+    // Set default power state to ON (light mode)
+    const [isPowerOn, setIsPowerOn] = useState(true);
     
     useEffect(() => {
         // Function to update time
@@ -28,10 +30,23 @@ const Footer = () => {
         return () => clearInterval(intervalId);
     }, []);
     
+    // Toggle power state and dark mode
+    const togglePower = () => {
+        const newPowerState = !isPowerOn;
+        setIsPowerOn(newPowerState);
+        
+        // Toggle dark mode class on the document body
+        if (newPowerState) {
+            document.body.classList.remove('dark-mode');
+        } else {
+            document.body.classList.add('dark-mode');
+        }
+    };
+    
     return (
         <div className="taskbar">
-            <div className="start-button">
-                <div>전원 OFF</div>
+            <div className="start-button" onClick={togglePower}>
+                <div>전원 {isPowerOn ? "ON" : "OFF"}</div>
             </div> 
             <div className="taskbar-time" id="taskbar-time">
                 {time}
@@ -40,4 +55,4 @@ const Footer = () => {
     );
 }
 
-export default Footer
+export default Footer;

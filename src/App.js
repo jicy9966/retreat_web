@@ -1,4 +1,5 @@
 import "./App.scss"
+import "./DarkMode.scss" 
 import { Footer } from "./components/components";
 import HomePage from "./HomePage";
 
