@@ -29,11 +29,11 @@ const RSVP = ({ onClose }) => {
                                 rel="noopener noreferrer">도우미_신청서</a>
                         </div>
                         <div className="file-entry">
-                            <FontAwesomeIcon icon={faInstagram} style={{ marginLeft: '4px' }}/>
+                            <FontAwesomeIcon icon={faInstagram} style={{ marginLeft: '4px' }} />
                             <a href="https://www.instagram.com/yesalm_chung1/"
                                 target="_blank"
                                 rel="noopener noreferrer">
-                                 청1_인스타그램</a>
+                                청1_인스타그램</a>
                         </div>
                     </div>
                 </div>

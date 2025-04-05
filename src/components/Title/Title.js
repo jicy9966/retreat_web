@@ -15,7 +15,9 @@ const Title = () => {
                 <div className="main-title">청1_수양회.exe<span className="blinking-cursor"></span></div>
             </div>
             <div className="popup main">
-                로딩 완료!
+                {/* 로딩 완료! */}
+                {/* 2025 청1 수양회 안내 웹페이지 서비스 */}
+                수양회 D - 23!
             </div>
         </div>
     );
