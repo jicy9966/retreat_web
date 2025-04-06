@@ -10,7 +10,8 @@ import {
     LoadingTitle,
     Confidential,
     RSVP,
-    RetreatFourCuts
+    RetreatFourCuts,
+    Timer
 } from "./components/components";
 
 const HomePage = () => {
@@ -86,6 +87,7 @@ const HomePage = () => {
                 <>
                     <Title />
                     <RSVP />
+                    <Timer />
                     {/* <Program onFileClick={handleFileClick} />
                     {openFileItems.map((item) => (
                         <div

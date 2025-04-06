@@ -272,9 +272,10 @@ html body.dark-mode {
     .file-explorer {
         .file-tree {
             .file-entry {
-                color: #00e235;
+                color: #33ff00;
+
                 a {
-                    color: #00e235;
+                    color: #33ff00;
 
                     &:hover {
                         background-color: #575757;
@@ -283,6 +284,19 @@ html body.dark-mode {
             }
         }
     }
+
+    .timer-subtitle {
+        color: white;
+    }
+
+    .countdown-timer {
+        color: #33ff00;
+    }
+
+    .countdown-label {
+        color: #33ff00;
+    }
+    
 
     /* Scrollbars */
     ::-webkit-scrollbar {

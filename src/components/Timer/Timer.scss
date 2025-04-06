@@ -1,0 +1,57 @@
+@import "../../App.scss";
+
+.program-container {
+    padding: 10px;
+}
+
+.countdown-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.timer-subtitle {
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #000080;
+    font-family: "Malgun Gothic", "맑은 고딕", "Gulim", "굴림", sans-serif;
+}
+
+.countdown-timer {
+    font-family: "Fixedsys", "Gulim", "굴림", monospace;
+    font-size: 25px;
+    background-color: #0000AA; /* Classic blue screen blue */
+    color: #FFFFFF;
+    padding: 12px 20px;
+    border: 2px solid #FFFFFF;
+    display: inline-block;
+    text-align: center;
+    width: fit-content;
+    margin: 0.5rem auto 0;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
+
+.countdown-group {
+    display: inline-block;
+    margin: 0 6px;
+}
+
+.countdown-unit {
+    display: inline-block;
+    font-weight: bold;
+}
+
+.countdown-label {
+    display: inline-block;
+    font-size: 25px;
+    padding: 0 2px;
+    color: #FFFFFF;
+}
+
+.countdown-separator {
+    display: inline-block;
+    padding: 0 2px;
+    color: #FFFFFF;
+}
