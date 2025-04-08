@@ -9,7 +9,6 @@ import Footer from "./Footer/Footer";
 import LoadingTitle from "./LoadingTitle/LoadingTitle";
 import Confidential from "./Confidential/Confidential";
 import RSVP from "./RSVP/RSVP";
-import RetreatFourCuts from "./RetreatFourCuts/RetreatFourCuts";
 import Timer from "./Timer/Timer";
 
 export {
@@ -24,6 +23,5 @@ export {
     LoadingTitle,
     Confidential,
     RSVP,
-    RetreatFourCuts,
     Timer
 }

@@ -23,7 +23,7 @@ const Program = ({ onFileClick }) => {
             </div>
             <div className="window-content">
                 <div className="explorer-header">
-                    <span>베델 {">"} 예삶 {">"} 청1 {">"} 수양회 2025 {">"} 홈</span>
+                    <span>📁 베델 {">"} 예삶 {">"} 청1 {">"} 수양회 2025 {">"} 홈</span>
                 </div>
                 <div className="file-explorer">
                     <div className="file-grid">
@@ -47,4 +47,4 @@ const Program = ({ onFileClick }) => {
     );
 };
 
-export default Program
+export default Program;

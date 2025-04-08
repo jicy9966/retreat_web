@@ -3,7 +3,7 @@ export const fileItems = [
         icon: "📄",
         name: "예배.log",
         action: "none",
-        path: "none" // Path to the worship page
+        path: "none"
     },
     {
         icon: "💿",
@@ -15,7 +15,6 @@ export const fileItems = [
         icon: "✝️",
         name: "큐티.qtin",
         action: "none",
-        // action: "page",
         path: "/qt"
     },
     {
@@ -27,13 +26,13 @@ export const fileItems = [
     {
         icon: "⏰",
         name: "시간표.png",
-        action: "none",
-        path: "none"
+        action: "download",
+        url: "/assets/2025_청1_수양회_일정표.png"
     },
     {
         icon: "🍽️",
         name: "음식.menu",
-        action: "default",
+        action: "window",
         path: "none"
     },
     {

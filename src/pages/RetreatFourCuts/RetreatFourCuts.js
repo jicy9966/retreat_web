@@ -1,16 +1,13 @@
 import React, { useState, useRef } from 'react';
 import "./RetreatFourCuts.scss";
+import { useNavigate } from "react-router-dom";
 
 const RetreatFourCuts = () => {
-    // State to store the uploaded photos
-    const [photos, setPhotos] = useState([null, null, null, null]);
-
-    // State to track which photo is selected
-    const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(null);
-
-    // Refs for the file inputs
-    const fileInputRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
-
+    const [photos, setPhotos] = useState([null, null, null, null]); // State to store the uploaded photos
+    const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(null); // State to track which photo is selected
+    const fileInputRefs = [useRef(null), useRef(null), useRef(null), useRef(null)]; // Refs for the file inputs
+    const navigate = useNavigate();
+    
     // Function to handle photo upload
     const handlePhotoUpload = (index, e) => {
         const file = e.target.files[0];
@@ -63,16 +60,6 @@ const RetreatFourCuts = () => {
         // Reset the file input value so the same file can be selected again
         if (fileInputRefs[index] && fileInputRefs[index].current) {
             fileInputRefs[index].current.value = "";
-        }
-    };
-
-    // Function to change a photo
-    const handleChangePhoto = (index, e) => {
-        e.stopPropagation(); // Prevent triggering the photo click handler
-        if (fileInputRefs[index] && fileInputRefs[index].current) {
-            // Reset the input before opening the file dialog
-            fileInputRefs[index].current.value = "";
-            fileInputRefs[index].current.click();
         }
     };
 
@@ -332,12 +319,12 @@ const RetreatFourCuts = () => {
                     <div className="title-bar-controls">
                         <button>-</button>
                         <button>□</button>
-                        <button onClick={() => window.location.href = '/'}>×</button>
+                        <button onClick={() => navigate("/home")}>×</button>
                     </div>
                 </div>
                 <div className="window-content">
                     <div className="explorer-header">
-                        <span>베델 {">"} 예삶 {">"} 청1 {">"} 수양회 2025 {">"} 포토부스</span>
+                        <span>📁 베델 {">"} 예삶 {">"} 청1 {">"} 수양회 {">"} 포토부스</span>
                     </div>
                     <div className="page-content">
                         <h2>수양회 네컷</h2>
@@ -399,7 +386,7 @@ const RetreatFourCuts = () => {
                             >
                                 Download
                             </button>
-                            <button onClick={() => window.location.href = '/'}>
+                            <button onClick={() => navigate("/home")}>
                                 Back to Home
                             </button>
                         </div>

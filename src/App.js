@@ -1,39 +1,22 @@
 import "./App.scss"
-import "./DarkMode.scss" 
-import { Footer, RetreatFourCuts } from "./components/components";
-import HomePage from "./HomePage";
-import React, { useEffect, useState } from "react";
+import "./DarkMode.scss"
+import React from "react";
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { HomePage, LoadingPage, RetreatFourCuts } from "./pages/pages";
+import { Footer } from "./components/components";
 
 function App() {
-  const [currentPath, setCurrentPath] = useState(window.location.pathname);
-  
-  // Handle route changes
-  useEffect(() => {
-    const handleLocationChange = () => {
-      setCurrentPath(window.location.pathname);
-    };
-    
-    // Listen for popstate events (back/forward navigation)
-    window.addEventListener('popstate', handleLocationChange);
-    
-    return () => {
-      window.removeEventListener('popstate', handleLocationChange);
-    };
-  }, []);
-
-  const renderPage = () => {
-    switch(currentPath) {
-      case '/retreat-four-cuts':
-        return <RetreatFourCuts/>;
-      default:
-        return <HomePage/>;
-    }
-  };
-
   return (
     <>
       <div className="desktop">
-        {renderPage()}
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Navigate to="/loading" replace />} />
+            <Route path="/loading" element={<LoadingPage />} />
+            <Route path="/home" index element={<HomePage />} />
+            <Route path="/retreat-four-cuts" element={<RetreatFourCuts />} />
+          </Routes>
+        </BrowserRouter>
       </div>
       <Footer />
     </>

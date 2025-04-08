@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import "./Team.scss";
 import { team_data } from "../../config/team_data"
 import TeamPopup from './TeamPopup';
-import msnIcon from "../../assets/msn_icon.png";
 
 const Team = () => {
   const [selectedTeam, setSelectedTeam] = useState(null);

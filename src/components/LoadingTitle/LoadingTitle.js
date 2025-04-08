@@ -6,16 +6,18 @@ const LoadingTitle = ({ onAnimationEnd }) => {
     const popupRef = useRef(null);
     const [loadingMessage, setLoadingMessage] = useState("Initializing...");
     const [showLoadingMessage, setShowLoadingMessage] = useState(true);
+    const [showLoadingBar, setShowLoadingBar] = useState(true);
 
     useEffect(() => {
         const loadingProgress = loadingProgressRef.current;
 
         // Create an event listener for the animation end
         const handleAnimationEnd = () => {
-            // Show the popup after the animation ends
+            // After animation completes
             setTimeout(() => {
-                // Hide the loading message
+                // Hide the loading message and loading bar
                 setShowLoadingMessage(false);
+                setShowLoadingBar(false);
 
                 // Call the parent function when the animation ends
                 if (onAnimationEnd) onAnimationEnd();
@@ -71,9 +73,12 @@ const LoadingTitle = ({ onAnimationEnd }) => {
                 {/* Loading message appears above the loading bar and hides when popup shows */}
                 {showLoadingMessage && <div className="loading-message">{loadingMessage}</div>}
 
-                <div className="loading-bar">
-                    <div className="loading-progress" ref={loadingProgressRef}></div>
-                </div>
+                {/* Loading bar will hide after animation completes */}
+                {showLoadingBar && (
+                    <div className="loading-bar">
+                        <div className="loading-progress" ref={loadingProgressRef}></div>
+                    </div>
+                )}
 
                 {/* Popup that will be shown after animation */}
                 <div className="popup loading" ref={popupRef} style={{ display: 'none', fontSize: "13px" }}>
