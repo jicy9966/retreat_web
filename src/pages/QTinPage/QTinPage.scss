@@ -1,0 +1,238 @@
+.bible-study-container {
+    padding: 0;
+    font-family: 'Noto Sans', sans-serif;
+    background-color: #fff;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.bible-study-page {
+    display: flex;
+    flex-direction: row;
+}
+
+.left-column {
+    flex: 7;
+    padding: 30px;
+    position: relative;
+    background-color: #f6f8f1;
+}
+
+.right-column {
+    flex: 3;
+    padding: 0;
+    position: relative;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.right-content {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.header {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 15px;
+
+    .lesson-number {
+        display: flex;
+        align-items: baseline;
+        font-size: 20px;
+        font-weight: 500;
+        margin-bottom: 5px;
+        color: #83a654;
+
+        .lesson-count {
+            font-size: 20px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+    }
+
+    .metadata {
+        display: flex;
+        flex-direction: column;
+
+        .date-ref {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+    }
+}
+
+.scripture-section {
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: #83a654;
+}
+
+.scripture-text {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #333;
+
+    .verse-number {
+        font-size: 12px;
+        font-weight: 600;
+        color: #83a654;
+        vertical-align: super;
+        margin-right: 2px;
+    }
+}
+
+.notes-section {
+    background-color: #f6f8f1;
+    padding: 15px;
+    margin-top: 30px;
+    border-radius: 6px;
+
+    .note-title {
+        font-weight: 600;
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
+
+    .note-item {
+        font-size: 13px;
+        margin-bottom: 6px;
+        line-height: 1.4;
+
+        .note-term {
+            font-weight: 600;
+        }
+    }
+}
+
+.scripture-summary {
+    background-color: #f6f8f1;
+    padding: 15px;
+    margin-bottom: 30px;
+    border-radius: 6px;
+
+    .summary-title {
+        font-size: 14px;
+        font-weight: 600;
+        color: #666;
+        margin-bottom: 8px;
+    }
+
+    p {
+        font-size: 12px;
+        line-height: 1.5;
+        color: #333;
+    }
+}
+
+.interaction-section {
+    .section-label {
+        font-size: 15px;
+        font-weight: 500;
+        color: #83a654;
+        margin-top: 25px;
+        margin-bottom: 5px;
+    }
+
+    .input-area {
+        height: 5px;
+        border-bottom: 1px solid #e0e0e0;
+        margin-bottom: 15px;
+    }
+
+    .intercessory-prayer {
+        margin-top: 30px;
+
+
+        p {
+            font-size: 12px;
+            line-height: 1.5;
+            color: #666;
+        }
+    }
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .bible-study-page {
+        flex-direction: column;
+    }
+
+    .left-column {
+        padding: 20px;
+        flex: none;
+        /* Reset flex values for mobile */
+    }
+
+    .right-column {
+        flex: none;
+        /* Reset flex values for mobile */
+    }
+
+    .right-content {
+        padding: 20px;
+    }
+
+    .header {
+        .lesson-number {
+            font-size: 20px;
+
+            .lesson-count {
+                font-size: 20px;
+            }
+        }
+    }
+
+    .section-title {
+        font-size: 15px;
+    }
+
+    .scripture-text {
+        font-size: 14px;
+    }
+
+    .notes-section {
+        padding: 12px;
+
+        .note-title {
+            font-size: 13px;
+        }
+
+        .note-item {
+            font-size: 12px;
+        }
+    }
+
+    .scripture-summary {
+        padding: 12px;
+
+        .summary-title {
+            font-size: 14px;
+        }
+
+        p {
+            font-size: 12px;
+        }
+    }
+
+    .interaction-section {
+        .section-label {
+            font-size: 14px;
+        }
+
+        .intercessory-prayer {
+            p {
+                font-size: 13px;
+            }
+        }
+    }
+}

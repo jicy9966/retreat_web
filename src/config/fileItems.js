@@ -14,8 +14,8 @@ export const fileItems = [
     {
         icon: "✝️",
         name: "큐티.qtin",
-        action: "none",
-        path: "/qt"
+        action: "page",
+        path: "/QTin/2025-04-25" //change accordingly to today's date
     },
     {
         icon: "🎮",
