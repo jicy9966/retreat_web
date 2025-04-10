@@ -25,15 +25,15 @@ export const fileItems = [
     },
     {
         icon: "⏰",
-        name: "시간표.png",
-        action: "download",
-        url: "/assets/2025_청1_수양회_일정표.png"
+        name: "일정표.txt",
+        action: "window",
+        component: "Schedule"
     },
     {
         icon: "🍽️",
         name: "음식.menu",
         action: "window",
-        path: "none"
+        component: "Menu"
     },
     {
         icon: "📸",

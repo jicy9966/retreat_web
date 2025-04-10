@@ -1,21 +1,243 @@
 @import "../../App.scss";
 
-/* Schedule Section */
-.notepad 
-{
-    font-family: 'Courier New', monospace;
+
+.notepad {
+    font-family: 'PixelFont', 'Courier New', monospace;
     background-color: white;
-    padding: 20px;
-    border: 1px solid #999;
-    height: 200px;
+    padding: 15px;
+    border: 1px inset #999;
+    height: 250px;
     overflow-y: auto;
     text-align: center;
+    position: relative;
 }
 
-.notepad-header 
-{
-    background-color: white;
-    padding: 5px;
-    border: 1px solid #999;
+/* Interactive elements */
+.schedule-tabs {
+    display: flex;
     margin-bottom: 10px;
+}
+
+.schedule-tab {
+    padding: 2px 10px;
+    background-color: #c0c0c0;
+    border: 2px outset white;
+    margin-right: 5px;
+    cursor: pointer;
+    font-family: 'PixelFont', 'Courier New', monospace;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.schedule-tab.active {
+    background-color: #f0f0f0;
+    border: 2px inset #999;
+}
+
+.schedule-content {
+    line-height: 1.5;
+}
+
+.view-options {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: 'PixelFont', 'Courier New', monospace;
+    font-size: 12px;
+}
+
+.view-option {
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.view-option input {
+    margin-right: 5px;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border: 1px inset #999;
+    background-color: white;
+    position: relative;
+}
+
+.view-option input:checked::after {
+    content: "✓";
+    position: absolute;
+    top: -10px;
+    left: 1px;
+    font-size: 16px;
+    color: black;
+}
+
+.blink {
+    animation: blink-animation 1s steps(2, start) infinite;
+}
+
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+
+.retro-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 14px;
+    background-color: black;
+    animation: blink-cursor 1s infinite;
+}
+
+@keyframes blink-cursor {
+
+    0%,
+    49% {
+        opacity: 1;
+    }
+
+    50%,
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/* Window tabs (new) */
+.window-tabs {
+    display: flex;
+    margin: 10px 0 20px;
+    border-bottom: 1px solid #999;
+}
+
+.window-tab {
+    padding: 3px 15px;
+    background-color: #d4d0c8;
+    border: 2px outset white;
+    border-bottom: none;
+    margin-right: 2px;
+    cursor: pointer;
+    font-family: 'PixelFont', 'Courier New', monospace;
+    font-size: 12px;
+    position: relative;
+    bottom: -1px;
+}
+
+.window-tab.active {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.view-options {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-family: 'PixelFont', 'Courier New', monospace;
+    font-size: 12px;
+}
+
+.view-option {
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.view-option input {
+    margin-right: 5px;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border: 1px inset #999;
+    background-color: white;
+    position: relative;
+}
+
+.view-option input:checked::after {
+    content: "✓";
+    position: absolute;
+    top: -10px;
+    left: 1px;
+    font-size: 16px;
+    color: black;
+}
+
+/* Download section styles */
+.download-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f0f0f0;
+    border: 1px inset #999;
+    padding: 15px;
+    height: 320px;
+    /* Match height with schedule view */
+}
+
+.preview-container {
+    width: 100%;
+    height: 180px;
+    background-color: white;
+    border: 1px inset #999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.schedule-preview {
+    max-width: 100%;
+    max-height: 160px;
+    object-fit: fill;
+    border: 1px solid #999;
+}
+
+.download-info {
+    width: 100%;
+    font-family: 'PixelFont', 'Courier New', monospace;
+    font-size: 12px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.download-info p {
+    margin: 5px 0;
+}
+
+.file-name {
+    font-family: 'PixelFont', 'Courier New', monospace;
+    background-color: white;
+    border: 1px inset #999;
+    padding: 2px 5px;
+    color: #000080;
+}
+
+.download-buttons {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.download-button {
+    background-color: #d4d0c8;
+    border: 2px outset white;
+    padding: 5px 15px;
+    font-family: 'PixelFont', 'Courier New', monospace;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.download-button:before {
+    content: "⤓";
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+.download-button:active {
+    border: 2px inset #999;
 }

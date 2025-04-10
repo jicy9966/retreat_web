@@ -319,27 +319,28 @@ html body.dark-mode {
 
     // QTin Page
     .header {
-        .lesson-number{
+        .lesson-number {
             color: #95c655;
         }
+
         .metadata {
             .date-ref {
                 color: white;
-                strong{
+
+                strong {
                     color: white;
                 }
             }
         }
     }
-    
-    .section-title
-    {
+
+    .section-title {
         color: #95c655;
     }
 
     .scripture-text {
         color: white;
-    
+
         .verse-number {
             color: #95c655;
         }
@@ -348,10 +349,12 @@ html body.dark-mode {
     .scripture-summary {
         border-width: 1px;
         border-style: solid;
-        border-color:white;
+        border-color: white;
+
         .summary-title {
             color: white;
         }
+
         p {
             color: white;
         }
@@ -367,6 +370,27 @@ html body.dark-mode {
         p {
             color: white;
         }
+    }
+
+    .window-tab {
+        border-bottom: 1px solid #999;
+    }
+
+    .window-tab.active {
+        border-bottom: 1px solid black;
+    }
+
+    .view-option input:checked::after {
+        content: "✓";
+        color: white;
+    }
+
+    .download-info {
+        color: white;
+    }
+
+    .file-name {
+        color: #33ff00;
     }
 
     /* Preserve responsive adjustments from App.scss */

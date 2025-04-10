@@ -19,9 +19,17 @@ const HomePage = () => {
     const windowRefs = useRef({});
     const navigate = useNavigate();
 
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    }
+
     const handleFileClick = (item) => {
         if (item.action === "page" && item.path) {
             navigate(item.path);
+            scrollToTop();
             return;
         } else if (item.action === "external" && item.url) {
             window.open(item.url, "_blank");
@@ -35,11 +43,12 @@ const HomePage = () => {
             document.body.removeChild(link);
             return;
         } else if (item.action == "window") {
-            //default
+            // opens window
         } else {
             alert("현재 페이지는 준비 중입니다.");
             return;
         }
+
         setOpenFileItems((prev) => {
             if (prev.some((openItem) => openItem.name === item.name)) return prev;
             return [...prev, item];
@@ -57,14 +66,13 @@ const HomePage = () => {
     };
 
     const handleCloseWindow = (name) => {
+        console.log("Closing window:", name);
         setOpenFileItems((prev) => prev.filter((item) => item.name !== name));
     };
 
     return (
         <div className="windows-startup">
             <Title />
-            <RSVP />
-            <Timer />
             {/* <Program onFileClick={handleFileClick} />
             {openFileItems.map((item) => (
                 <div
@@ -77,11 +85,13 @@ const HomePage = () => {
                     />
                 </div>
             ))} */}
+
+            {/* Before D-DAY */}
+
+            <RSVP />
+            <Timer />
             <FAQ />
             <Confidential />
-
-            {/* <Schedule />
-            <Team /> */}
         </div>
     );
 };
