@@ -2,8 +2,8 @@
 const scriptures = [
     {
         date: "2025-04-25",
-        dayOfWeek: "FRI",
-        month: "APR",
+        dayOfWeek: "금요일",
+        month: "APRIL",
         day: 25,
         lessonNumber: "25",
         lessonTitle: "여호와를 경외하라",
@@ -136,153 +136,196 @@ const scriptures = [
     },
     {
         date: "2025-04-26",
-        dayOfWeek: "SAT",
-        month: "APR",
+        dayOfWeek: "토요일",
+        month: "APRIL",
         day: 26,
         lessonNumber: "26",
-        lessonTitle: "Resurrection and Life",
-        reference: "Luke 20:27-40",
+        lessonTitle: "나는 네 구원이라",
+        reference: "시편 35:1-18",
         sections: [
             {
-                title: "The Sadducees' Question",
+                title: "나를 더우소서",
                 verses: [
                     {
-                        number: "27",
-                        text: "Some of the Sadducees, who say there is no resurrection, came to Jesus with a question."
+                        number: "1",
+                        text: "여호와여 나와 다투는 자와 다투시고 나와 싸우는 자와 싸우소서"
                     },
                     {
-                        number: "28",
-                        text: "\"Teacher,\" they said, \"Moses wrote for us that if a man's brother dies and leaves a wife but no children, the man must marry the widow and raise up offspring for his brother."
+                        number: "2",
+                        text: "방패와 손 방패를 잡으시고 일어나 나를 도우소서"
                     },
                     {
-                        number: "29",
-                        text: "Now there were seven brothers. The first one married a woman and died childless."
+                        number: "3",
+                        text: "창을 빼사 나를 쫓는 자의 길을 막으시고 또 내 영혼에게 나는 네 구원이라 이르소서"
                     },
                     {
-                        number: "30",
-                        text: "The second"
+                        number: "4",
+                        text: "내 생명을 찾는 자들이 부끄러워 수치를 당하게 하시며 나를 상해하려 하는 자들이 물러가 낭패를 당하게 하소서"
                     },
                     {
-                        number: "31",
-                        text: "and then the third married her, and in the same way the seven died, leaving no children."
+                        number: "5",
+                        text: "그들을 바람 앞에 겨와 같게 하시고 여호와의 천사가 그들을 몰아내게 하소서"
                     },
                     {
-                        number: "32",
-                        text: "Finally, the woman died too."
+                        number: "6",
+                        text: "그들의 길을 어둡고 미끄럽게 하시며 여호와의 천사가 그들을 뒤쫓게 하소서"
                     },
                     {
-                        number: "33",
-                        text: "Now then, at the resurrection whose wife will she be, since the seven were married to her?\""
+                        number: "7",
+                        text: "그들이 까닭 없이 나를 잡으려고 그들의 그물을 웅덩이에 숨기며 까닭 없이 내 생명을 해하려고 함정을 팠사오니"
+                    },
+                    {
+                        number: "8",
+                        text: "멸망이 순식간에 그에게 닥치게 하시며 그가 숨긴 그물에 자기가 잡히게 하시며 멸망 중에 떨어지게 하소서"
                     }
                 ]
             },
             {
-                title: "Jesus' Answer about the Resurrection",
+                title: "내 품으로 돌아온 기도",
                 verses: [
                     {
-                        number: "34",
-                        text: "Jesus replied, \"The people of this age marry and are given in marriage."
+                        number: "9",
+                        text: "내 영혼이 여호와를 즐거워함이여 그의 구원을 기뻐하리로다"
                     },
                     {
-                        number: "35",
-                        text: "But those who are considered worthy of taking part in the age to come and in the resurrection from the dead will neither marry nor be given in marriage,"
+                        number: "10",
+                        text: "내 모든 뼈가 이르기를 여호와와 같은 이가 누구냐 그는 가난한 자를" +
+                        "그보다 강한 자에게서 건지시고 가난하고 궁핍한 자를 노략하는 자에게서 건지시는 이라 하리로다"
                     },
                     {
-                        number: "36",
-                        text: "and they can no longer die; for they are like the angels. They are God's children, since they are children of the resurrection."
+                        number: "11",
+                        text: "불의한 증인들이 일어나서 내가 알지 못하는 일로 내게 질문하며"
                     },
                     {
-                        number: "37",
-                        text: "But in the account of the burning bush, even Moses showed that the dead rise, for he calls the Lord 'the God of Abraham, and the God of Isaac, and the God of Jacob.'"
+                        number: "12",
+                        text: "내게 선을 악으로 갚아 나의 영혼을 외롭게 하나"
                     },
                     {
-                        number: "38",
-                        text: "He is not the God of the dead, but of the living, for to him all are alive.\""
+                        number: "13",
+                        text: "나는 그들이 병 들었을 때에 굵은 베 옷을 입으며 금식하여 내 영혼을 괴롭게 하였더니 내 기도가 내 품으로 돌아왔도다"
                     },
                     {
-                        number: "39",
-                        text: "Some of the teachers of the law responded, \"Well said, teacher!\""
+                        number: "14",
+                        text: "내가 나의 친구와 형제에게 행함 같이 그들에게 행하였으며 내가 몸을 굽히고 슬퍼하기를 어머니를 곡함 같이 하였도다"
+                    }
+                ]
+            },
+            {
+                title: "찬송하는 많은 백성",
+                verses: [
+                    {
+                        number: "15",
+                        text: "그러나 내가 넘어지매 그들이 기뻐하여 서로 모임이여 불량배가 내가 알지 못하는 중에 모여서 나를 치며 찢기를 마지아니하도다"
                     },
                     {
-                        number: "40",
-                        text: "And no one dared to ask him any more questions."
+                        number: "16",
+                        text: "그들은 연회에서 망령되이 조롱하는 자 같이 나를 향하여 그들의 이를 갈도다"
+                    },
+                    {
+                        number: "17",
+                        text: "주여 어느 때까지 관망하시려 하나이까 내 영혼을 저 멸망자에게서 구원하시며 내 유일한 것을 사자들에게서 건지소서"
+                    },
+                    {
+                        number: "18",
+                        text: "내가 대회 중에서 주께 감사하며 많은 백성 중에서 주를 찬송하리이다"
                     }
                 ]
             }
         ],
         notes: [
             {
-                term: "Sadducees",
-                definition: "A Jewish religious group that did not believe in resurrection, angels, or spirits."
+                term: "바람 앞에 겨(5절)",
+                definition: "타작하여 바람에 날려버리는 곡식의 껍질"
             },
             {
-                term: "Levirate marriage",
-                definition: "The practice where a brother of a deceased man was obliged to marry his brother's widow."
+                term: "대회",
+                definition: "예배를 위해 모인 많은 사람"
             }
         ],
-        summary: "The Sadducees, who deny the resurrection, pose a hypothetical question about a woman who had seven husbands. Jesus answers that in the resurrection, people neither marry nor are given in marriage, and affirms that God is the God of the living.",
-        prayer: "Father, thank you for the promise of resurrection. Help us to live with an eternal perspective, knowing that we will one day experience the fullness of life in your presence."
+        summary: "예수님이 십자가에 달려 숨지시자, 공회 의원 요셉은 예수님의 시신을 자신의 새 무덤에 무십니다. 또한 갈릴리에서 온 여자들은 무덤에 가서 예수님의 시신을 어떻게 두었는지 보고 돌아가 향품과 향유를 준비합니다. 그리고 안식일에는 계명에 따라 쉽니다.",
+        prayer: "고난이 속히 지나가기만을 바란 저를 불쌍히 여겨주옵소서. 이제는 나를 힘들게 하는 어떤 상황에서도 상대의 구원을 위한 기도를 멈추지 않게 인도해주옵소서. 공동체와 함께 예배드릴 때 저와 구원자 되시는 하나님을 만나게 하옵소서."
     },
     {
         date: "2025-04-27",
-        dayOfWeek: "SUN",
-        month: "APR",
+        dayOfWeek: "주일",
+        month: "APRIL",
         day: 27,
         lessonNumber: "27",
-        lessonTitle: "The Son of David",
-        reference: "Luke 20:41-47",
+        lessonTitle: "하나님의 공의대로",
+        reference: "시편 35:19-28",
         sections: [
             {
-                title: "The Question About the Messiah",
+                title: "원수의 비웃음",
                 verses: [
                     {
-                        number: "41",
-                        text: "Then Jesus said to them, \"Why is it said that the Messiah is the son of David?"
+                        number: "19",
+                        text: "부당하게 나의 원수된 자가 나로 말미암아 기뻐하지 못하게 하시며 까닭 없이 나를 미워하는 자들이 서로 눈짓하지 못하게 하소서"
                     },
                     {
-                        number: "42",
-                        text: "David himself declares in the Book of Psalms: 'The Lord said to my Lord: \"Sit at my right hand"
+                        number: "20",
+                        text: "무릇 그들은 화평을 말하지 아니하고 오히려 평안히 땅에 사는 자들을 거짓말로 모략하며"
                     },
                     {
-                        number: "43",
-                        text: "until I make your enemies a footstool for your feet.\"'"
+                        number: "21",
+                        text: "또 그들이 나를 향하여 입을 크게 벌리고 하하 우리가 목격하였다 하나이다"
                     },
-                    {
-                        number: "44",
-                        text: "David calls him 'Lord.' How then can he be his son?\""
-                    }
                 ]
             },
             {
-                title: "Warning Against the Teachers of the Law",
+                title: "낭패를 당하게 하시며",
                 verses: [
                     {
-                        number: "45",
-                        text: "While all the people were listening, Jesus said to his disciples,"
+                        number: "22",
+                        text: "여호와여 주께서 이를 보셨사오니 잠잠하지 마옵소서 주여 나를 멀리하지 마옵소서"
                     },
                     {
-                        number: "46",
-                        text: "\"Beware of the teachers of the law. They like to walk around in flowing robes and love to be greeted with respect in the marketplaces and have the most important seats in the synagogues and the places of honor at banquets."
+                        number: "23",
+                        text: "나의 하나님, 나의 주여 떨치고 깨셔서 나를 공판하시며 나의 송사를 다스리소서"
                     },
                     {
-                        number: "47",
-                        text: "They devour widows' houses and for a show make lengthy prayers. These men will be punished most severely.\""
+                        number: "24",
+                        text: "여호와 나의 하나님이여 주의 공의대로 나를 판단하사 그들이 나로 말미암아 기뻐하지 못하게 하소서"
+                    },
+                    {
+                        number: "25",
+                        text: "그들이 마음속으로 이르기를 아하 소원을 성취하였다 하지 못하게 하시며 우리가 그를 삼켰다 말하지 못하게 하소서"
+                    },
+                    {
+                        number: "26",
+                        text: "나의 재난을 기뻐하는 자들이 함께 부끄러워 낭패를 당하게 하시며 나를 향하여 스스로 뽐내는 자들이 수치와 욕을 당하게 하소서"
+                    },
+                ]
+            },
+            {
+                title: "종일토록 찬송하리이다",
+                verses: [
+                    {
+                        number: "27",
+                        text: "나의 의를 즐거워하는 자들이 기꺼이 노래 부르고 즐거워하게 하시며 그의 종의 평안함을 기뻐하시는 여호와는 위대하시다 하는 말을 그들이 항상 말하게 하소서"
+                    },
+                    {
+                        number: "28",
+                        text: "나의 혀가 주의 의를 말하며 종일토록 주를 찬송하리이다"
                     }
                 ]
             }
         ],
         notes: [
             {
-                term: "Son of David",
-                definition: "A messianic title referring to the promised descendant of King David who would be the Messiah."
+                term: "모략하다",
+                definition: "불순한 의도로 어떤 일을 꾸미다"
             },
             {
-                term: "The Lord said to my Lord",
-                definition: "A quote from Psalm 110:1, which Jesus uses to show the Messiah's divine nature."
+                term: "송사",
+                definition: "재판을 통해 정당함을 가리는 절차"
+            },
+            {
+                term: "낭패",
+                definition: "계획한 일이 실패로 돌아가거나 기대에 어긋나 매우 딱하게 됨"
             }
         ],
-        summary: "Jesus poses a question about how the Messiah can be both David's son and David's Lord, highlighting the divine nature of the Messiah. He then warns against the hypocrisy of the teachers of the law who seek honor while exploiting the vulnerable.",
-        prayer: "Lord Jesus, help us to recognize your true identity as both human and divine. Protect us from hypocrisy and teach us to serve others with genuine hearts."
+        summary: "다윗에 원수들은 그를 미워하고 거짓말로 모략하여 화평을 깨뜨립니다. 이에 다윗은 하나님께 원수들이 승리의 기쁨을 누리지 못하게 해달라고 기도합니다. 또한 자신과 함께 하나님의 의를 따르는 자들이 위대하신 여호와를 항상 찬송하게 해주시기를 간구합니다.",
+        prayer: "세상 눈치를 보며 예수 믿은 자임을 당당히 드러내지 못했습니다. 이기고 또 이기려는 세상 가치관으로 낮아지지 못하는 저의 연약함을 불쌍히 여겨주옵소서. 지체들과 함께 날마다 큐티하며 주를 찬송하는 거룩한 공동체가 되게 도와주옵소서."
     }
 ];
 

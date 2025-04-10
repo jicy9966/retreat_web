@@ -1,3 +1,4 @@
+
 .bible-study-container {
     padding: 0;
     font-family: 'Noto Sans', sans-serif;
@@ -36,7 +37,6 @@
 .header {
     margin-bottom: 20px;
     border-bottom: 1px solid #e0e0e0;
-    padding-bottom: 15px;
 
     .lesson-number {
         display: flex;
@@ -61,6 +61,10 @@
             font-size: 14px;
             color: #666;
             margin-bottom: 5px;
+
+            strong{
+                color: black;
+            }
         }
     }
 }
@@ -151,8 +155,6 @@
 
     .intercessory-prayer {
         margin-top: 30px;
-
-
         p {
             font-size: 12px;
             line-height: 1.5;

@@ -296,7 +296,7 @@ html body.dark-mode {
     .countdown-label {
         color: #33ff00;
     }
-    
+
 
     /* Scrollbars */
     ::-webkit-scrollbar {
@@ -315,6 +315,58 @@ html body.dark-mode {
 
     ::-webkit-scrollbar-thumb:hover {
         background: #444444;
+    }
+
+    // QTin Page
+    .header {
+        .lesson-number{
+            color: #95c655;
+        }
+        .metadata {
+            .date-ref {
+                color: white;
+                strong{
+                    color: white;
+                }
+            }
+        }
+    }
+    
+    .section-title
+    {
+        color: #95c655;
+    }
+
+    .scripture-text {
+        color: white;
+    
+        .verse-number {
+            color: #95c655;
+        }
+    }
+
+    .scripture-summary {
+        border-width: 1px;
+        border-style: solid;
+        border-color:white;
+        .summary-title {
+            color: white;
+        }
+        p {
+            color: white;
+        }
+    }
+
+    .interaction-section {
+        .section-label {
+            color: #95c655;
+        }
+    }
+
+    .intercessory-prayer {
+        p {
+            color: white;
+        }
     }
 
     /* Preserve responsive adjustments from App.scss */

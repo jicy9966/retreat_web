@@ -47,7 +47,7 @@ const QTinPage = () => {
                                     <span className="lesson-count">{scripture.lessonNumber}</span> {scripture.lessonTitle}
                                 </div>
                                 <div className="metadata">
-                                    <span className="date-ref">{scripture.month}/{scripture.day} | {scripture.reference}</span>
+                                    <span className="date-ref">{scripture.month} / {scripture.dayOfWeek} | <strong>{scripture.reference}</strong></span>
                                 </div>
                             </div>
 
@@ -65,7 +65,7 @@ const QTinPage = () => {
                             ))}
 
                             <div className="notes-section">
-                                <div className="note-title">노트</div>
+                                <div className="note-title">도움말</div>
                                 {scripture.notes && scripture.notes.map((note, index) => (
                                     <div className="note-item" key={index}>
                                         <span className="note-term">{note.term}:</span> {note.definition}
