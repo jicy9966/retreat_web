@@ -65,7 +65,7 @@ const HomePage = () => {
             <Title />
             <RSVP />
             <Timer />
-            <Program onFileClick={handleFileClick} />
+            {/* <Program onFileClick={handleFileClick} />
             {openFileItems.map((item) => (
                 <div
                     key={item.name}
@@ -76,7 +76,7 @@ const HomePage = () => {
                         onClose={() => handleCloseWindow(item.name)}
                     />
                 </div>
-            ))}
+            ))} */}
             <FAQ />
             <Confidential />
 
