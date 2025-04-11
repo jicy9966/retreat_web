@@ -10,6 +10,7 @@ import LoadingTitle from "./LoadingTitle/LoadingTitle";
 import Confidential from "./Confidential/Confidential";
 import RSVP from "./RSVP/RSVP";
 import Timer from "./Timer/Timer";
+import Menu from "./Menu/Menu";
 
 export {
     Title,
@@ -23,5 +24,6 @@ export {
     LoadingTitle,
     Confidential,
     RSVP,
-    Timer
+    Timer,
+    Menu
 }

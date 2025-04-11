@@ -1,0 +1,89 @@
+@import "../../App.scss";
+
+.dinner-menu {
+    font-family: 'PixelFont', 'Courier New', monospace;
+    margin-top: 10px;
+
+    h2 {
+        font-size: 16px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 4px;
+        color: #333;
+        text-align: center;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+            margin: 8px 0;
+
+            &::before {
+                content: "🍴 ";
+                margin-right: 4px;
+            }
+
+            strong {
+                display: inline-block;
+                width: 100px;
+            }
+        }
+    }
+
+    .menu-tabs {
+        display: flex;
+        margin: 10px 0 20px;
+        border-bottom: 1px solid #999;
+
+        .menu-tab {
+            padding: 3px 15px;
+            background-color: #d4d0c8;
+            border: 2px outset white;
+            border-bottom: none;
+            margin-right: 2px;
+            cursor: pointer;
+            font-family: 'PixelFont', 'Courier New', monospace;
+            font-size: 12px;
+            position: relative;
+            bottom: -1px;
+
+            &.active {
+                background-color: #f0f0f0;
+                border-bottom: 1px solid #f0f0f0;
+                font-weight: bold;
+                z-index: 2;
+            }
+        }
+    }
+
+    .menu-content {
+        margin: 15px 0;
+
+        .meal-item {
+            margin: 8px 0;
+            padding: 8px;
+            border-left: 3px solid #aaa;
+            background-color: #f9f9f9;
+            transition: transform 0.2s;
+
+            &:hover {
+                transform: translateX(5px);
+                border-left-color: #555;
+                background-color: #f0f0f0;
+            }
+
+            &::before {
+                content: "🍴 ";
+                margin-right: 4px;
+            }
+
+            strong {
+                display: inline-block;
+                width: 60px;
+                color: #555;
+            }
+        }
+    }
+}

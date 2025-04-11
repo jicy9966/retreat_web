@@ -1,11 +1,12 @@
 import "./ProgramWindow.scss"
-import { Schedule, Team } from "../../components/components";
+import { Schedule, Team, Menu } from "../../components/components";
 
 const ProgramWindow = ({ item, onClose }) => {
     return (
         <div>
             {item.component === "Schedule" && <Schedule onClose={onClose} />}
             {item.component === "Team" && <Team onClose={onClose} />}
+            {item.component === "Menu" && <Menu onClose={onClose} />}
         </div>
 
 
