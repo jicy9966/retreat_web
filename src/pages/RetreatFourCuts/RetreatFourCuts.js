@@ -2,10 +2,16 @@ import React, { useState, useRef } from 'react';
 import "./RetreatFourCuts.scss";
 import { useNavigate } from "react-router-dom";
 
+// Import your logo images - you'll need to add these files to your project
+import logoColorImage from './grace-and-rest-color.png'; // Blue version
+import logoBlackImage from './grace-and-rest-black.png'; // Black version
+
 const RetreatFourCuts = () => {
     const [photos, setPhotos] = useState([null, null, null, null]); // State to store the uploaded photos
     const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(null); // State to track which photo is selected
+    const [useColorLogo, setUseColorLogo] = useState(true); // Toggle between color and black logo
     const fileInputRefs = [useRef(null), useRef(null), useRef(null), useRef(null)]; // Refs for the file inputs
+    const logoRef = useRef(null); // Ref for the logo element
     const navigate = useNavigate();
     
     // Function to handle photo upload
@@ -63,6 +69,11 @@ const RetreatFourCuts = () => {
         }
     };
 
+    // Function to toggle logo color
+    const toggleLogoColor = () => {
+        setUseColorLogo(!useColorLogo);
+    };
+
     // Function to download the completed frame
     const handleDownload = () => {
         // Check if there are any photos to download
@@ -102,9 +113,24 @@ const RetreatFourCuts = () => {
             });
         });
 
-        Promise.all(imagePromises).then(imageData => {
-            // Filter out any null results
-            const validImageData = imageData.filter(data => data !== null);
+        // Load the logo image as well
+        const logoPromise = new Promise((resolve) => {
+            const logoImg = new Image();
+            logoImg.onload = () => resolve({
+                img: logoImg,
+                naturalWidth: logoImg.naturalWidth,
+                naturalHeight: logoImg.naturalHeight
+            });
+            logoImg.onerror = () => resolve(null);
+            logoImg.src = useColorLogo ? logoColorImage : logoBlackImage;
+        });
+
+        Promise.all([...imagePromises, logoPromise]).then(results => {
+            // Get logo data (last item in the results)
+            const logoData = results.pop();
+            
+            // Filter out any null results from photos
+            const validImageData = results.filter(data => data !== null);
 
             if (validImageData.length === 0) {
                 alert('No valid images to download.');
@@ -191,20 +217,41 @@ const RetreatFourCuts = () => {
             });
 
             Promise.all(drawPromises).then(() => {
-                // Draw the title text
-                const titleElement = document.querySelector('.frame-title');
-                if (titleElement) {
-                    // Calculate position based on the scaled dimensions
-                    const x = targetWidth / 2;
-                    const y = targetHeight - Math.round(20 * scaleY);
-
-                    // Scale text size based on the width scale
-                    const fontSize = Math.round(24 * scaleX);
-
-                    ctx.fillStyle = '#333';
-                    ctx.font = `bold ${fontSize}px Arial`;
-                    ctx.textAlign = 'center';
-                    ctx.fillText('RETREAT 4 CUTS', x, y);
+                // Draw the logo instead of text
+                // Draw the logo instead of text
+                // Draw the logo instead of text
+                if (logoData && logoRef.current) {
+                    const logoRect = logoRef.current.getBoundingClientRect();
+                    
+                    // Calculate the center position of the logo area
+                    const centerX = ((logoRect.left - frameRect.left) + (logoRect.width / 2)) * scaleX;
+                    const centerY = ((logoRect.top - frameRect.top) + (logoRect.height / 2)) * scaleY;
+                    
+                    // Calculate the original logo dimensions
+                    const logoAspectRatio = logoData.naturalWidth / logoData.naturalHeight;
+                    const displayedWidth = Math.round(logoRect.width * scaleX);
+                    const displayedHeight = Math.round(logoRect.height * scaleY);
+                    
+                    // Use the original aspect ratio to determine dimensions
+                    let width, height;
+                    
+                    // Option 1: Set the width and calculate height based on aspect ratio
+                    width = displayedWidth;
+                    height = width / logoAspectRatio;
+                    
+                    // If height is too large, use Option 2
+                    if (height > displayedHeight * 1.2) {
+                        // Option 2: Set the height and calculate width based on aspect ratio
+                        height = displayedHeight;
+                        width = height * logoAspectRatio;
+                    }
+                    
+                    // Calculate the top-left position to center the logo
+                    const x = centerX - (width / 2);
+                    const y = centerY - (height / 2);
+                    
+                    // Draw the logo with the correct aspect ratio, centered
+                    ctx.drawImage(logoData.img, x, y, width, height);
                 }
 
                 // Add a border around the entire frame
@@ -228,7 +275,7 @@ const RetreatFourCuts = () => {
 
                                 // Create download link
                                 const link = document.createElement('a');
-                                link.download = 'retreat-four-cuts.png';
+                                link.download = 'grace-and-rest-four-cuts.png';
                                 link.href = blobUrl;
                                 link.click();
 
@@ -294,7 +341,7 @@ const RetreatFourCuts = () => {
                         // Try to download the smaller version
                         const dataUrl = smallCanvas.toDataURL('image/png', 0.9);
                         const link = document.createElement('a');
-                        link.download = 'retreat-four-cuts-small.png';
+                        link.download = 'grace-and-rest-four-cuts-small.png';
                         link.href = dataUrl;
                         link.click();
                     } else {
@@ -315,7 +362,7 @@ const RetreatFourCuts = () => {
         <div className="page-container windows-style" onClick={() => setSelectedPhotoIndex(null)}>
             <div className="window" onClick={(e) => e.stopPropagation()}>
                 <div className="title-bar">
-                    <div className="title-bar-text">Retreat Four Cuts</div>
+                    <div className="title-bar-text">수양회네컷</div>
                     <div className="title-bar-controls">
                         <button>-</button>
                         <button>□</button>
@@ -327,7 +374,7 @@ const RetreatFourCuts = () => {
                         <span>📁 베델 {">"} 예삶 {">"} 청1 {">"} 수양회 {">"} 포토부스</span>
                     </div>
                     <div className="page-content">
-                        <h2>수양회 네컷</h2>
+                        <h2>수양회네컷</h2>
 
                         <div className="frame-container">
                             <div className="four-cuts-frame">
@@ -374,7 +421,14 @@ const RetreatFourCuts = () => {
                                         />
                                     </div>
                                 ))}
-                                <div className="frame-title">RETREAT 4 CUTS</div>
+                                <div className="frame-logo" ref={logoRef}>
+                                    <img 
+                                        src={useColorLogo ? logoColorImage : logoBlackImage} 
+                                        alt="Grace & Rest"
+                                        onClick={toggleLogoColor}
+                                        title="Click to toggle logo color"
+                                    />
+                                </div>
                             </div>
                         </div>
 
@@ -385,6 +439,9 @@ const RetreatFourCuts = () => {
                                 className="download-button"
                             >
                                 Download
+                            </button>
+                            <button onClick={toggleLogoColor}>
+                                Toggle Logo Color
                             </button>
                             <button onClick={() => navigate("/home")}>
                                 Back to Home
