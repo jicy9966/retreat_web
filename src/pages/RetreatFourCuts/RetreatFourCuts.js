@@ -6,6 +6,28 @@ import { useNavigate } from "react-router-dom";
 import logoColorImage from './grace-and-rest-color.png'; // Blue version
 import logoBlackImage from './grace-and-rest-black.png'; // Black version
 
+const generateRandomFilename = (baseFilename, extension, randomLength = 8) => {
+    // Function to generate a random string of specified length
+    function generateRandomString(length) {
+        const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+        let result = '';
+        for (let i = 0; i < length; i++) {
+            const randomIndex = Math.floor(Math.random() * characters.length);
+            result += characters.charAt(randomIndex);
+        }
+        return result;
+    }
+
+    // Generate random string
+    const randomString = generateRandomString(randomLength);
+    
+    // Clean extension by removing dot if present
+    const cleanExtension = extension.startsWith('.') ? extension.substring(1) : extension;
+    
+    // Return the complete filename
+    return `${baseFilename}-${randomString}.${cleanExtension}`;
+};
+
 const RetreatFourCuts = () => {
     const [photos, setPhotos] = useState([null, null, null, null]); // State to store the uploaded photos
     const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(null); // State to track which photo is selected
@@ -275,7 +297,7 @@ const RetreatFourCuts = () => {
 
                                 // Create download link
                                 const link = document.createElement('a');
-                                link.download = 'grace-and-rest-four-cuts.png';
+                                link.download = generateRandomFilename('grace-and-rest-four-cuts', 'png');
                                 link.href = blobUrl;
                                 link.click();
 
