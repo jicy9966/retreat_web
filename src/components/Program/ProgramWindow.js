@@ -1,5 +1,5 @@
 import "./ProgramWindow.scss"
-import { Schedule, Team, Menu } from "../../components/components";
+import { Schedule, Team, Menu, RSVP, FAQ } from "../../components/components";
 
 const ProgramWindow = ({ item, onClose }) => {
     return (
@@ -7,6 +7,8 @@ const ProgramWindow = ({ item, onClose }) => {
             {item.component === "Schedule" && <Schedule onClose={onClose} />}
             {item.component === "Team" && <Team onClose={onClose} />}
             {item.component === "Menu" && <Menu onClose={onClose} />}
+            {item.component === "RSVP" && <RSVP onClose={onClose} />}
+            {item.component === "FAQ" && <FAQ onClose={onClose} />}
         </div>
 
 

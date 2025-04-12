@@ -4,6 +4,7 @@ import { fileItems } from "../../config/fileItems";
 
 const Program = ({ onFileClick }) => {
     const [hoveredItem, setHoveredItem] = useState(null);
+    const [isMinimized, setIsMinimized] = useState(false);
 
     const getHoverStyle = (index) => ({
         ...(hoveredItem === index
@@ -11,12 +12,20 @@ const Program = ({ onFileClick }) => {
             : { border: '1px solid transparent' })
     });
 
+    const handleMinimize = () => {
+        setIsMinimized(!isMinimized);
+    };
+
+    const windowStyle = {
+        ...(isMinimized ? { height: '30px', overflow: 'hidden' } : {})
+    };
+
     return (
-        <div className="window">
+        <div className="window" style={windowStyle}>
             <div className="title-bar">
                 <div className="title-bar-text">File Explorer - Program Files (C:)</div>
                 <div className="title-bar-controls">
-                    <button>-</button>
+                    <button onClick={handleMinimize}>-</button>
                     <button>□</button>
                     <button>×</button>
                 </div>

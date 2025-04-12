@@ -3,12 +3,9 @@ import {
     Title,
     Program,
     ProgramWindow,
-    Schedule,
-    Team,
     FAQ,
     Confidential,
     RSVP,
-    RetreatFourCuts,
     Timer
 } from "../../components/components";
 import { useNavigate } from "react-router-dom";
@@ -42,7 +39,7 @@ const HomePage = () => {
             link.click();
             document.body.removeChild(link);
             return;
-        } else if (item.action == "window") {
+        } else if (item.action === "window") {
             // opens window
         } else {
             alert("현재 페이지는 준비 중입니다.");

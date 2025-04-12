@@ -1,12 +1,23 @@
+import React, { useState } from "react";
 import "./Title.scss";
 
 const Title = () => {
+    const [isMinimized, setIsMinimized] = useState(false);
+    
+    const handleMinimize = () => {
+        setIsMinimized(!isMinimized);
+    };
+
+    const windowStyle = {
+        ...(isMinimized ? { height: '30px', overflow: 'hidden' } : {})
+    };
+
     return (
-        <div className="window">
+        <div className="window" style={windowStyle}>
             <div className="title-bar">
                 <div className="title-bar-text">청1_수양회.exe - System Process</div>
                 <div className="title-bar-controls">
-                    <button>-</button>
+                    <button onClick={handleMinimize}>-</button>
                     <button>□</button>
                     <button>×</button>
                 </div>

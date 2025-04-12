@@ -1,14 +1,25 @@
+import React, { useState } from "react"
 import "./FAQ.scss"
 
-const FAQ = () => {
+const FAQ = ({ onClose }) => {
+    const [isMinimized, setIsMinimized] = useState(false);
+
+    const handleMinimize = () => {
+        setIsMinimized(!isMinimized);
+    };
+
+    const windowStyle = {
+        ...(isMinimized ? { height: '30px', overflow: 'hidden' } : {})
+    };
+
     return (
-        <div class="window">
+        <div class="window" style={windowStyle}>
             <div class="title-bar">
                 <div class="title-bar-text">System Message - FAQ</div>
                 <div class="title-bar-controls">
-                    <button>-</button>
+                    <button onClick={handleMinimize}>-</button>
                     <button>□</button>
-                    <button>×</button>
+                    <button onClick={onClose}>×</button>
                 </div>
             </div>
             <div class="window-content">
@@ -19,8 +30,8 @@ const FAQ = () => {
                     </div>
                     <p><strong>Q: 수양회 장소는 어디인가요?</strong><br />
                         A: 베델 갈릴리 수양관<br />&nbsp;&nbsp;&nbsp;&nbsp;
-                            31640 El Cariso Trail, <br />&nbsp;&nbsp;&nbsp;&nbsp;
-                            Lake Elsinore, CA 92530</p>
+                        31640 El Cariso Trail, <br />&nbsp;&nbsp;&nbsp;&nbsp;
+                        Lake Elsinore, CA 92530</p>
 
                     <hr style={{ margin: "10px 0", borderTop: "1px dotted #999" }} />
 

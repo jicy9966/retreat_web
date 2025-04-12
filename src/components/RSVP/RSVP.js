@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import "./RSVP.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 
 const RSVP = ({ onClose }) => {
+    const [isMinimized, setIsMinimized] = useState(false);
+
+    const handleMinimize = () => {
+        setIsMinimized(!isMinimized);
+    };
+
+    const windowStyle = {
+        ...(isMinimized ? { height: '30px', overflow: 'hidden' } : {})
+    };
+
     return (
-        <div className="window">
+        <div className="window" style={windowStyle}>
             <div className="title-bar">
                 <div className="title-bar-text">File Explorer - Important Links</div>
                 <div className="title-bar-controls">
+                    <button onClick={handleMinimize}>-</button>
+                    <button>□</button>
                     <button onClick={onClose}>×</button>
                 </div>
             </div>
