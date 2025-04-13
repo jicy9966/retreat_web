@@ -8,10 +8,12 @@
 .arcade-screen {
     background-color: #2c1e4a;
     width: 500px;
+
     @media (max-width: 767px) {
         width: 300px;
-        height: calc(100vh - 250px);
+        height: calc(100vh - 150px);
     }
+
     height: calc(100vh - 30px);
     display: flex;
     align-items: center;
@@ -357,6 +359,65 @@
 
     .yes-button:active,
     .no-button:active {
+        color: #ff9d00;
+        transform: scale(0.95);
+    }
+}
+
+.back-button-wrapper {
+    text-align: left;
+    margin-bottom: 10px;
+    z-index: 10;
+
+    .back-button {
+        font-family: 'PixelFont', 'Courier New', monospace;
+        font-size: 12px;
+        background-color: #472978;
+        color: #e2c9ff;
+        border: 2px solid #8a56db;
+        border-radius: 4px;
+        padding: 6px 12px;
+        cursor: pointer;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 3px 0 #331b57;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+
+        &:before {
+            content: "←";
+            font-size: 14px;
+        }
+
+        &:hover {
+            background-color: #663399;
+            color: #ff9d00;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 0 #331b57;
+        }
+
+        &:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 0 #331b57;
+        }
+
+        @media (max-width: 767px) {
+            font-size: 10px;
+            padding: 4px 10px;
+
+            &:before {
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+/* Touch device optimizations for back button */
+@media (hover: none) {
+    .back-button-wrapper .back-button:active {
+        background-color: #663399;
         color: #ff9d00;
         transform: scale(0.95);
     }

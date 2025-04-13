@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Arcade.scss";
 import { useNavigate } from "react-router-dom";
-import { SnakeGame } from "../../components/MiniGames/games";
+import { SnakeGame, BreakoutGame } from "../../components/MiniGames/games";
 
 const ArcadePage = () => {
     const navigate = useNavigate();
@@ -61,8 +61,22 @@ const ArcadePage = () => {
                         </div>
 
                         {showGame ? (
-                            activeGame === "snake" ? <SnakeGame /> : <div>Game not implemented</div>
+                            <>
+                                <div className="back-button-wrapper">
+                                    <button className="back-button" onClick={() => {
+                                        setShowGame(false);
+                                        setActiveGame(null);
+                                    }}>
+                                        Back to Games
+                                    </button>
+                                </div>
+                                {activeGame === "snake" && <SnakeGame />}
+                                {activeGame === "breakout" && <BreakoutGame />}
+                                {(activeGame !== "snake" && activeGame !== "breakout") && <div>Game not implemented</div>}
+
+                            </>
                         ) : showConfirmation ? (
+
                             <div className="confirmation-screen">
                                 <h1 className="game-title-text">
                                     {activeGame && games.find(g => g.id === activeGame).name.toUpperCase()}

@@ -5,48 +5,101 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-    max-width: 100vw;
-    margin: 0 auto;
 }
 
 canvas {
-    max-width: 100%;
-    height: auto;
-    background-color: black;
+    background-color: #000;
     border: 2px solid #33ff33;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(51, 255, 51, 0.5);
 }
 
-.game-over {
-    margin-top: 10px;
-    font-family: 'Courier New', monospace;
-    font-size: 20px;
-    color: red;
+/* Overlay */
+.game-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+    z-index: 5;
+    margin-top: 30px;
+}
+
+.game-over-text {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ff3333;
+    text-shadow: 0 0 10px #ff0000;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 2px solid #ff3333;
+    margin-bottom: 16px;
+    font-family: 'PixelFont', 'Courier New', monospace;
+    letter-spacing: 2px;
+}
+
+.replay-button {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 8px 20px;
+    background-color: #000;
+    color: #33ff33;
+    border: 2px solid #33ff33;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'PixelFont', 'Courier New', monospace;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 0 8px rgba(51, 255, 51, 0.6);
+    transition: all 0.2s ease;
+
+    &:hover {
+        background-color: #33ff33;
+        color: #000;
+        transform: scale(1.05);
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
 }
 
 // horizontal keypad style
 .mobile-keypad.t-layout {
-    margin-top: 12px;
+    margin-top: 16px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 
     .row {
         display: flex;
         justify-content: center;
-        gap: 30px;
+        gap: 10px;
     }
 
     button {
-        width: 60px;
-        height: 60px;
-        font-size: 28px;
-        background-color: rgba(255, 255, 255, 0.1);
-        color: white;
+        width: 50px;
+        height: 50px;
+        font-size: 22px;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #33ff33;
         border: 2px solid #33ff33;
         border-radius: 10px;
         pointer-events: auto;
+        box-shadow: 0 0 6px rgba(51, 255, 51, 0.4);
+        transition: all 0.15s ease;
+
+        &:active {
+            background-color: rgba(51, 255, 51, 0.3);
+            transform: scale(0.95);
+        }
     }
 
     .up-row {

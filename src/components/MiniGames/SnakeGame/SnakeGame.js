@@ -9,13 +9,16 @@ const SnakeGame = () => {
     const [food, setFood] = useState({ x: 15, y: 15 });
     const [direction, setDirection] = useState({ x: 1, y: 0 });
     const [gameOver, setGameOver] = useState(false);
+    // Add a directional input queue to handle multiple inputs between game ticks
+    const [directionQueue, setDirectionQueue] = useState([]);
+
 
     // Adjust canvas to mobile screen
     useEffect(() => {
         const screenWidth = window.innerWidth;
-        const maxSize = 400;
+        const maxSize = 300; // ↓ from 400 to 300
         const adjusted = Math.min(screenWidth - 40, maxSize);
-        const adjustedScale = Math.floor(adjusted / 20); // aim for 20x20 grid
+        const adjustedScale = Math.floor(adjusted / 25); // ↑ from 20 to 25 smaller blocks
         const actualSize = adjustedScale * 20;
 
         setCanvasSize(actualSize);
@@ -25,9 +28,25 @@ const SnakeGame = () => {
     const rows = canvasSize / scale;
     const cols = canvasSize / scale;
 
+    // Updated direction change function that adds directions to a queue
     const changeDirection = (newDir) => {
-        if ((newDir.x !== 0 && direction.x === 0) || (newDir.y !== 0 && direction.y === 0)) {
-            setDirection(newDir);
+        // Get the last direction in the queue or the current direction
+        const lastDir = directionQueue.length > 0
+            ? directionQueue[directionQueue.length - 1]
+            : direction;
+
+        // Prevent 180-degree turns (moving directly back on yourself)
+        if (
+            (newDir.x === -lastDir.x && newDir.y === lastDir.y) ||
+            (newDir.x === lastDir.x && newDir.y === -lastDir.y)
+        ) {
+            return;
+        }
+
+        // Only allow perpendicular movement (can't change both x and y at the same time)
+        if ((newDir.x !== 0 && lastDir.x === 0) || (newDir.y !== 0 && lastDir.y === 0)) {
+            // Add the new direction to the queue
+            setDirectionQueue(prev => [...prev, newDir]);
         }
     };
 
@@ -38,9 +57,19 @@ const SnakeGame = () => {
         const gameLoop = setInterval(() => {
             if (gameOver) return;
 
+            // Process the next direction from the queue
+            let currentDirection = direction;
+            if (directionQueue.length > 0) {
+                const nextDirection = directionQueue[0];
+                setDirection(nextDirection);
+                currentDirection = nextDirection;
+                // Remove the processed direction from the queue
+                setDirectionQueue(prev => prev.slice(1));
+            }
+
             const newHead = {
-                x: snake[0].x + direction.x,
-                y: snake[0].y + direction.y,
+                x: snake[0].x + currentDirection.x,
+                y: snake[0].y + currentDirection.y,
             };
 
             if (
@@ -65,10 +94,10 @@ const SnakeGame = () => {
             }
 
             setSnake(newSnake);
-        }, 120); // slowed to 150ms
+        }, 140);
 
         return () => clearInterval(gameLoop);
-    }, [snake, direction, food, gameOver]);
+    }, [snake, direction, food, gameOver, directionQueue]);
 
     // Keyboard input
     useEffect(() => {
@@ -77,17 +106,19 @@ const SnakeGame = () => {
                 e.preventDefault();
             }
 
-            switch (e.key) {
-                case "ArrowUp": changeDirection({ x: 0, y: -1 }); break;
-                case "ArrowDown": changeDirection({ x: 0, y: 1 }); break;
-                case "ArrowLeft": changeDirection({ x: -1, y: 0 }); break;
-                case "ArrowRight": changeDirection({ x: 1, y: 0 }); break;
+            if (!gameOver) {
+                switch (e.key) {
+                    case "ArrowUp": changeDirection({ x: 0, y: -1 }); break;
+                    case "ArrowDown": changeDirection({ x: 0, y: 1 }); break;
+                    case "ArrowLeft": changeDirection({ x: -1, y: 0 }); break;
+                    case "ArrowRight": changeDirection({ x: 1, y: 0 }); break;
+                }
             }
         };
 
         window.addEventListener("keydown", handleKey, { passive: false });
         return () => window.removeEventListener("keydown", handleKey);
-    }, [direction]);
+    }, [directionQueue, gameOver]);
 
     // Draw on canvas
     useEffect(() => {
@@ -103,6 +134,14 @@ const SnakeGame = () => {
         });
     }, [snake, food, scale]);
 
+    const resetGame = () => {
+        setSnake([{ x: 10, y: 10 }]);
+        setFood({ x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows) });
+        setDirection({ x: 1, y: 0 });
+        setDirectionQueue([]);
+        setGameOver(false);
+    };
+
     return (
         <div className="snake-container">
             <canvas
@@ -111,7 +150,15 @@ const SnakeGame = () => {
                 height={canvasSize}
                 style={{ touchAction: "none" }}
             />
-            {gameOver && <div className="game-over">GAME OVER</div>}
+
+            {gameOver && (
+                <div className="game-overlay">
+                    <div className="game-over-text">GAME OVER</div>
+                    <button className="replay-button" onClick={resetGame}>
+                        REPLAY
+                    </button>
+                </div>
+            )}
 
             {/* Keypad placed below */}
             <div className="mobile-keypad t-layout">
@@ -124,7 +171,6 @@ const SnakeGame = () => {
                     <button onClick={() => changeDirection({ x: 1, y: 0 })}>→</button>
                 </div>
             </div>
-
         </div>
     );
 };

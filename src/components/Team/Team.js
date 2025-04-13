@@ -3,8 +3,9 @@ import "./Team.scss";
 import { team_data } from "../../config/team_data"
 import TeamPopup from './TeamPopup';
 
-const Team = () => {
+const Team = ({ onClose }) => {
   const [selectedTeam, setSelectedTeam] = useState(null);
+  const [isMinimized, setIsMinimized] = useState(false);
 
   // Calculate how many are online
   const onlineCount = team_data.filter(buddy => !buddy.isAway).length;
@@ -18,14 +19,22 @@ const Team = () => {
     setSelectedTeam(null);
   };
 
+  const handleMinimize = () => {
+    setIsMinimized(!isMinimized);
+  };
+
+  const windowStyle = {
+    ...(isMinimized ? { height: '30px', overflow: 'hidden' } : {})
+  };
+
   return (
-    <div className="window">
+    <div className="window" style={windowStyle}>
       <div className="title-bar">
         <div className="title-bar-text">Messenger - Teams ({onlineCount}/{totalCount} Online)</div>
         <div className="title-bar-controls">
-          <button>-</button>
+          <button onClick={handleMinimize}>-</button>
           <button>□</button>
-          <button>×</button>
+          <button onClick={onClose}>×</button>
         </div>
       </div>
       <div className="window-content">
