@@ -1,23 +1,194 @@
 .frame-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     margin: 20px 0;
+    
+    .frame-info {
+        margin-bottom: 10px;
+        font-size: 14px;
+        color: #666;
+        background-color: #f0f0f0;
+        padding: 4px 10px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+    }
 }
 
 .four-cuts-frame {
-    width: 300px;
     background-color: white;
     border: 1px solid #ccc;
-    padding: 15px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 7px; // Reduced gap 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+    // Horizontal frame layout (2x2 grid with vertical photos)
+    &.horizontal {
+        width: 340px; // Increased frame width
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 3px; // Slightly reduced gap to maximize photo space
+        padding: 10px 10px 3px 10px; // Increased bottom padding for logo
+        
+        .photo-spot {
+            height: 220px; // Further increased height
+            width: 100%;
+            aspect-ratio: 2/3; // Portrait orientation (vertical photos)
+        }
+        
+        // Ensure logo appears below the grid, spanning both columns
+        .frame-logo {
+            grid-column: 1 / span 2;
+            grid-row: 3;
+            // margin-top: 9px; // Increased margin for more space
+            // margin-bottom: 5px; // Added bottom margin
+            
+            img {
+                max-width: 100%; // Larger logo
+                max-height: 120px; // Much larger height
+            }
+        }
+    }
+    
+    // Vertical frame layout (1x4 column with horizontal photos)
+    &.vertical {
+        width: 260px; // Slightly wider for landscape photos
+        padding: 10px 10px 15px 10px; // Increased bottom padding for logo
+        
+        .photo-spot {
+            height: 190px; // Increased height for larger landscape photos
+            aspect-ratio: 4/3; // Landscape orientation (horizontal photos)
+            margin-bottom: 7px; // Consistent with horizontal layout
+        }
+        
+        // Remove margin from last photo
+        .photo-spot:last-of-type {
+            margin-bottom: 0;
+        }
+        
+        .frame-logo {
+            margin-top: 15px; // Increased for more vertical space
+            margin-bottom: 8px; // Added bottom margin
+            
+            img {
+                max-width: 100%; // Larger logo
+                max-height: 120px; // Much larger height
+            }
+        }
+    }
+}
+
+// Frame selection styles
+.frame-selection {
+    margin-bottom: 25px;
+    background-color: #f8f8f8;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    
+    h3 {
+        margin-bottom: 12px;
+        font-size: 16px;
+        text-align: center;
+        font-weight: 600;
+        color: #333;
+    }
+    
+    .frame-options {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        
+        .frame-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            padding: 12px;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            position: relative;
+            
+            &:hover {
+                background-color: #f0f0f0;
+                transform: translateY(-2px);
+            }
+            
+            &.selected {
+                border-color: #0078d7;
+                background-color: rgba(0, 120, 215, 0.1);
+                
+                &:after {
+                    content: "✓";
+                    position: absolute;
+                    top: -8px;
+                    right: -8px;
+                    background-color: #0078d7;
+                    color: white;
+                    width: 22px;
+                    height: 22px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 12px;
+                    font-weight: bold;
+                }
+            }
+            
+            span {
+                margin-top: 8px;
+                font-size: 14px;
+            }
+            
+            .frame-preview {
+                width: 80px;
+                height: 80px;
+                background-color: white;
+                border: 1px solid #ccc;
+                padding: 4px;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 2px;
+                
+                &.horizontal-preview {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    grid-template-rows: 1fr 1fr;
+                    gap: 2px;
+                    
+                    .preview-spot {
+                        width: 100%;
+                        height: 100%;
+                        max-height: 35px; // Constrain the height to prevent overflow
+                    }
+                }
+                
+                &.vertical-preview {
+                    flex-direction: column;
+                    justify-content: space-between;
+                    
+                    .preview-spot {
+                        width: 100%;
+                        height: calc(25% - 1.5px);
+                        aspect-ratio: 4/3; // Horizontal photos (landscape)
+                    }
+                }
+                
+                .preview-spot {
+                    background-color: #f0f0f0;
+                    border: 1px solid #999;
+                }
+            }
+        }
+    }
 }
 
 .photo-spot {
     width: 100%;
-    height: 160px; /* Changed from 180px to 160px */
     border: 1px solid #999;
     background-color: #f0f0f0;
     cursor: pointer;
@@ -27,6 +198,7 @@
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease;
+    border-radius: 2px; // Subtle border radius
     
     &:hover {
         border-color: #555;
@@ -102,21 +274,21 @@
     }
 }
 
-/* New styles for the logo */
+/* Logo styles */
 .frame-logo {
     display: flex;
     justify-content: center;
-    margin-top: 10px;
+    align-items: center;
     cursor: pointer;
+    min-height: 60px; // Increased height for logo area
+    padding: 0 10px; // Added horizontal padding
     
     img {
-        max-width: 200px;
-        height: auto; /* This maintains the aspect ratio */
-        object-fit: contain; /* Ensures the image isn't distorted */
         transition: transform 0.2s ease;
+        object-fit: contain; /* Ensures the image isn't distorted */
         
         &:hover {
-            transform: scale(1.03);
+            transform: scale(1.05);
         }
     }
 }
@@ -221,6 +393,31 @@ body.dark-mode {
         }
     }
     
+    .frame-selection {
+        .frame-options {
+            .frame-option {
+                &:hover {
+                    background-color: #2a2a2a;
+                }
+                
+                &.selected {
+                    border-color: #0078d7;
+                    background-color: rgba(0, 120, 215, 0.2);
+                }
+                
+                .frame-preview {
+                    background-color: #333;
+                    border-color: #555;
+                    
+                    .preview-spot {
+                        background-color: #222;
+                        border-color: #666;
+                    }
+                }
+            }
+        }
+    }
+    
     .download-button {
         background-color: #333333 !important;
         color: #f0f0f0 !important;
@@ -233,6 +430,46 @@ body.dark-mode {
         &:active:not(:disabled) {
             background-color: #2a2a2a !important;
             border-color: #222222 #444444 #444444 #222222 !important;
+        }
+    }
+    
+    // Dark mode for frame info
+    .frame-info {
+        background-color: #2a2a2a !important;
+        color: #cccccc !important;
+        border-color: #444 !important;
+    }
+    
+    // Dark mode for new frame selection area
+    .frame-selection {
+        background-color: #242424 !important;
+        border-color: #444 !important;
+        
+        h3 {
+            color: #cccccc !important;
+        }
+        
+        .frame-options {
+            .frame-option {
+                &:hover {
+                    background-color: #2a2a2a;
+                    transform: translateY(-2px);
+                }
+                
+                &.selected {
+                    border-color: #0078d7;
+                    background-color: rgba(0, 120, 215, 0.2);
+                    
+                    &:after {
+                        background-color: #0078d7;
+                        color: white;
+                    }
+                }
+                
+                span {
+                    color: #cccccc;
+                }
+            }
         }
     }
 }

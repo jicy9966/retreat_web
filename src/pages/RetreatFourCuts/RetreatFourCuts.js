@@ -32,6 +32,7 @@ const RetreatFourCuts = () => {
     const [photos, setPhotos] = useState([null, null, null, null]); // State to store the uploaded photos
     const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(null); // State to track which photo is selected
     const [useColorLogo, setUseColorLogo] = useState(true); // Toggle between color and black logo
+    const [frameType, setFrameType] = useState('horizontal'); // Changed default to vertical (4x1)
     const fileInputRefs = [useRef(null), useRef(null), useRef(null), useRef(null)]; // Refs for the file inputs
     const logoRef = useRef(null); // Ref for the logo element
     const navigate = useNavigate();
@@ -94,6 +95,22 @@ const RetreatFourCuts = () => {
     // Function to toggle logo color
     const toggleLogoColor = () => {
         setUseColorLogo(!useColorLogo);
+    };
+
+    // Function to toggle frame type
+    const toggleFrameType = () => {
+        // Reset photos when switching frame type
+        if (photos.some(photo => photo)) {
+            if (window.confirm('Changing frame type will reset your photos. Continue?')) {
+                setPhotos([null, null, null, null]);
+                setSelectedPhotoIndex(null); // Clear selection
+                setTimeout(() => {
+                    setFrameType(frameType === 'horizontal' ? 'vertical' : 'horizontal');
+                }, 100); // Small delay for better visual transition
+            }
+        } else {
+            setFrameType(frameType === 'horizontal' ? 'vertical' : 'horizontal');
+        }
     };
 
     // Function to download the completed frame
@@ -159,9 +176,25 @@ const RetreatFourCuts = () => {
                 return;
             }
 
-            // Set a mobile-friendly target width (most mobile devices can handle 2048px)
-            const targetWidth = isMobile ? 1800 : 3000;
-            const targetHeight = Math.round(targetWidth / frameAspectRatio);
+            // Set target dimensions based on frame type and device
+            let targetWidth, targetHeight;
+            
+            if (frameType === 'horizontal') {
+                // For horizontal, prioritize width (as in original code)
+                targetWidth = isMobile ? 1800 : 3000;
+                targetHeight = Math.round(targetWidth / frameAspectRatio);
+            } else {
+                // For vertical frame, ensure high quality for the taller format
+                // We prioritize height for the vertical format
+                targetHeight = isMobile ? 2400 : 4000; // Taller for vertical format
+                targetWidth = Math.round(targetHeight * frameAspectRatio);
+                
+                // Cap width if it gets too large
+                if (targetWidth > 2000 && isMobile) {
+                    targetWidth = 2000;
+                    targetHeight = Math.round(targetWidth / frameAspectRatio);
+                }
+            }
 
             // Scale factors
             const scaleX = targetWidth / frameRect.width;
@@ -239,9 +272,7 @@ const RetreatFourCuts = () => {
             });
 
             Promise.all(drawPromises).then(() => {
-                // Draw the logo instead of text
-                // Draw the logo instead of text
-                // Draw the logo instead of text
+                // Draw the logo
                 if (logoData && logoRef.current) {
                     const logoRect = logoRef.current.getBoundingClientRect();
                     
@@ -397,9 +428,47 @@ const RetreatFourCuts = () => {
                     </div>
                     <div className="page-content">
                         <h2>수양회네컷</h2>
+                        
+                        {/* Frame Selection Area */}
+                        <div className="frame-selection">
+                            <h3>Select Frame Type:</h3>
+                            <div className="frame-options">
+                                <div 
+                                    className={`frame-option ${frameType === 'horizontal' ? 'selected' : ''}`}
+                                    onClick={() => frameType !== 'horizontal' && toggleFrameType()}
+                                    title="Traditional 2×2 grid layout - vertical photos in each cell"
+                                >
+                                    <div className="frame-preview horizontal-preview">
+                                        <div className="preview-spot"></div>
+                                        <div className="preview-spot"></div>
+                                        <div className="preview-spot"></div>
+                                        <div className="preview-spot"></div>
+                                    </div>
+                                    <span>Horizontal (2×2)</span>
+                                </div>
+                                <div 
+                                    className={`frame-option ${frameType === 'vertical' ? 'selected' : ''}`}
+                                    onClick={() => frameType !== 'vertical' && toggleFrameType()}
+                                    title="Four horizontal photos stacked in a column"
+                                >
+                                    <div className="frame-preview vertical-preview">
+                                        <div className="preview-spot"></div>
+                                        <div className="preview-spot"></div>
+                                        <div className="preview-spot"></div>
+                                        <div className="preview-spot"></div>
+                                    </div>
+                                    <span>Vertical (1×4)</span>
+                                </div>
+                            </div>
+                        </div>
 
                         <div className="frame-container">
-                            <div className="four-cuts-frame">
+                <div className="frame-info">
+                                {frameType === 'horizontal' ? 
+                                    'Horizontal layout (2×2 grid with vertical photos)' : 
+                                    'Vertical layout (4 stacked horizontal photos)'}
+                            </div>
+                            <div className={`four-cuts-frame ${frameType}`}>
                                 {photos.map((photo, index) => (
                                     <div
                                         key={index}
