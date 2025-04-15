@@ -256,11 +256,6 @@ const RetreatFourCuts = () => {
                         x, y, width, height
                     );
 
-                    // Add the border
-                    ctx.strokeStyle = '#999';
-                    ctx.lineWidth = Math.max(1, Math.round(scaleX / 2));
-                    ctx.strokeRect(x, y, width, height);
-
                     resolve();
                 });
 
@@ -302,11 +297,6 @@ const RetreatFourCuts = () => {
                     // Draw the logo with the correct aspect ratio, centered
                     ctx.drawImage(logoData.img, x, y, width, height);
                 }
-
-                // Add a border around the entire frame
-                ctx.strokeStyle = '#ccc';
-                ctx.lineWidth = Math.max(1, Math.round(scaleX / 2));
-                ctx.strokeRect(0, 0, targetWidth, targetHeight);
 
                 try {
                     // Use blob instead of dataURL for better mobile compatibility

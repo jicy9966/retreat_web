@@ -205,7 +205,7 @@
 
 .photo-spot {
     width: 100%;
-    border: 1px solid #999;
+    border: none;
     background-color: #f0f0f0;
     cursor: pointer;
     overflow: hidden;
@@ -214,7 +214,6 @@
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease;
-    border-radius: 2px; // Subtle border radius
     box-sizing: border-box; // Added to ensure border is included in width calculation
     
     &:hover {
