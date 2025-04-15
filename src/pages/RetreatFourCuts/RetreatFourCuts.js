@@ -535,7 +535,7 @@ const RetreatFourCuts = () => {
                                 Toggle Logo Color
                             </button>
                             <button onClick={() => navigate("/home")}>
-                                Back to Home
+                                Home
                             </button>
                         </div>
                     </div>
