@@ -3,5 +3,6 @@ import LoadingPage from "./LoadingPage/LoadingPage";
 import RetreatFourCuts from "./RetreatFourCuts/RetreatFourCuts";
 import QTinPage from "./QTinPage/QTinPage";
 import ArcadePage from "./ArcadePage/Arcade";
+import RecreationPage from "./RecreationPage/RecreationPage";
 
-export { HomePage, LoadingPage, RetreatFourCuts, QTinPage, ArcadePage }
+export { HomePage, LoadingPage, RetreatFourCuts, QTinPage, ArcadePage, RecreationPage }

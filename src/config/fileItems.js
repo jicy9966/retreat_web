@@ -26,8 +26,8 @@ export const fileItems = [
     {
         icon: "🎮",
         name: "레크레이션.bat",
-        action: "none",
-        path: "none"
+        action: "page",
+        path: "/jirakshil"
     },
     // {
     //     icon: "🌐",
