@@ -203,7 +203,7 @@ const RetreatFourCuts = () => {
             canvas.height = targetHeight;
 
             // Draw white background
-            ctx.fillStyle = 'white';
+            ctx.fillStyle = frameBackgroundColor;
             ctx.fillRect(0, 0, targetWidth, targetHeight);
 
             // Get all photo spots
