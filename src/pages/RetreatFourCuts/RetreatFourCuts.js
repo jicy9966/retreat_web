@@ -33,6 +33,7 @@ const RetreatFourCuts = () => {
     const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(null); // State to track which photo is selected
     const [useColorLogo, setUseColorLogo] = useState(true); // Toggle between color and black logo
     const [frameType, setFrameType] = useState('horizontal'); // Changed default to vertical (4x1)
+    const [frameBackgroundColor, setFrameBackgroundColor] = useState('#ffffff');
     const fileInputRefs = [useRef(null), useRef(null), useRef(null), useRef(null)]; // Refs for the file inputs
     const logoRef = useRef(null); // Ref for the logo element
     const navigate = useNavigate();
@@ -90,11 +91,6 @@ const RetreatFourCuts = () => {
         if (fileInputRefs[index] && fileInputRefs[index].current) {
             fileInputRefs[index].current.value = "";
         }
-    };
-
-    // Function to toggle logo color
-    const toggleLogoColor = () => {
-        setUseColorLogo(!useColorLogo);
     };
 
     // Function to toggle frame type
@@ -463,12 +459,12 @@ const RetreatFourCuts = () => {
                         </div>
 
                         <div className="frame-container">
-                <div className="frame-info">
+                            <div className="frame-info">
                                 {frameType === 'horizontal' ? 
                                     'Horizontal layout (2×2 grid with vertical photos)' : 
                                     'Vertical layout (4 stacked horizontal photos)'}
                             </div>
-                            <div className={`four-cuts-frame ${frameType}`}>
+                            <div className={`four-cuts-frame ${frameType}`} style={{ backgroundColor: frameBackgroundColor }}>
                                 {photos.map((photo, index) => (
                                     <div
                                         key={index}
@@ -516,9 +512,66 @@ const RetreatFourCuts = () => {
                                     <img 
                                         src={useColorLogo ? logoColorImage : logoBlackImage} 
                                         alt="Grace & Rest"
-                                        onClick={toggleLogoColor}
-                                        title="Click to toggle logo color"
                                     />
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div className="customization-options">
+                            <div className="option-section">
+                                <h4>
+                                    {/* <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                                    </svg> */}
+                                    Logo Style
+                                </h4>
+                                <div className="toggle-switch-container">
+                                    <span className={`toggle-label ${useColorLogo ? 'active' : ''}`}>Color</span>
+                                    <div className="toggle-switch">
+                                        <input 
+                                            type="checkbox" 
+                                            id="logo-toggle" 
+                                            checked={!useColorLogo} 
+                                            onChange={() => setUseColorLogo(!useColorLogo)} 
+                                        />
+                                        <label htmlFor="logo-toggle"></label>
+                                    </div>
+                                    <span className={`toggle-label ${!useColorLogo ? 'active' : ''}`}>Black</span>
+                                </div>
+                            </div>
+                            
+                            <div className="option-section">
+                                <h4>
+                                    {/* <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                                    </svg> */}
+                                    Frame Background
+                                </h4>
+                                <div className="color-options">
+                                    {['#ffffff', '#F7F5F2', '#1A1A1A', '#395B64', '#D8D2CB', '#92A9BD', '#7A4988', '#AA4A44'].map(color => (
+                                        <div 
+                                            key={color}
+                                            className={`color-option ${frameBackgroundColor === color ? 'selected' : ''}`}
+                                            style={{ backgroundColor: color }}
+                                            onClick={() => setFrameBackgroundColor(color)}
+                                            title={
+                                                color === '#ffffff' ? 'White' :
+                                                color === '#f0f0f0' ? 'Light Gray' :
+                                                color === '#ffebcd' ? 'Blanched Almond' :
+                                                color === '#e6f2ff' ? 'Light Blue' : 'Light Orange'
+                                            }
+                                        >
+                                            {frameBackgroundColor === color && (
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                                </svg>
+                                            )}
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                         </div>
@@ -530,9 +583,6 @@ const RetreatFourCuts = () => {
                                 className="download-button"
                             >
                                 Download
-                            </button>
-                            <button onClick={toggleLogoColor}>
-                                Toggle Logo Color
                             </button>
                             <button onClick={() => navigate("/home")}>
                                 Home
