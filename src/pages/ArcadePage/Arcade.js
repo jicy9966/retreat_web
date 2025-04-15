@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Arcade.scss";
 import { useNavigate } from "react-router-dom";
-import { SnakeGame, BreakoutGame } from "../../components/MiniGames/games";
+import { Snake, Breakout, Sudoku, Pong, Invaders } from "../../components/MiniGames/games";
 
 const ArcadePage = () => {
     const navigate = useNavigate();
@@ -12,10 +12,9 @@ const ArcadePage = () => {
     const games = [
         { id: "snake", name: "Snake", icon: "🐍" },
         { id: "breakout", name: "Breakout", icon: "🧱" },
-        { id: "tetris", name: "Tetris", icon: "🧩" },
+        { id: "sudoku", name: "Sudoku", icon: "🔢" },
         { id: "pong", name: "Pong", icon: "🏓" },
-        { id: "pacman", name: "Pac-Man", icon: "👾" },
-        { id: "space", name: "Space Invaders", icon: "👽" }
+        { id: "invaders", name: "Space Invaders", icon: "👽" },
     ];
 
     const selectGame = (gameId) => {
@@ -70,9 +69,16 @@ const ArcadePage = () => {
                                         Back to Games
                                     </button>
                                 </div>
-                                {activeGame === "snake" && <SnakeGame />}
-                                {activeGame === "breakout" && <BreakoutGame />}
-                                {(activeGame !== "snake" && activeGame !== "breakout") && <div>Game not implemented</div>}
+                                {activeGame === "snake" && <Snake />}
+                                {activeGame === "breakout" && <Breakout />}
+                                {activeGame === "sudoku" && <Sudoku />}
+                                {activeGame === "pong" && <Pong />}
+                                {activeGame === "invaders" && <Invaders />}
+                                {(activeGame !== "snake" &&
+                                    activeGame !== "breakout" &&
+                                    activeGame !== "sudoku" &&
+                                    activeGame !== "pong" &&
+                                    activeGame !== "invaders") && <div>Game not implemented</div>}
 
                             </>
                         ) : showConfirmation ? (

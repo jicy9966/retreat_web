@@ -1,0 +1,252 @@
+@import "../../../App.scss";
+
+// Retro color palette
+$retro-bg: #c3c3c3;
+$retro-dark: #888888;
+$retro-light: #ffffff;
+$retro-blue: #000084;
+$retro-blue-light: #0000be;
+$retro-green: #007800;
+$retro-red: #aa0000;
+$retro-black: #000000;
+
+// Mixins for retro styling
+@mixin retro-inset {
+    border-top: 1px solid $retro-dark;
+    border-left: 1px solid $retro-dark;
+    border-right: 1px solid $retro-light;
+    border-bottom: 1px solid $retro-light;
+}
+
+@mixin retro-outset {
+    border-top: 1px solid $retro-light;
+    border-left: 1px solid $retro-light;
+    border-right: 1px solid $retro-dark;
+    border-bottom: 1px solid $retro-dark;
+}
+
+// Main container to capture keyboard events
+.sudoku-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: $retro-bg;
+    font-family: 'MS Sans Serif', 'Segoe UI', sans-serif;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.sudoku-window {
+    @include retro-outset;
+    background: $retro-bg;
+    width: 100%;
+    max-width: 320px;
+    padding: 2px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    margin: 0 auto;
+}
+
+.sudoku-title-bar {
+    background: $retro-blue;
+    color: $retro-light;
+    padding: 3px 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+
+    .sudoku-title-bar-text {
+        font-size: 12px;
+    }
+}
+
+.sudoku-game-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    gap: 8px;
+}
+
+.sudoku-board {
+    @include retro-inset;
+    display: flex;
+    flex-direction: column;
+    background-color: $retro-bg;
+    padding: 1px;
+    width: 100%;
+}
+
+.sudoku-row {
+    display: flex;
+    width: 100%;
+}
+
+.sudoku-cell {
+    aspect-ratio: 1/1;
+    width: calc(100% / 9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.1s;
+
+    @media (max-width: 280px) {
+        font-size: 12px;
+    }
+
+    &.initial {
+        color: $retro-blue;
+        cursor: not-allowed;
+    }
+
+    &.selected {
+        background-color: #aaddff !important;
+        box-shadow: inset 0 0 0 1px $retro-blue;
+    }
+
+    &.light-block {
+        background-color: #ececec;
+    }
+
+    &.dark-block {
+        background-color: #d8d8d8;
+    }
+
+    &:hover:not(.initial) {
+        background-color: #d1e8ff;
+    }
+}
+
+// Add thinner borders to separate 3x3 blocks
+.sudoku-row:nth-child(3n) .sudoku-cell {
+    border-bottom: 1px solid $retro-black;
+}
+
+.sudoku-row .sudoku-cell:nth-child(3n) {
+    border-right: 1px solid $retro-black;
+}
+
+.sudoku-row:first-child .sudoku-cell {
+    border-top: 1px solid $retro-black;
+}
+
+.sudoku-row .sudoku-cell:first-child {
+    border-left: 1px solid $retro-black;
+}
+
+.game-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+// Digit buttons styling
+.digit-buttons {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+    width: 100%;
+}
+
+.digit-button {
+    @include retro-outset;
+    padding: 6px 0;
+    background-color: #e6e6e6;
+    font-weight: bold;
+    cursor: pointer;
+    touch-action: manipulation;
+    font-size: 14px;
+    width: 100%;
+    min-height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:active {
+        @include retro-inset;
+    }
+
+    &.clear-button {
+        background-color: #ffe6e6;
+        color: $retro-red;
+    }
+}
+
+.message {
+    padding: 4px 8px;
+    margin-top: 5px;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    font-size: 12px;
+    box-sizing: border-box;
+
+    &.success {
+        background-color: #d6ffda;
+        color: $retro-green;
+        border: 1px solid $retro-green;
+    }
+
+    &.error {
+        background-color: #ffd6d6;
+        color: $retro-red;
+        border: 1px solid $retro-red;
+    }
+}
+
+.completion-message {
+    margin-top: 5px;
+    padding: 6px;
+    background-color: #f8e8a0;
+    border: 1px solid #daa520;
+    color: #8b4513;
+    font-weight: bold;
+    text-align: center;
+    animation: celebrate 0.5s ease-in-out infinite alternate;
+    width: 100%;
+    font-size: 12px;
+    box-sizing: border-box;
+}
+
+@keyframes celebrate {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.03);
+    }
+}
+
+.sudoku-difficulty-window {
+    width: 300px;
+    margin: 80px auto;
+    border: 2px solid black;
+    padding: 20px;
+    background: white;
+    text-align: center;
+    box-shadow: 4px 4px 0 black;
+}
+
+.difficulty-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.difficulty-button {
+    font-size: 16px;
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid #000;
+    background-color: #f0f0f0;
+    font-family: 'Courier New', Courier, monospace;
+}

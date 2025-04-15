@@ -161,13 +161,13 @@
 .game-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    gap: 20px;
     justify-items: center;
     padding: 20px;
 
     @media (max-width: 767px) {
         grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
+        gap: 50px;
         padding: 10px;
     }
 

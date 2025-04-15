@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
-import "./SnakeGame.scss";
+import React, { useEffect, useRef, useState, useCallback } from "react";
+import "./Snake.scss";
 
-const SnakeGame = () => {
+const Snake = () => {
     const canvasRef = useRef(null);
     const [canvasSize, setCanvasSize] = useState(400);
     const [scale, setScale] = useState(20);
@@ -29,7 +29,7 @@ const SnakeGame = () => {
     const cols = canvasSize / scale;
 
     // Updated direction change function that adds directions to a queue
-    const changeDirection = (newDir) => {
+    const changeDirection = useCallback((newDir) => {
         // Get the last direction in the queue or the current direction
         const lastDir = directionQueue.length > 0
             ? directionQueue[directionQueue.length - 1]
@@ -48,12 +48,10 @@ const SnakeGame = () => {
             // Add the new direction to the queue
             setDirectionQueue(prev => [...prev, newDir]);
         }
-    };
+    });
 
     // Game loop
     useEffect(() => {
-        const context = canvasRef.current.getContext("2d");
-
         const gameLoop = setInterval(() => {
             if (gameOver) return;
 
@@ -97,7 +95,7 @@ const SnakeGame = () => {
         }, 140);
 
         return () => clearInterval(gameLoop);
-    }, [snake, direction, food, gameOver, directionQueue]);
+    }, [snake, direction, food, gameOver, directionQueue, cols, rows]);
 
     // Keyboard input
     useEffect(() => {
@@ -112,6 +110,7 @@ const SnakeGame = () => {
                     case "ArrowDown": changeDirection({ x: 0, y: 1 }); break;
                     case "ArrowLeft": changeDirection({ x: -1, y: 0 }); break;
                     case "ArrowRight": changeDirection({ x: 1, y: 0 }); break;
+                    default: break;
                 }
             }
         };
@@ -175,4 +174,4 @@ const SnakeGame = () => {
     );
 };
 
-export default SnakeGame;
+export default Snake;

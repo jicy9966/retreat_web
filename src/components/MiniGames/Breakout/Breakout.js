@@ -1,14 +1,14 @@
 import "./Breakout.scss";
 import React, { useRef, useEffect, useState } from "react";
 
-const BreakoutGame = () => {
+const Breakout = () => {
     const canvasRef = useRef(null);
     const leftPressedRef = useRef(false);
     const rightPressedRef = useRef(false);
     const gameLoopRef = useRef(null);
     const lastTimeRef = useRef(0);
     const bricksRef = useRef([]);
-    const speedMultiplierRef = useRef(1); // starts at normal speed
+    const speedMultiplierRef = useRef(2); // starts at normal speed
 
     const xRef = useRef(0);
     const yRef = useRef(0);
@@ -56,19 +56,19 @@ const BreakoutGame = () => {
         let brickOffsetLeft = 0;
 
         // Speed increase constants
-        const BRICK_SPEED_INCREASE = 0.15;
-        const PADDLE_SPEED_INCREASE = 0.13;
+        const BRICK_SPEED_INCREASE = 0.2;
+        const PADDLE_SPEED_INCREASE = 0.1;
         const MAX_SPEED_MULTIPLIER = 3.0;
 
         // Randomness range for collision angles (in radians)
-        const BRICK_ANGLE_RANDOMNESS = 0.3; // About ±17 degrees
-        const PADDLE_ANGLE_RANDOMNESS = 0.2; // About ±11 degrees
+        const BRICK_ANGLE_RANDOMNESS = 0.5;
+        const PADDLE_ANGLE_RANDOMNESS = 0.5;
 
         function initializeGame() {
             ballRadiusRef.current = canvas.width * 0.015;
             xRef.current = canvas.width / 2;
             yRef.current = canvas.height - 30;
-            const baseSpeed = canvas.width * 0.004;
+            const baseSpeed = canvas.width * 0.008;
             dxRef.current = baseSpeed * speedMultiplierRef.current;
             dyRef.current = -baseSpeed * speedMultiplierRef.current;
 
@@ -399,4 +399,4 @@ const BreakoutGame = () => {
     );
 };
 
-export default BreakoutGame;
+export default Breakout;

@@ -480,7 +480,7 @@ const RetreatFourCuts = () => {
                                     >
                                         {photo ? (
                                             <>
-                                                <img src={photo} alt={`Photo ${index + 1}`} />
+                                                <img src={photo} alt={`${index + 1}`} />
                                                 {selectedPhotoIndex === index && (
                                                     <div className="photo-controls">
                                                         <button
