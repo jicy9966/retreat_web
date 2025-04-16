@@ -1,0 +1,167 @@
+/* TreasureHunt.scss */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+.treasure-hunt-terminal {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 500px;
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+  font-family: 'JetBrains Mono', monospace;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  
+  .terminal-header {
+    display: flex;
+    align-items: center;
+    background-color: #2a2a2a;
+    padding: 10px 15px;
+    border-bottom: 1px solid #444;
+    
+    .terminal-icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+      display: flex;
+      align-items: center;
+      
+      .terminal-svg-icon {
+        color: #4caf50;
+      }
+    }
+    
+    .terminal-title {
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: #4caf50;
+    }
+    
+    .terminal-score {
+      margin-left: auto;
+      color: #ffc107;
+      font-weight: bold;
+    }
+  }
+  
+  .terminal-body {
+    flex: 1;
+    padding: 15px;
+    padding-bottom: 30px; /* Added extra padding at the bottom for gap */
+    overflow-y: auto;
+    
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: #2a2a2a;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background-color: #555;
+      border-radius: 4px;
+    }
+    
+    .terminal-line {
+      margin: 5px 0;
+      line-height: 1.5;
+      
+      &.user-text {
+        color: #64b5f6;
+      }
+      
+      &.system-text {
+        color: #e0e0e0;
+      }
+      
+      &.error-text {
+        color: #ef5350;
+      }
+      
+      &.success-text {
+        color: #66bb6a;
+      }
+      
+      &.content-text {
+        color: #ffee58;
+      }
+    }
+  }
+  
+  .terminal-input-area {
+    border-top: 1px solid #444;
+    padding: 10px 15px;
+    background-color: #2a2a2a;
+    margin-top: 10px; /* Added margin at the top for additional spacing */
+    
+    .terminal-prompt {
+      display: flex;
+      align-items: center;
+      
+      .prompt-symbol {
+        color: #4caf50;
+        margin-right: 10px;
+        font-weight: bold;
+      }
+      
+      .terminal-input {
+        flex: 1;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        color: #ffffff;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 1rem;
+        
+        &::placeholder {
+          color: #888;
+        }
+      }
+    }
+  }
+}
+
+/* Animation effects */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.terminal-body {
+  .terminal-line {
+    opacity: 0;
+    animation: fadeIn 0.2s ease-in-out forwards;
+    
+    @for $i from 1 through 20 {
+      &:nth-last-child(#{$i}) {
+        animation-delay: #{$i * 0.05}s;
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .treasure-hunt-terminal {
+    border-radius: 0;
+    height: 100vh;
+    
+    .terminal-header {
+      .terminal-title {
+        font-size: 1rem;
+      }
+    }
+    
+    .terminal-body {
+      padding: 10px;
+      padding-bottom: 25px; /* Adjusted for mobile */
+    }
+  }
+}

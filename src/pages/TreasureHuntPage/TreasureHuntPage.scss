@@ -1,0 +1,49 @@
+/* TreasureHuntPage.scss */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+.treasure-hunt-page {
+  font-family: 'Poppins', sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  padding-bottom: 60px; /* Add padding for the footer */
+  
+  .page-header {
+    text-align: center;
+    margin-bottom: 20px;
+    
+    h1 {
+      font-size: 2.5rem;
+      color: #333;
+      margin-bottom: 10px;
+    }
+    
+    .header-description {
+      font-size: 1.2rem;
+      color: #666;
+    }
+  }
+  
+  .page-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    
+    .terminal-container {
+      flex: 1;
+      width: 100%;
+      min-height: 500px;
+    }
+  }
+}
+
+/* Dark mode adjustments */
+.dark-mode .treasure-hunt-page {
+  h1 {
+    color: #e0e0e0;
+  }
+  
+  .header-description {
+    color: #aaa;
+  }
+}

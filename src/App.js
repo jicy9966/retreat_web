@@ -2,7 +2,7 @@ import "./App.scss"
 import "./DarkMode.scss"
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { HomePage, LoadingPage, RetreatFourCuts, QTinPage, ArcadePage, RecreationPage, GoldenBellPage } from "./pages/pages";
+import { HomePage, LoadingPage, RetreatFourCuts, QTinPage, ArcadePage, RecreationPage, GoldenBellPage, TreasureHuntPage } from "./pages/pages";
 import { Footer } from "./components/components";
 
 function App() {
@@ -20,6 +20,7 @@ function App() {
             <Route path="/arcade" element={<ArcadePage />} />
             <Route path="/jirakshil" element={<RecreationPage />} />
             <Route path="/goldenbell" element={<GoldenBellPage />} />
+            <Route path="/treasure-hunt" element={<TreasureHuntPage />} />
           </Routes>
         </BrowserRouter>
       </div>
