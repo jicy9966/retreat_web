@@ -34,7 +34,20 @@ const questions = {
     "Landmarks": { question: "This tower in Paris was completed in 1889", answer: "What is the Eiffel Tower?" },
     "Fantasy": { question: "This author wrote 'The Hobbit' and 'The Lord of the Rings'", answer: "Who is J.R.R. Tolkien?" },
     "Winter Sports": { question: "This winter sport involves sliding stones toward a target", answer: "What is curling?" },
-    "Directors": { question: "This director is known for films such as 'Jaws' and 'E.T.'", answer: "Who is Steven Spielberg?" }
+    "Directors": { question: "This director is known for films such as 'Jaws' and 'E.T.'", answer: "Who is Steven Spielberg?" },
+    "Mythology": { question: "This Greek god was the ruler of the underworld", answer: "Who is Hades?" },
+    "U.S. Presidents": { question: "This president delivered the Gettysburg Address", answer: "Who is Abraham Lincoln?" },
+    "Mathematics": { question: "This number is considered the first perfect number", answer: "What is 6?" },
+    "Art": { question: "This artist painted 'Starry Night'", answer: "Who is Vincent van Gogh?" },
+    "Inventions": { question: "This inventor is credited with creating the telephone", answer: "Who is Alexander Graham Bell?" },
+    "Music": { question: "This band's album 'Abbey Road' features them walking across a street", answer: "Who are The Beatles?" },
+    "Geography": { question: "This is the largest desert in the world", answer: "What is the Antarctic Desert?" },
+    "Animals": { question: "This is the fastest land animal", answer: "What is the cheetah?" },
+    "Literature": { question: "This author wrote '1984'", answer: "Who is George Orwell?" },
+    "Food": { question: "This cheese originates from Parma, Italy", answer: "What is Parmigiano-Reggiano?" },
+    "Computers": { question: "This programming language was created by Guido van Rossum", answer: "What is Python?" },
+    "Games": { question: "This board game features properties like Boardwalk and Park Place", answer: "What is Monopoly?" },
+    "Space": { question: "This was the first artificial satellite launched into space", answer: "What is Sputnik 1?" },
 };
 
 // Extract the list of topics from the questions object

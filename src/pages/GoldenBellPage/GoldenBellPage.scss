@@ -1,13 +1,33 @@
+.desktop {
+    max-width: 1200px;
+}
+
 .golden-bell-page {
     color: #facc15;
     min-height: 100vh;
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
+
+    .game-layout {
+        display: flex;
+        gap: 20px;
+        padding: 20px;
+        margin: 0 auto;
+    }
+
+    .main-content {
+        flex: 1;
+    }
+
+    .game-header {
+        margin-bottom: 20px;
+    }
 
     .team-board {
         display: grid;
         grid-template-columns: repeat(7, 1fr);
-        gap: 10px;
-        margin-bottom: 15px;
+        gap: 5px;
+        margin-bottom: 10px;
     }
 
     .team-panel {
@@ -18,9 +38,16 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        transition: all 0.3s ease;
 
         &.active {
             outline: 2px solid #facc15;
+        }
+
+        &.selected {
+            background-color: #4c566a;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(250, 204, 21, 0.7);
         }
 
         .team-info {
@@ -31,12 +58,12 @@
 
         .team-name {
             cursor: pointer;
-            font-size: 18px;
+            font-size: 20px;
             margin-bottom: 5px;
         }
 
         .team-score {
-            font-size: 15px;
+            font-size: 18px;
             font-weight: bold;
             color: #facc15;
         }
@@ -47,6 +74,10 @@
             input {
                 flex: 1;
                 padding: 4px;
+                border-radius: 4px;
+                border: 1px solid #4b5563;
+                background-color: #1f2937;
+                color: white;
             }
 
             button {
@@ -56,19 +87,25 @@
                 padding: 0 6px;
                 border: none;
                 border-radius: 4px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #15803d;
+                }
             }
         }
     }
 
     .game-board {
         display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        gap: 12px;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 5px;
+        font-size: 20px;
     }
 
     .question-cell {
         background-color: #1d4ed8;
-        height: 80px;
+        height: 70px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -76,9 +113,21 @@
         font-weight: bold;
         text-align: center;
         cursor: pointer;
+        transition: background-color 0.2s ease, transform 0.2s ease;
+        padding: 10px;
+        word-break: break-word;
+
+        &:hover {
+            transform: scale(1.02);
+        }
 
         &.revealed {
-            background-color: #1e3a8a;
+            background-color: #7465e5;
+            cursor: default;
+
+            &:hover {
+                transform: none;
+            }
         }
     }
 
@@ -95,13 +144,14 @@
             background-color: #1e40af;
             padding: 30px;
             border-radius: 10px;
-            max-width: 600px;
+            max-width: 700px;
             width: 100%;
             color: white;
             text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 
             .modal-topic {
-                font-size: 15px;
+                font-size: 24px;
                 color: #facc15;
                 margin-bottom: 20px;
             }
@@ -115,6 +165,8 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                font-size: 18px;
+                line-height: 1.5;
             }
 
             .award-grid {
@@ -132,7 +184,15 @@
                 font-weight: bold;
                 border: none;
                 display: flex;
-                justify-content: space-between;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                transition: background-color 0.2s ease, transform 0.2s ease;
+
+                &:hover {
+                    background-color: #059669;
+                    transform: scale(1.05);
+                }
             }
 
             .primary-btn {
@@ -142,6 +202,12 @@
                 border-radius: 6px;
                 font-weight: bold;
                 border: none;
+                cursor: pointer;
+                transition: background-color 0.2s ease;
+
+                &:hover {
+                    background-color: #eab308;
+                }
             }
 
             .secondary-btn {
@@ -151,7 +217,238 @@
                 border-radius: 6px;
                 font-weight: bold;
                 border: none;
+                cursor: pointer;
+                transition: background-color 0.2s ease;
+
+                &:hover {
+                    background-color: #2563eb;
+                }
             }
+        }
+    }
+
+    // Roulette styles
+    .roulette-sidebar {
+        width: 200px;
+        flex-shrink: 0;
+    }
+
+    .roulette-container {
+        background-color: #1e3a8a;
+        border-radius: 10px;
+        padding: 20px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .roulette-title {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #facc15;
+        font-size: 20px;
+    }
+
+    .roulette-wheel {
+        background-color: #2563eb;
+        border-radius: 8px;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 20px;
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    .roulette-team {
+        background-color: #334155;
+        padding: 10px;
+        border-radius: 6px;
+        text-align: center;
+        transition: all 0.3s ease;
+
+        &.selected {
+            background-color: #facc15;
+            color: #1e3a8a;
+            font-weight: bold;
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(250, 204, 21, 0.5);
+        }
+    }
+
+    .roulette-result {
+        min-height: 60px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .winner-display {
+        background-color: #10b981;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 6px;
+        font-weight: bold;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        animation: pulse 2s infinite;
+        width: 100%;
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.05);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    .spin-button {
+        background-color: #facc15;
+        color: #1e3a8a;
+        padding: 12px;
+        border-radius: 6px;
+        font-weight: bold;
+        border: none;
+        font-size: 16px;
+        margin-top: auto;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+            background-color: #eab308;
+        }
+
+        &:disabled {
+            background-color: #d4d4d8;
+            cursor: not-allowed;
+        }
+    }
+
+    // Passcode form styles
+    .passcode-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .passcode-modal {
+        background-color: #1e3a8a;
+        padding: 30px;
+        border-radius: 10px;
+        max-width: 400px;
+        width: 100%;
+        text-align: center;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+
+        h2 {
+            color: #facc15;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        p {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+
+            input {
+                width: 100%;
+                padding: 10px;
+                border-radius: 6px;
+                border: 1px solid #4b5563;
+                background-color: #1f2937;
+                color: white;
+                font-size: 16px;
+
+                &::placeholder {
+                    color: #9ca3af;
+                }
+
+                &:focus {
+                    outline: 2px solid #facc15;
+                    border-color: transparent;
+                }
+            }
+        }
+
+        .error-message {
+            color: #ef4444;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .passcode-submit-btn {
+            background-color: #facc15;
+            color: #1e3a8a;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            width: 100%;
+            font-size: 16px;
+
+            &:hover {
+                background-color: #eab308;
+            }
+        }
+    }
+
+    // Responsive styles
+    @media (max-width: 768px) {
+        .game-layout {
+            flex-direction: column;
+        }
+
+        .roulette-sidebar {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .team-board {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .game-board {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .question-modal .modal-box {
+            width: 90%;
+            padding: 20px;
+        }
+
+        .question-modal .modal-box .award-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 480px) {
+        .team-board {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .game-board {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .question-modal .modal-box .award-grid {
+            grid-template-columns: 1fr;
         }
     }
 }
