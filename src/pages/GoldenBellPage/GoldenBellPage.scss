@@ -1,0 +1,157 @@
+.golden-bell-page {
+    color: #facc15;
+    min-height: 100vh;
+    padding: 20px;
+
+    .team-board {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+
+    .team-panel {
+        background-color: #334155;
+        padding: 10px;
+        border-radius: 8px;
+        font-weight: bold;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        &.active {
+            outline: 2px solid #facc15;
+        }
+
+        .team-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .team-name {
+            cursor: pointer;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .team-score {
+            font-size: 15px;
+            font-weight: bold;
+            color: #facc15;
+        }
+
+        .edit-panel {
+            display: flex;
+
+            input {
+                flex: 1;
+                padding: 4px;
+            }
+
+            button {
+                margin-left: 4px;
+                background-color: #16a34a;
+                color: white;
+                padding: 0 6px;
+                border: none;
+                border-radius: 4px;
+            }
+        }
+    }
+
+    .game-board {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 12px;
+    }
+
+    .question-cell {
+        background-color: #1d4ed8;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        font-weight: bold;
+        text-align: center;
+        cursor: pointer;
+
+        &.revealed {
+            background-color: #1e3a8a;
+        }
+    }
+
+    .question-modal {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+
+        .modal-box {
+            background-color: #1e40af;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 100%;
+            color: white;
+            text-align: center;
+
+            .modal-topic {
+                font-size: 15px;
+                color: #facc15;
+                margin-bottom: 20px;
+            }
+
+            .question-display {
+                background-color: #2563eb;
+                padding: 20px;
+                border-radius: 8px;
+                margin-bottom: 20px;
+                min-height: 100px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .award-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+                margin: 20px 0;
+            }
+
+            .award-btn {
+                background-color: #10b981;
+                color: white;
+                padding: 10px;
+                border-radius: 6px;
+                font-weight: bold;
+                border: none;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .primary-btn {
+                background-color: #facc15;
+                color: #1e3a8a;
+                padding: 10px 20px;
+                border-radius: 6px;
+                font-weight: bold;
+                border: none;
+            }
+
+            .secondary-btn {
+                background-color: #3b82f6;
+                color: white;
+                padding: 10px 20px;
+                border-radius: 6px;
+                font-weight: bold;
+                border: none;
+            }
+        }
+    }
+}
