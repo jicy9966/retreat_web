@@ -3,6 +3,7 @@
 .dinner-menu {
     font-family: 'PixelFont', 'Courier New', monospace;
     margin-top: 10px;
+    max-width: 100%;
 
     h2 {
         font-size: 16px;
@@ -28,6 +29,32 @@
             strong {
                 display: inline-block;
                 width: 100px;
+            }
+        }
+    }
+
+    .main-tabs {
+        display: flex;
+        margin: 10px 0 20px;
+        border-bottom: 1px solid #999;
+
+        .main-tab {
+            padding: 3px 15px;
+            background-color: #d4d0c8;
+            border: 2px outset white;
+            border-bottom: none;
+            margin-right: 2px;
+            cursor: pointer;
+            font-family: 'PixelFont', 'Courier New', monospace;
+            font-size: 12px;
+            position: relative;
+            bottom: -1px;
+
+            &.active {
+                background-color: #f0f0f0;
+                border-bottom: 1px solid #f0f0f0;
+                font-weight: bold;
+                z-index: 2;
             }
         }
     }
@@ -67,6 +94,11 @@
             border-left: 3px solid #aaa;
             background-color: #f9f9f9;
             transition: transform 0.2s;
+            display: flex;
+            align-items: center; // Aligns children vertically center
+            gap: 8px; // Optional spacing between time and items
+            margin-bottom: 8px; // Optional spacing between meals
+            white-space: pre-line;
 
             &:hover {
                 transform: translateX(5px);
@@ -83,7 +115,52 @@
                 display: inline-block;
                 width: 60px;
                 color: #555;
+                vertical-align: top;
+            }
+
+            .food-items {
+                display: inline-block;
+                max-width: calc(100% - 80px);
+            }
+        }
+    }
+
+    .photo-tab-content {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; // Horizontally centers children
+
+        .menu-photo {
+            text-align: center; // Center the caption text as well
+            margin-top: 20px; // Optional spacing
+            width: 350px;
+
+            .menu-image {
+                max-width: 90%;
+                height: auto;
+                border: 2px solid #ccc; // Optional: add a border for visibility
+                border-radius: 8px; // Optional: round the corners
+            }
+
+            .photo-caption {
+                margin-top: 8px;
+                font-size: 12px;
+                color: #555;
+                text-align: center;
             }
         }
     }
 }
+
+.window-content {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+@media (max-width: 480px) {
+    .menu-photo {
+        max-width: 250px;
+    }
+  }
+  
