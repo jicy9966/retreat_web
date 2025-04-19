@@ -23,17 +23,16 @@ const TerminalIcon = () => (
 const TreasureHunt = () => {
   const [input, setInput] = useState('');
   const [history, setHistory] = useState([
-    { type: 'system', text: '보물찾기 터미널에 오신 것을 환영합니다!' },
-    { type: 'system', text: '안내원: 안녕하세요! 보물찾기에 참여하신 것을 환영합니다.' },
-    { type: 'system', text: '안내원: 이 터미널에서 다양한 명령어를 입력하여 보물을 찾아보세요.' },
-    { type: 'system', text: '안내원: 시작하려면 "help"를 입력해보세요.' }
+    { type: 'system', text: '안녕하세요! 보물찾기에 참여하신 것을 환영합니다.' },
+    { type: 'system', text: '이 터미널에서 다양한 명령어를 입력하여 보물을 찾아보세요.' },
+    { type: 'system', text: '시작하려면 "help"를 입력해보세요.' }
   ]);
   
-  const [availableCommands, setAvailableCommands] = useState(['help']);
+  const [availableCommands, setAvailableCommands] = useState(['help', 'clear']);
   const [puzzles, setPuzzles] = useState({
     '첫번째문제': {
       solved: false,
-      question: '터미널에서 파일을 확인하는 명령어는 무엇일까요? (영어로 두 단어를 입력하세요)',
+      question: '터미널에서 파일을 확인하는 명령어는 무엇일까요? (영어로 두 단어를 입력하세요)\n힌트: li__ _ile_',
       answer: 'list files',
       reward: '새로운 명령어: list files'
     },
@@ -71,24 +70,24 @@ const TreasureHunt = () => {
   });
   
   const [files, setFiles] = useState({
-    '보물찾기점수': '아직 점수가 기록되지 않았습니다.',
-    '두번째문제': puzzles['두번째문제'].question,
-    '첫번째단서': {
+    '보물찾기_점수': '최종 행동 지령을 수행하는 순서대로 다음과 같이 점수를 지급합니다.\n 1등: 25점\n 2등: 15점\n 3등: 10점\n',
+    '두번째_문제': puzzles['두번째문제'].question,
+    '첫번째_단서': {
       locked: true,
       content: '정보 - "보물을 찾으려면 스태프 A나 B한테 찾아가세요."'
     },
-    '세번째문제': puzzles['세번째문제'].question,
-    '두번째단서': {
+    '세번째_문제': puzzles['세번째문제'].question,
+    '두번째_단서': {
       locked: true,
       content: '정보 - "찾아가기 전 성경 구절을 암송해야 할거야. 단, ..."'
     },
-    '네번째문제': puzzles['네번째문제'].question,
-    '세번째단서': {
+    '네번째_문제': puzzles['네번째문제'].question,
+    '세번째_단서': {
       locked: true,
       content: '정보 - "구절은 사무엘상 30:21~25이고..."'
     },
-    '다섯번째문제': puzzles['다섯번째문제'].question,
-    '네번째단서': {
+    '다섯번째_문제': puzzles['다섯번째문제'].question,
+    '네번째_단서': {
       locked: true,
       content: '정보 - "다섯명이 한 명당 한구절씩만 암송해."'
     }
@@ -203,12 +202,24 @@ const TreasureHunt = () => {
       // Handle exact match commands
       if (command === 'help') {
         const helpText = [
-          '사용 가능한 명령어:',
-          ...availableCommands.map(cmd => `  - ${cmd}`)
+          '‎',
+          '=== 보물찾기의 목표 ===',
+          '이 보물찾기의 최종 목표는 특정 행동을 수행하는 것입니다.',
+          '터미널을 통해 총 4개의 단서를 수집할 수 있습니다.',
+          '모든 단서를 모으면 최종 행동 지령을 알 수 있습니다.',
+          '팀은 이 행동 지령을 수행하여 보물찾기를 완료해야 합니다.',
+          '‎',
+          '=== 터미널 사용법 ===',
+          '적절한 명령어를 입력하여 원하는 파일을 열람할 수 있습니다.',
+          '아래 현재 사용 가능한 명령어들입니다.',
+          '‎',
+          '=== 사용 가능한 명령어 ===',
+          ...availableCommands.map(cmd => `  ㄴ ${cmd}`),
+          '‎'
         ];
         
         if (!puzzles['첫번째문제'].solved) {
-          helpText.push('첫번째 문제:', puzzles['첫번째문제'].question);
+          helpText.push('', '첫번째 문제:', puzzles['첫번째문제'].question);
         }
         
         setHistory([
@@ -218,22 +229,30 @@ const TreasureHunt = () => {
       } else if (command === 'list files') {
         const fileNames = Object.keys(files).map(name => {
           if (typeof files[name] === 'object' && files[name].locked) {
-            return `🔒 ${name}`;
+            return `ㄴ 🔒 ${name}`;
           }
-          return name;
+          return `ㄴ ${name}`;
         });
         
         setHistory([
           ...currentHistory,
-          { type: 'system', text: '파일 목록:' },
+          { type: 'system', text: '=== 파일 목록 ===' },
           { type: 'system', text: fileNames.join('\n') },
-          { type: 'system', text: '안내원: "파일들을 잘 찾았군요. view를 사용해서 열람하세요."' }
+          { type: 'system', text: '‎' },
+          { type: 'system', text: '파일들을 잘 찾았군요. view 명령어를 사용해서 열람하세요. \n예) view 파일_이름' }
         ]);
         
         // Add view command if not already available
         if (!availableCommands.includes('view')) {
           setAvailableCommands([...availableCommands, 'view']);
         }
+      } else if (command === 'clear') {
+        // Clear terminal history but keep initial welcome messages
+        setHistory([
+          { type: 'system', text: '안녕하세요! 보물찾기에 참여하신 것을 환영합니다.' },
+          { type: 'system', text: '이 터미널에서 다양한 명령어를 입력하여 보물을 찾아보세요.' },
+          { type: 'system', text: '시작하려면 "help"를 입력해보세요.' }
+        ]);
       }
     } else {
       // Check for single-word commands or commands with arguments
@@ -308,7 +327,6 @@ const TreasureHunt = () => {
           <TerminalIcon />
         </div>
         <div className="terminal-title">보물찾기 터미널</div>
-        <div className="terminal-score">점수: {score}</div>
       </div>
       
       <div 
