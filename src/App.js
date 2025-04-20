@@ -11,7 +11,7 @@ function App() {
       <div className="desktop">
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Navigate to="/loading" replace />} />
+            <Route path="/" element={<Navigate to="/home" replace />} />
             <Route path="/loading" element={<LoadingPage />} />
             <Route path="/home" index element={<HomePage />} />
             <Route path="/retreat-four-cuts" element={<RetreatFourCuts />} />

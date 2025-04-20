@@ -4,7 +4,6 @@ import {
     Program,
     ProgramWindow,
     FAQ,
-    Confidential,
     RSVP,
     Timer
 } from "../../components/components";

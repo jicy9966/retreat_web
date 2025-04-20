@@ -47,8 +47,7 @@ const FAQ = ({ onClose }) => {
                     <hr style={{ margin: "10px 0", borderTop: "1px dotted #999" }} />
 
                     <p><strong>Q: 참가비는 얼마인가요?</strong><br />
-                        A: 얼리버드 $90 / 레귤러 $130 입니다.<br />&nbsp;&nbsp;&nbsp;
-                        얼리버드 마감은 4월 13일!
+                        A: 새가족 $90 / 레귤러 $130 입니다.
                     </p>
 
                     <hr style={{ margin: "10px 0", borderTop: "1px dotted #999" }} />
