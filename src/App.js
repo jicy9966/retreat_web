@@ -2,7 +2,7 @@ import "./App.scss"
 import "./DarkMode.scss"
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { HomePage, LoadingPage, RetreatFourCuts, QTinPage, ArcadePage, RecreationPage, GoldenBellPage, TreasureHuntPage } from "./pages/pages";
+import { HomePage, RetreatFourCuts, QTinPage, ArcadePage, RecreationPage, GoldenBellPage, TreasureHuntPage } from "./pages/pages";
 import { Footer } from "./components/components";
 
 function App() {
@@ -11,8 +11,7 @@ function App() {
       <div className="desktop">
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Navigate to="/home" replace />} />
-            <Route path="/loading" element={<LoadingPage />} />
+            <Route path="/" element={<Navigate to="/home" />} />
             <Route path="/home" index element={<HomePage />} />
             <Route path="/retreat-four-cuts" element={<RetreatFourCuts />} />
             <Route path="/QTin" element={<QTinPage />} />
