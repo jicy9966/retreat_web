@@ -17,23 +17,17 @@ export const fileItems = [
         action: "external",
         url: "https://youtube.com/playlist?list=PLTZLQpiVasvLHMlkEkCFEGCFYrfY592Ck&si=RB_NmeVKVnyNnl5Q"
     },
-    {
-        icon: "👥",
-        name: "조편성.team",
-        action: "window",
-        component: "Team"
-    },
-    {
-        icon: "🎮",
-        name: "레크레이션.bat",
-        action: "page",
-        path: "/jirakshil"
-    },
     // {
-    //     icon: "🌐",
-    //     name: "중요_링크.url",
+    //     icon: "👥",
+    //     name: "조편성.team",
     //     action: "window",
-    //     component: "RSVP"
+    //     component: "Team"
+    // },
+    // {
+    //     icon: "🎮",
+    //     name: "레크레이션.bat",
+    //     action: "page",
+    //     path: "/jirakshil"
     // },
     {
         icon: "🍽️",

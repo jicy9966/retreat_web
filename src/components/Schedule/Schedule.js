@@ -9,7 +9,7 @@ const Schedule = ({ onClose }) => {
     const [windowTab, setWindowTab] = useState("schedule"); // "schedule" or "download"
 
     // Path to the schedule PNG in the public folder
-    const schedulePngPath = process.env.PUBLIC_URL + "/assets/2025_청1_수양회_일정표.png";
+    const schedulePngPath = process.env.PUBLIC_URL + "/assets/timetable.png";
 
     const handleMinimize = () => {
         setIsMinimized(!isMinimized);

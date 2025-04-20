@@ -104,7 +104,7 @@ const Menu = ({ onClose }) => {
                             </>
                         ) : (
                             <div className="photo-tab-content">
-                                <h2>🍽️ 음식 사진 미리보기</h2>
+                                <h2>🍽️🥯🥑 수양회 음식 사진 🍖🍲🍜</h2>
                                 <div className="menu-photo">
                                     <img
                                         src="/assets/식단표.jpg"
@@ -112,7 +112,7 @@ const Menu = ({ onClose }) => {
                                         className="menu-image"
                                     />
                                     <div className="photo-caption">
-                                        청1 수양회 메뉴 이미지
+                                        청1 수양회 메뉴 사진!
                                     </div>
                                 </div>
                             </div>

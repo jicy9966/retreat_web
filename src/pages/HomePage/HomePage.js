@@ -70,6 +70,8 @@ const HomePage = () => {
     return (
         <div className="windows-startup">
             <Title />
+            <Timer />
+            <RSVP />
 
             {/* <Program onFileClick={handleFileClick} />
             {openFileItems.map((item) => (
@@ -83,11 +85,8 @@ const HomePage = () => {
                     />
                 </div>
             ))} */}
-
-            <Timer />
-            <RSVP />
+            
             <FAQ />
-            <Confidential />
         </div>
     );
 };

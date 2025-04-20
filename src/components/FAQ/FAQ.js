@@ -58,9 +58,9 @@ const FAQ = ({ onClose }) => {
                         (☎️ 626-354-8309)으로<br />&nbsp;&nbsp;&nbsp;
                         연락해주세요!</p>
 
-                    <hr style={{ margin: "10px 0", borderTop: "1px dotted #999" }} />
+                    {/* <hr style={{ margin: "10px 0", borderTop: "1px dotted #999" }} /> */}
 
-                    <div className="secret-answer">
+                    {/* <div className="secret-answer">
                         <p><strong>Q: 세번째 문제의 정답은 무엇인가요?</strong><br />
                             <span 
                                 className="reveal-button" 
@@ -78,7 +78,7 @@ const FAQ = ({ onClose }) => {
                                 </span>
                             )}
                         </p>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

@@ -6,31 +6,28 @@ const Content = ({ day = "day1", viewMode = "list" }) => {
             { time: "01:00 PM", activity: "선발대 출발" },
             { time: "05:00 PM", activity: "본대 출발 / \n안내 및 접수" },
             { time: "07:00 PM", activity: "저녁 식사" },
-            { time: "08:00 PM", activity: "저녁 집회 1일차" },
-            { time: "11:00 PM", activity: "오리엔테이션 OT" },
-            { time: "11:30 PM", activity: "조장 모임" },
+            { time: "08:00 PM", activity: "오리엔테이션 OT" },
+            { time: "08:30 PM", activity: "저녁 집회 1일차" },
+            { time: "11:30 PM", activity: "조 모임" },
             { time: "12:00 AM", activity: "취침" }
         ],
         day2: [
-            { time: "08:00 AM", activity: "기상" },
-            { time: "08:10 AM", activity: "아침 식사" },
-            { time: "10:00 AM", activity: "조모임 \n(함께 큐티)" },
-            { time: "10:30 AM", activity: "심리(?) 활동" },
+            { time: "08:00 AM", activity: "기상 / \n아침 식사" },
+            { time: "10:00 AM", activity: "QT모임" },
+            { time: "10:30 AM", activity: "단체 활동 (???)" },
             { time: "12:00 PM", activity: "점심 시간" },
-            { time: "02:00 PM", activity: "??? 오락실 \n(레크레이션)" },
+            { time: "02:00 PM", activity: "레크레이션 (???)" },
             { time: "06:00 PM", activity: "저녁 식사" },
             { time: "07:30 PM", activity: "휴식 및 집회 준비" },
             { time: "08:00 PM", activity: "저녁 집회 2일차" },
-            { time: "11:00 PM", activity: "조모임" },
-            { time: "11:30 PM", activity: "조장 모임" },
+            { time: "11:00 PM", activity: "조 모임" },
             { time: "12:00 AM", activity: "취침" }
         ],
         day3: [
-            { time: "08:00 AM", activity: "기상" },
-            { time: "08:10 AM", activity: "아침 식사" },
-            { time: "10:00 AM", activity: "조모임 \n(함께 큐티~)" },
-            { time: "10:30 AM", activity: "정리 및 복귀 준비" },
-            { time: "11:00 AM", activity: "교회로 복귀" },
+            { time: "08:00 AM", activity: "기상 & 아침 식사" },
+            { time: "10:00 AM", activity: "Self Reflection \n& 간증" },
+            { time: "10:30 AM", activity: "정리 및 귀가 준비" },
+            { time: "11:00 AM", activity: "교회로 귀가" },
             { time: "02:00 PM", activity: "주일 예배" }
         ]
     };
