@@ -3,9 +3,14 @@ import "./FAQ.scss"
 
 const FAQ = ({ onClose }) => {
     const [isMinimized, setIsMinimized] = useState(false);
+    const [showAnswer, setShowAnswer] = useState(false);
 
     const handleMinimize = () => {
         setIsMinimized(!isMinimized);
+    };
+
+    const toggleAnswer = () => {
+        setShowAnswer(!showAnswer);
     };
 
     const windowStyle = {
@@ -13,19 +18,19 @@ const FAQ = ({ onClose }) => {
     };
 
     return (
-        <div class="window" style={windowStyle}>
-            <div class="title-bar">
-                <div class="title-bar-text">System Message - FAQ</div>
-                <div class="title-bar-controls">
+        <div className="window" style={windowStyle}>
+            <div className="title-bar">
+                <div className="title-bar-text">System Message - FAQ</div>
+                <div className="title-bar-controls">
                     <button onClick={handleMinimize}>-</button>
                     <button>□</button>
                     <button onClick={onClose}>×</button>
                 </div>
             </div>
-            <div class="window-content">
-                <div class="system-alert">
-                    <div class="alert-header">
-                        <div class="alert-icon">❓</div>
+            <div className="window-content">
+                <div className="system-alert">
+                    <div className="alert-header">
+                        <div className="alert-icon">❓</div>
                         <strong>FAQ - 자주 묻는 질문들</strong>
                     </div>
                     <p><strong>Q: 수양회 장소는 어디인가요?</strong><br />
@@ -52,6 +57,28 @@ const FAQ = ({ onClose }) => {
                         A: 셀목자나 김지인 형제 <br />&nbsp;&nbsp;&nbsp;
                         (☎️ 626-354-8309)으로<br />&nbsp;&nbsp;&nbsp;
                         연락해주세요!</p>
+
+                    <hr style={{ margin: "10px 0", borderTop: "1px dotted #999" }} />
+
+                    <div className="secret-answer">
+                        <p><strong>Q: 세번째 문제의 정답은 무엇인가요?</strong><br />
+                            <span 
+                                className="reveal-button" 
+                                onClick={toggleAnswer}
+                            >
+                                {showAnswer ? "숨기기" : "A: 이 텍스트를 눌러 확인하십시오"}
+                            </span>
+                            {showAnswer && (
+                                <span className="binary-answer">
+                                    <br />A: 01100111 01110010 01100001 01100011<br />&nbsp;&nbsp;&nbsp;
+                                    01100101 01100001 01101110 01100100<br />&nbsp;&nbsp;&nbsp;
+                                    01110010 01100101 01110011 01110100<br />&nbsp;&nbsp;&nbsp;
+                                    <br />
+                                    * 힌트: 위 암호를 해독해야 합니다 *
+                                </span>
+                            )}
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>

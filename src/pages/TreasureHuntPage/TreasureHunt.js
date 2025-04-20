@@ -38,58 +38,77 @@ const TreasureHunt = () => {
     },
     '두번째문제': {
       solved: false,
-      question: '암호는 "terminal"의 각 글자를 알파벳에서 한 글자씩 앞으로 이동한 결과입니다. (힌트: a→z, b→a)',
-      answer: 'sdqlhm`k',
-      reward: '첫번째 단서의 비밀번호: treasure1'
+      question: '조원 전원이 각 분야별 도우미 한 명과 사진을 찍어야합니다:\n- 레크레이션\n- 주방\n- 미디어\n- 목회진\n찍은 사진을 수양회 네컷으로 만들어 조수민 셀목자에게\n제출해 인증을 받으세요.',
+      answer: 'none',
+      reward: 'none'
     },
     '세번째문제': {
       solved: false,
-      question: '다음 수열의 다음 숫자는 무엇일까요? 2, 3, 5, 8, 13, ?',
-      answer: '21',
-      reward: '두번째 단서의 비밀번호: treasure2'
+      question: '<33 39 36.9 N, 117 24 14.6 ?>',
+      answer: 'none',
+      reward: 'none'
     },
     '네번째문제': {
       solved: false,
-      question: '보물을 찾는 영어 단어를 입력하세요. (힌트: 이 활동의 이름)',
-      answer: 'treasure hunt',
-      reward: '세번째 단서의 비밀번호: treasure3'
+      question: 'FAQ',
+      answer: 'none',
+      reward: 'none'
     },
     '다섯번째문제': {
       solved: false,
-      question: '모든 퍼즐을 풀고 얻은 지식으로 암호를 해독하세요: TFBSDI GPS UIF USFBTVSF',
-      answer: 'search for the treasure',
-      reward: '네번째 단서의 비밀번호: treasure4'
+      question: '요 문제만 정하면 됩니다',
+      answer: 'none',
+      reward: 'none'
     }
   });
   
   const [passwords, setPasswords] = useState({
-    '첫번째단서': 'treasure1',
-    '두번째단서': 'treasure2',
-    '세번째단서': 'treasure3',
-    '네번째단서': 'treasure4'
+    '🔑 첫번째단서': '8282',
+    '🔑 두번째단서': '1472',
+    '🔑 세번째단서': 'graceandrest',
+    '🔑 네번째단서': 'treasure4',
+    '🧩 이게뭘까': 'qkm888',  // Password for third problem
+    '🧩 해독해봐': 'decrypt',  // Password for fourth problem
+    '🧩 사진이야': 'uqid25'  // Password for fifth problem
   });
   
   const [files, setFiles] = useState({
-    '보물찾기_점수': '최종 행동 지령을 수행하는 순서대로 다음과 같이 점수를 지급합니다.\n 1등: 25점\n 2등: 15점\n 3등: 10점\n',
-    '두번째_문제': puzzles['두번째문제'].question,
-    '첫번째_단서': {
+    '📋 게임규칙': '잘 오셨습니다.\n이 게임은 여러 퍼즐들을 풀어 내서 최종 행동 지령을\n알아내는 것이 목적입니다. 최종 행동 지령을 수행하는\n 순서대로 다음과 같이 점수를 지급합니다.\n 1등: 25점\n 2등: 15점\n 3등: 10점\n\n* 퍼즐을 풀어내는데 인터넷의 도움을 받아도 좋습니다.\n도움이 될진 모르겠지만 말이죠.\n* 단서를 찾는 과정중 다른 조에게 들키지 않도록 조심하십시오.\n* 단서를 찾고 파기하는 것은 불가능합니다.',
+    '🧩 챌린지': puzzles['두번째문제'].question,
+    '🔑 첫번째단서': {
       locked: true,
-      content: '정보 - "보물을 찾으려면 스태프 A나 B한테 찾아가세요."'
+      content: '정보 - "최종 행동 지령을 알게 되면 조수민 셀목자에게 찾아가..."\n\n이게뭘까 파일을 열람할 수 있는 암호: qkm888',
+      type: 'clue'
     },
-    '세번째_문제': puzzles['세번째문제'].question,
-    '두번째_단서': {
+    '🧩 이게뭘까': {
       locked: true,
-      content: '정보 - "찾아가기 전 성경 구절을 암송해야 할거야. 단, ..."'
+      content: puzzles['세번째문제'].question,
+      type: 'puzzle'
     },
-    '네번째_문제': puzzles['네번째문제'].question,
-    '세번째_단서': {
+    '🔑 두번째단서': {
       locked: true,
-      content: '정보 - "구절은 사무엘상 30:21~25이고..."'
+      content: '정보 - "찾아가기 전 성경 구절을 암송해야 할거야. 단, ..."\n해독해봐 파일을 열람할 수 있는 암호: decrypt',
+      type: 'clue'
     },
-    '다섯번째_문제': puzzles['다섯번째문제'].question,
-    '네번째_단서': {
+    '🧩 해독해봐': {
       locked: true,
-      content: '정보 - "다섯명이 한 명당 한구절씩만 암송해."'
+      content: puzzles['네번째문제'].question,
+      type: 'puzzle'
+    },
+    '🔑 세번째단서': {
+      locked: true,
+      content: '정보 - "구절은 사무엘상 30:21~25이고..."\n사진이야 파일을 열람할 수 있는 암호: uqid25',
+      type: 'clue'
+    },
+    '🧩 사진이야': {
+      locked: true,
+      content: puzzles['다섯번째문제'].question,
+      type: 'puzzle'
+    },
+    '🔑 네번째단서': {
+      locked: true,
+      content: '정보 - "다섯명이 한 명당 한구절씩만 암송해."',
+      type: 'clue'
     }
   });
   
@@ -227,19 +246,35 @@ const TreasureHunt = () => {
           { type: 'system', text: helpText.join('\n') }
         ]);
       } else if (command === 'list files') {
-        const fileNames = Object.keys(files).map(name => {
-          if (typeof files[name] === 'object' && files[name].locked) {
-            return `ㄴ 🔒 ${name}`;
+        // Group files by category
+        const puzzleFiles = [];
+        const clueFiles = [];
+        const otherFiles = [];
+        
+        Object.keys(files).forEach(name => {
+          const file = files[name];
+          const prefix = (typeof file === 'object' && file.locked) ? '🔒 ' : '';
+          
+          if (name.includes('🧩')) {
+            puzzleFiles.push(`ㄴ ${prefix}${name}`);
+          } else if (name.includes('🔑')) {
+            clueFiles.push(`ㄴ ${prefix}${name}`);
+          } else {
+            otherFiles.push(`ㄴ ${prefix}${name}`);
           }
-          return `ㄴ ${name}`;
         });
         
         setHistory([
           ...currentHistory,
           { type: 'system', text: '=== 파일 목록 ===' },
-          { type: 'system', text: fileNames.join('\n') },
+          { type: 'system', text: '📚 일반 파일:' },
+          { type: 'system', text: otherFiles.join('\n') },
+          { type: 'system', text: '🧩 퍼즐:' },
+          { type: 'system', text: puzzleFiles.join('\n') },
+          { type: 'system', text: '🔑 단서:' },
+          { type: 'system', text: clueFiles.join('\n') },
           { type: 'system', text: '‎' },
-          { type: 'system', text: '파일들을 잘 찾았군요. view 명령어를 사용해서 열람하세요. \n예) view 파일_이름' }
+          { type: 'system', text: '파일들을 잘 찾았군요. view 명령어를 사용해서 열람하세요. \n예) view 게임규칙' }
         ]);
         
         // Add view command if not already available
@@ -263,17 +298,23 @@ const TreasureHunt = () => {
         if (parts.length < 2) {
           setHistory([
             ...currentHistory,
-            { type: 'error', text: '파일 이름을 입력하세요. (예: view 보물찾기점수)' }
+            { type: 'error', text: '파일 이름을 입력하세요. (예: view 게임규칙)' }
           ]);
           return;
         }
         
-        const fileName = parts.slice(1).join(' ');
+        const searchName = parts.slice(1).join(' ').toLowerCase();
         
-        if (!Object.keys(files).includes(fileName)) {
+        // Find file by partial match (ignoring emojis)
+        const fileName = Object.keys(files).find(name => 
+          name.toLowerCase().includes(searchName) || 
+          name.replace(/[^\w\s\-가-힣]/g, '').toLowerCase().includes(searchName)
+        );
+        
+        if (!fileName) {
           setHistory([
             ...currentHistory,
-            { type: 'error', text: `파일을 찾을 수 없습니다: ${fileName}` }
+            { type: 'error', text: `파일을 찾을 수 없습니다: ${searchName}` }
           ]);
           return;
         }

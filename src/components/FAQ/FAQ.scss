@@ -27,3 +27,35 @@ strong
 {
     line-height: 40px;
 }
+
+/* Clickable Answer Styles */
+.secret-answer {
+    margin-bottom: 10px;
+}
+
+.question-text {
+    cursor: pointer;
+    user-select: none;
+}
+
+.question-text:hover {
+    color: #333;
+}
+
+.click-hint {
+    color: #999;
+    font-size: 0.8em;
+    font-style: italic;
+}
+
+.binary-answer {
+    display: block;
+    margin-top: 5px;
+    font-family: monospace;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
