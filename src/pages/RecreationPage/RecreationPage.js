@@ -126,7 +126,7 @@ const RecreationPage = () => {
                                 <div className="scanline"></div>
                                 <div className="status-bar">
                                     <span>SYSTEM: ONLINE</span>
-                                    <span className="blinking-status">GAMES LOADED: {game_stations.length}</span>
+                                    <span className="blinking-status">GAMES LOADED: 9</span>
                                     <span className="hide-on-mobile">HAVE FUN!</span>
                                 </div>
                             </div>

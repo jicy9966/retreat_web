@@ -31,7 +31,9 @@
     }
 
     .team-panel {
-        background-color: #334155;
+        background-image: url("../../../public/assets/goldenbell_1.png");
+        background-size: cover; // This ensures the image covers the entire panel
+        background-color: #334155; // Keep as fallback
         padding: 10px;
         border-radius: 8px;
         font-weight: bold;
@@ -45,7 +47,7 @@
         }
 
         &.selected {
-            background-color: #4c566a;
+            background-color: #4c566a; // This will blend with the background image
             transform: scale(1.05);
             box-shadow: 0 0 15px rgba(250, 204, 21, 0.7);
         }
@@ -105,7 +107,9 @@
     }
 
     .question-cell {
-        background-color: #1d4ed8;
+        background-image: url('../../../public/assets/goldenbell_2.png'); // Add this line
+        background-size: cover; // Ensures the image covers the cell
+        background-color: #1d4ed8; // Keep as fallback
         height: 70px;
         width: 120px;
         display: flex;
@@ -124,7 +128,9 @@
         }
 
         &.revealed {
-            background-color: #4a4288;
+            background-image: url('../../../public/assets/goldenbell_2.png'); // Add this line
+            background-color: rgba(74, 66, 136, 0.7); // Semi-transparent overlay
+            filter: brightness(0.7); // Darkens the revealed cells
             cursor: default;
 
             &:hover {
@@ -143,12 +149,14 @@
         z-index: 10;
 
         .modal-box {
+            background-image: url('../../../public/assets/goldenbell_3.png'); // Add this line
+            background-size: cover; // Ensures the image covers the cell
             background-color: #1e40af;
             padding: 30px;
             border-radius: 10px;
             max-width: 700px;
             width: 100%;
-            color: white;
+            color: black;
             text-align: center;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 
@@ -175,7 +183,7 @@
 
                 .question-text {
                     font-size: 1.2rem;
-                    line-height: 1.6;   
+                    line-height: 1.6;
                     white-space: pre-line;
                 }
             }
@@ -250,7 +258,9 @@
     }
 
     .roulette-container {
-        background-color: #1e3a8a;
+        background-image: url('../../../public/assets/goldenbell_1.png'); // Add this line
+        background-size: cover; // Ensures the image covers the cell
+        background-color: #1e40af;
         border-radius: 10px;
         padding: 20px;
         height: 100%;
@@ -266,7 +276,9 @@
     }
 
     .roulette-wheel {
-        background-color: #2563eb;
+        background-image: url('../../../public/assets/goldenbell_3.png'); // Add this line
+        background-size: cover; // Ensures the image covers the cell
+        background-color: #1e40af;
         border-radius: 8px;
         padding: 15px;
         display: flex;
@@ -278,6 +290,8 @@
     }
 
     .roulette-team {
+        background-image: url('../../../public/assets/goldenbell_2.png'); // Add this line
+        background-size: cover; // Ensures the image covers the cell
         background-color: #334155;
         padding: 10px;
         border-radius: 6px;
@@ -286,7 +300,7 @@
 
         &.selected {
             background-color: #facc15;
-            color: #1e3a8a;
+            color: white;
             font-weight: bold;
             transform: scale(1.05);
             box-shadow: 0 0 10px rgba(250, 204, 21, 0.5);

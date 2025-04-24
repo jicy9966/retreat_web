@@ -192,7 +192,7 @@ const GoldenBellPage = () => {
                             )}
                         </div>
                         <button className="spin-button" onClick={spinRoulette} disabled={isSpinning}>
-                            {isSpinning ? 'Spinning...' : 'Spin the Wheel'}
+                            {isSpinning ? '돌리는 중...' : '돌려돌려 돌림판~'}
                         </button>
                     </div>
                 </div>

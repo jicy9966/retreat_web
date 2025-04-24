@@ -6,7 +6,7 @@ const questions = {
     "예삶 1": { question: "둘로스 사역 팀장 이름 3명 말하기!", answer: "팀장 3명 말하기" },
     "예삶 2": { question: "예삶 목희진 전도사님들의 성함을 모두 말하기!", answer: "공병주 전도사님, 최요셉 전도사님, 이형석 전도사님" },
     "예삶 3": { question: "금요일 예배 FFN은 무엇의 줄임말?", answer: "Family Friday Night" },
-    "베델 1": { question: "교회 카페에서 파는 김밥 한줄의 가격은?", answer: "$5.5" },
+    "베델 1": { question: "교회 카페에서 파는 김밥 한줄의 가격은?", answer: "$5" },
     "베델 2": { question: "2025년 베델교회에 테마는?", answer: "\"여전히 Jesus Alone\"" },
     "수도 1": { question: "인도의 수도는?", answer: "뉴델리" },
     "수도 2": { question: "핀란드의 수도는?", answer: "헬싱키" },
