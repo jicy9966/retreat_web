@@ -1,19 +1,22 @@
 import { useState } from 'react';
 import game_stations from '../../config/game_stations';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './RecreationPage.scss';
 
 const RecreationPage = () => {
     const navigate = useNavigate();
-    const [expandedStationId, setExpandedStationId] = useState(null);
+    const [selectedStation, setSelectedStation] = useState(null);
 
-    // Toggle function to expand/collapse rules
-    const toggleRules = (stationId) => {
-        if (expandedStationId === stationId) {
-            setExpandedStationId(null);
-        } else {
-            setExpandedStationId(stationId);
-        }
+    const handleStationSelect = (stationId) => {
+        setSelectedStation(prev => {
+            const newSelection = stationId === prev ? null : stationId;
+            if (stationId !== prev) {
+                setTimeout(() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 0);
+            }
+            return newSelection;
+        });
     };
 
     return (
@@ -27,59 +30,104 @@ const RecreationPage = () => {
                 </div>
             </div>
             <div className='window-content'>
-                <div className="explorer-header">
-                    <span>📁 베델 {">"} 예삶 {">"} 청1 {">"} 수양회</span>
-                </div>
                 <div className="retro-container">
-                    {/* Main Window */}
                     <div className="retro-window">
-                        {/* Content Area */}
                         <div className="retro-content">
+                            <h1 className="game-manual-title">수양회 지락실 활동 메뉴얼!</h1>
+                            <div className="game-manual-subtitle">환영합니다!</div>
 
-                            <h2>지락실 - 활동 메뉴얼</h2>
-                            
-                            {/* Game Stations List */}
-                            <div className="stations-list">
-                                {game_stations.map((station) => (
-                                    <div key={station.id} className="station-item">
-                                        {/* Station Header - Clickable */}
-                                        <div
-                                            className="station-header"
-                                            onClick={() => toggleRules(station.id)}
-                                        >
-                                            <div>
-                                                <span className="station-title">&gt; {station.name}</span>
-                                                <span className="station-location">[{station.location}]</span>
+                            <div className="game-catalog">
+                                {selectedStation === null ? (
+                                    // Game station grid view
+                                    <div className="game-grid">
+                                        {game_stations.map((station) => (
+                                            <div
+                                                key={station.id}
+                                                className="game-card"
+                                                onClick={() => handleStationSelect(station.id)}
+                                            >
+                                                <div className="game-card-image">
+                                                    <img
+                                                        src={`/assets/station${station.id}.png`}
+                                                        alt={station.name}
+                                                        onError={(e) => {
+                                                            e.target.onError = null;
+                                                            e.target.src = "/images/games/placeholder.png";
+                                                        }}
+                                                    />
+                                                </div>
+                                                <div className="game-card-title">{station.name}</div>
+                                                <div className="game-card-location">{station.location}</div>
+                                                <div className="game-card-footer">
+                                                    <span className="blinking-cursor">{'>'}</span> CLICK TO VIEW
+                                                </div>
                                             </div>
-                                            <div className="toggle-indicator">
-                                                {expandedStationId === station.id ? "[-]" : "[+]"}
-                                            </div>
-                                        </div>
-
-                                        {/* Rules Section - Expandable */}
-                                        {expandedStationId === station.id && (
-                                            <div className="rules-content">
-                                                <div className="rules-title">RULES:</div>
-                                                <ul className="rules-list">
-                                                    {station.rules.map((rule, index) => (
-                                                        <li key={index}>
-                                                            <span className="bullet">*</span>
-                                                            <span>{rule}</span>
-                                                        </li>
-                                                    ))}
-                                                </ul>
-                                            </div>
-                                        )}
+                                        ))}
                                     </div>
-                                ))}
+                                ) : (
+                                    // Game detail view
+                                    <div className="game-detail">
+                                        {(() => {
+                                            const station = game_stations.find(s => s.id === selectedStation);
+                                            return (
+                                                <>
+                                                    <div className="game-detail-header">
+                                                        <button
+                                                            className="back-button"
+                                                            onClick={() => setSelectedStation(null)}
+                                                        >
+                                                            {'<< BACK'}
+                                                        </button>
+                                                        <h2 className="game-detail-title">{station.stagename}</h2>
+                                                    </div>
+
+                                                    <div className="game-detail-content">
+                                                        <div className="game-detail-image">
+                                                            <img
+                                                                src={`/assets/station${station.id}.png`}
+                                                                alt={station.name}
+                                                                onError={(e) => {
+                                                                    e.target.onError = null;
+                                                                    e.target.src = "/images/games/placeholder.png";
+                                                                }}
+                                                            />
+                                                        </div>
+
+                                                        <div className="game-rules">
+                                                            <div className="game-rules-header">
+                                                                <span className="pixelated-icon">📜</span> GAME RULES:
+                                                            </div>
+                                                            <div className="game-rules-content">
+                                                                <ol className="rules-list">
+                                                                    {station.rules.map((rule, index) => (
+                                                                        <li key={index} className="rule-item">
+                                                                            <span className="rule-number">{index + 1}.</span>
+                                                                            <span className="rule-text">{rule}</span>
+                                                                        </li>
+                                                                    ))}
+                                                                </ol>
+                                                            </div>
+                                                            <div className="game-info-box">
+                                                                <div className="game-info-item">
+                                                                    <span className="game-info-label">LOCATION:</span>
+                                                                    <span className="game-info-value">{station.location}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </>
+                                            );
+                                        })()}
+                                    </div>
+                                )}
                             </div>
 
-                            {/* System Status */}
                             <div className="system-status">
+                                <div className="scanline"></div>
                                 <div className="status-bar">
                                     <span>SYSTEM: ONLINE</span>
-                                    <span>MEMORY: 640K</span>
-                                    <span>STATUS: OK</span>
+                                    <span className="blinking-status">GAMES LOADED: {game_stations.length}</span>
+                                    <span className="hide-on-mobile">HAVE FUN!</span>
                                 </div>
                             </div>
                         </div>

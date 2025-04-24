@@ -47,12 +47,6 @@ export const fileItems = [
         action: "page",
         path: "/arcade"
     },
-    // {
-    //     icon: "❓",
-    //     name: "FAQ",
-    //     action: "window",
-    //     component: "FAQ"
-    // },
 
     // {
     //     icon: "✉️",

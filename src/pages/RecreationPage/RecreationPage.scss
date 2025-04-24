@@ -1,12 +1,22 @@
 @import "../../App.scss";
 
 // Variables
-$primary-bg: #f7f3f2;
-$secondary-bg: #0d1b2a;
-$window-border: #a0a0a0;
-$text-primary: #c0c0c0;
-$text-highlight: #ffff00;
+$primary-bg: #1a1a2e;
+$secondary-bg: #16213e;
+$terminal-green: #5dfdcb;
+$terminal-blue: #4cc9f0;
+$terminal-purple: #c77dff;
+$terminal-pink: #ff7096;
+$terminal-yellow: #ffca3a;
+$window-border: #575a89;
+$text-primary: #e0e0e0;
+$text-highlight: #fcbf49;
 $text-dim: #aaaaaa;
+
+// Breakpoints
+$mobile-breakpoint: 600px;
+$tablet-breakpoint: 768px;
+$desktop-breakpoint: 1024px;
 
 // Mixins
 @mixin pixel-border($color: $window-border, $size: 2px) {
@@ -16,19 +26,24 @@ $text-dim: #aaaaaa;
 
 @mixin retro-button {
     @include pixel-border();
-    background-color: $menu-bar-bg;
-    color: black;
+    background-color: $secondary-bg;
+    color: $terminal-yellow;
     font-family: 'VT323', monospace;
-    padding: 2px 8px;
+    padding: 5px 12px;
     text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
 
     &:hover {
-        background-color: darken($menu-bar-bg, 10%);
+        background-color: lighten($secondary-bg, 10%);
+        transform: translateY(-2px);
+        box-shadow: 0 2px 0 darken($window-border, 20%);
     }
 
     &:active {
         border-color: darken($window-border, 20%);
-        transform: translateY(1px);
+        transform: translateY(0);
     }
 }
 
@@ -48,7 +63,7 @@ $text-dim: #aaaaaa;
 
 @keyframes scanline {
     0% {
-        transform: translateY(0);
+        transform: translateY(-100%);
     }
 
     100% {
@@ -56,26 +71,43 @@ $text-dim: #aaaaaa;
     }
 }
 
-h2 {
-    color: #333;
-    margin-bottom: 10px;
+@keyframes glow {
+
+    0%,
+    100% {
+        text-shadow: 0 0 5px rgba($terminal-green, 0.7);
+    }
+
+    50% {
+        text-shadow: 0 0 15px rgba($terminal-green, 0.9), 0 0 20px rgba($terminal-blue, 0.4);
+    }
 }
 
 // Base styles
 .retro-container {
-    font-family: 'PixelFont', 'Courier New', monospace;
+    font-family: 'VT323', 'Courier New', monospace;
     background-color: $primary-bg;
     color: $text-primary;
-    padding: 0px;
-    min-height: 95vh;
+    padding: 0;
+    min-height: 90vh;
     width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
     margin: 0 auto;
+    box-sizing: border-box;
 
     *,
     *::before,
     *::after {
         box-sizing: border-box;
     }
+}
+
+// Window content
+.window-content {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 // Main window
@@ -86,122 +118,507 @@ h2 {
     height: calc(100vh - 48px);
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
+// Explorer header
+.explorer-header {
+    padding: 8px;
+    font-size: 14px;
+
+    @media (max-width: $mobile-breakpoint) {
+        font-size: 12px;
+        padding: 6px;
+    }
+}
 
 // Content area
 .retro-content {
-    background-color: #f7f3f2;
+    background-color: $primary-bg;
     color: $text-primary;
     padding: 16px;
     overflow-y: auto;
+    overflow-x: hidden;
     flex-grow: 1;
     position: relative;
+    width: 100%;
 
-    &::before {
+    @media (max-width: $mobile-breakpoint) {
+        padding: 10px;
+    }
+
+    &::after {
         content: "";
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
-        height: 2px;
-        background: rgba(255, 255, 255, 0.1);
-        animation: scanline 10s linear infinite;
+        bottom: 0;
+        background:
+            linear-gradient(transparent 50%,
+                rgba(0, 0, 0, 0.03) 50%),
+            linear-gradient(90deg,
+                rgba(255, 0, 0, 0.06),
+                rgba(0, 255, 0, 0.02),
+                rgba(0, 0, 255, 0.06));
+        background-size: 100% 2px, 3px 100%;
         pointer-events: none;
         z-index: 10;
+        opacity: 0.3;
     }
 }
 
-// Header
-.retro-header {
-    margin-bottom: 24px;
+// Game Catalog - container for game grid
+.game-catalog {
+    width: 100%;
+}
+
+// Manual Title
+.game-manual-title {
     text-align: center;
+    font-size: 36px;
+    margin-bottom: 0;
+    color: $terminal-green;
+    letter-spacing: 2px;
+    text-shadow: 0 0 5px rgba($terminal-green, 0.7);
+    animation: glow 2s infinite;
 
-    .main-title {
-        color: #333;
-        font-size: 28px;
-        font-weight: bold;
+    @media (max-width: $mobile-breakpoint) {
+        font-size: 20px;
+        letter-spacing: 1px;
     }
 }
 
-// Game stations list
-.stations-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+.game-manual-subtitle {
+    text-align: center;
+    color: $terminal-blue;
+    margin-bottom: 24px;
+    font-size: 18px;
+    letter-spacing: 1px;
+
+    @media (max-width: $mobile-breakpoint) {
+        font-size: 16px;
+        margin-bottom: 16px;
+    }
 }
 
-.station-item {
+// Game Grid
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(240px, 1fr));
+    gap: 24px;
+    margin-top: 24px;
+    width: 100%;
+
+    @media (max-width: $desktop-breakpoint) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: $tablet-breakpoint) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    @media (max-width: $mobile-breakpoint) {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-top: 16px;
+        min-width: 100%;
+    }
+}
+
+.game-card {
     @include pixel-border($window-border);
-    background-color: darken($secondary-bg, 3%);
+    background-color: $secondary-bg;
+    padding: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
 
-    .station-header {
+    @media (max-width: $mobile-breakpoint) {
         padding: 8px;
-        cursor: pointer;
-        background-color: lighten($secondary-bg, 15%);
-        border-bottom: 2px solid $window-border;
+        width: 100%;
+        min-width: calc(100% - 2px);
+        /* Account for border */
+        margin: 0 auto;
+    }
+
+    &:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+
+        .game-card-title {
+            color: $terminal-green;
+        }
+
+        .game-card-image img {
+            transform: scale(1.05);
+        }
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: linear-gradient(to bottom, $terminal-pink, $terminal-purple);
+    }
+
+    .game-card-image {
+        height: 200px;
+        overflow: hidden;
+        border: 2px solid $terminal-blue;
+        margin-bottom: 12px;
         display: flex;
-        justify-content: space-between;
-        transition: background-color 0.2s;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        width: 100%;
 
-        &:hover {
-            background-color: lighten($secondary-bg, 25%);
+        @media (max-width: $mobile-breakpoint) {
+            height: 230px;
+            /* Make image taller on mobile */
         }
 
-        .station-title {
-            color: #f7f3f2;
-            font-weight: bold;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.3s ease;
+        }
+    }
+
+    .game-card-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: $terminal-yellow;
+        margin-bottom: 6px;
+        transition: color 0.3s ease;
+        padding-left: 10px;
+
+        @media (max-width: $mobile-breakpoint) {
+            font-size: 20px;
+            /* Keep title size readable */
+        }
+    }
+
+    .game-card-location {
+        font-size: 14px;
+        color: $text-dim;
+        padding-left: 10px;
+        margin-bottom: 6px;
+
+        @media (max-width: $mobile-breakpoint) {
+            font-size: 14px;
+            /* Keep location size readable */
+        }
+    }
+
+    .game-card-footer {
+        font-size: 12px;
+        text-align: left;
+        color: $text-primary;
+
+        @media (max-width: $mobile-breakpoint) {
+            font-size: 14px;
+            /* Larger text on mobile */
+            margin-top: 8px;
         }
 
-        .station-location {
-            color: $text-dim;
-            margin-left: 8px;
+        .blinking-cursor {
+            display: inline-block;
+            color: $terminal-green;
+            animation: blink 1s infinite;
+            font-size: 16px;
+            line-height: 1;
+            height: 16px;
+            vertical-align: middle;
+            position: relative;
+            top: -1px;
+            margin-right: 4px;
+        }
+    }
+}
+
+// Game Detail View
+.game-detail {
+    padding: 12px;
+    background-color: $secondary-bg;
+    @include pixel-border($window-border);
+    width: 100%;
+
+    @media (max-width: $mobile-breakpoint) {
+        padding: 10px;
+        margin: 0;
+        width: calc(100% - 2px);
+        /* Account for border */
+    }
+}
+
+.game-detail-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+
+    @media (max-width: $mobile-breakpoint) {
+        margin-bottom: 12px;
+        flex-wrap: wrap;
+    }
+
+    .back-button {
+        @include retro-button;
+        margin-right: 16px;
+
+        @media (max-width: $mobile-breakpoint) {
+            margin-right: 8px;
+            padding: 4px 8px;
+            font-size: 14px;
+            /* Slightly larger for better touch target */
+        }
+    }
+
+    .game-detail-title {
+        font-size: 28px;
+        color: $terminal-yellow;
+        flex-grow: 1;
+        margin: 0;
+        text-shadow: 0 0 5px rgba($terminal-yellow, 0.3);
+
+        @media (max-width: $mobile-breakpoint) {
+            font-size: 20px;
+            width: 100%;
+            margin-top: 10px;
+        }
+    }
+}
+
+.game-detail-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    width: 100%;
+
+    @media (max-width: $tablet-breakpoint) {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}
+
+.game-detail-image {
+    @include pixel-border($window-border);
+    background-color: $primary-bg;
+    padding: 12px;
+    width: 100%;
+
+    @media (max-width: $mobile-breakpoint) {
+        padding: 8px;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border: 2px solid $terminal-purple;
+        margin-bottom: 12px;
+
+        @media (max-width: $mobile-breakpoint) {
+            margin-bottom: 8px;
+            max-height: 200px;
+            /* Limit height on mobile */
+            object-fit: contain;
+        }
+    }
+}
+
+.game-info-box {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-top: 12px;
+    width: 100%;
+}
+
+.game-info-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    @media (max-width: $mobile-breakpoint) {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .game-info-label {
+        color: $terminal-blue;
+        margin-right: 8px;
+        font-weight: bold;
+        min-width: 100px;
+
+        @media (max-width: $mobile-breakpoint) {
+            margin-right: 0;
+            margin-bottom: 4px;
+            min-width: auto;
             font-size: 14px;
         }
-
-        .toggle-indicator {
-            color: $text-primary;
-        }
     }
 
-    .rules-content {
-        padding: 12px;
-        background-color: lighten($secondary-bg, 5%);
+    .game-info-value {
+        color: $text-primary;
 
-        .rules-title {
-            color: $text-highlight;
-            margin-bottom: 8px;
-        }
-
-        .rules-list {
-            list-style: none;
-            padding-left: 16px;
-
-            li {
-                display: flex;
-                margin-bottom: 4px;
-                color: white;
-
-                .bullet {
-                    margin-right: 8px;
-                    color: $text-highlight;
-                }
-            }
+        @media (max-width: $mobile-breakpoint) {
+            font-size: 14px;
         }
     }
 }
 
-// System status
+.game-rules {
+    @include pixel-border($window-border);
+    background-color: $primary-bg;
+    padding: 12px;
+    width: 100%;
+
+    @media (max-width: $mobile-breakpoint) {
+        padding: 10px;
+    }
+}
+
+.game-rules-header {
+    color: $terminal-pink;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+
+    @media (max-width: $mobile-breakpoint) {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .pixelated-icon {
+        margin-right: 8px;
+    }
+}
+
+.game-rules-content {
+    padding: 12px;
+    background-color: rgba($secondary-bg, 0.5);
+    @include pixel-border(lighten($window-border, 10%));
+    width: 100%;
+
+    @media (max-width: $mobile-breakpoint) {
+        padding: 10px;
+    }
+}
+
+.rules-list {
+    padding-left: 12px;
+    margin: 0;
+    width: 100%;
+
+    @media (max-width: $mobile-breakpoint) {
+        padding-left: 10px;
+    }
+}
+
+.rule-item {
+    margin-bottom: 12px;
+    display: flex;
+    color: $text-primary;
+    width: 100%;
+
+    @media (max-width: $mobile-breakpoint) {
+        margin-bottom: 10px;
+    }
+
+    .rule-number {
+        color: $terminal-purple;
+        margin-right: 8px;
+        font-weight: bold;
+    }
+
+    .rule-text {
+        line-height: 1.5;
+
+        @media (max-width: $mobile-breakpoint) {
+            line-height: 1.4;
+            font-size: 14px;
+        }
+    }
+}
+
+// System Status
 .system-status {
     margin-top: 32px;
     border-top: 2px solid $window-border;
     padding-top: 16px;
     font-size: 14px;
+    position: relative;
+    width: 100%;
+
+    @media (max-width: $mobile-breakpoint) {
+        margin-top: 24px;
+        padding-top: 12px;
+        font-size: 13px;
+    }
+
+    .scanline {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(to right,
+                transparent 0%,
+                rgba($terminal-green, 0.3) 10%,
+                rgba($terminal-green, 0.9) 50%,
+                rgba($terminal-green, 0.3) 90%,
+                transparent 100%);
+        animation: scanline 3s linear infinite;
+        opacity: 0.7;
+    }
 
     .status-bar {
         display: flex;
         justify-content: space-between;
-        color: #444;
+        color: $terminal-green;
+        font-family: 'VT323', monospace;
+        letter-spacing: 1px;
+        flex-wrap: wrap;
+        width: 100%;
+
+        @media (max-width: $mobile-breakpoint) {
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .blinking-status {
+            animation: glow 2s infinite alternate;
+        }
+
+        .blinking-cursor {
+            display: inline-block;
+            color: $terminal-green;
+            animation: blink 1s infinite;
+            font-size: 16px;
+            line-height: 1;
+            height: 16px;
+            vertical-align: middle;
+            position: relative;
+            top: -1px;
+        }
+    }
+}
+
+// Hide on mobile
+.hide-on-mobile {
+    @media (max-width: $mobile-breakpoint) {
+        display: none;
     }
 }
 
