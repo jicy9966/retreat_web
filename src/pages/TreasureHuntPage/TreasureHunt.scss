@@ -1,10 +1,10 @@
-/* TreasureHunt.scss */
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
 
 .treasure-hunt-terminal {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  width: 400px;
+  height: 100vh;
   min-height: 500px;
   background-color: #1a1a1a;
   color: #f0f0f0;
@@ -12,100 +12,134 @@
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  
+
+  /* For fixed positioning on mobile when keyboard appears */
+  @media (max-width: 768px) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* iOS specific fix for viewport issues */
+  @supports (-webkit-touch-callout: none) {
+    height: -webkit-fill-available;
+  }
+
+  /* Style modifications when keyboard is open */
+  &.keyboard-open {
+    .terminal-body {
+      /* Make content area scrollable when keyboard is open */
+      padding-bottom: 12px;
+    }
+  }
+
   .terminal-header {
     display: flex;
     align-items: center;
     background-color: #2a2a2a;
     padding: 10px 15px;
     border-bottom: 1px solid #444;
-    
+
     .terminal-icon {
       width: 20px;
       height: 20px;
       margin-right: 10px;
       display: flex;
       align-items: center;
-      
+
       .terminal-svg-icon {
         color: #4caf50;
       }
     }
-    
+
     .terminal-title {
       font-weight: bold;
       font-size: 1.1rem;
       color: #4caf50;
     }
-    
+
     .terminal-score {
       margin-left: auto;
       color: #ffc107;
       font-weight: bold;
     }
   }
-  
+
   .terminal-body {
     flex: 1;
     padding: 15px;
-    padding-bottom: 30px; /* Added extra padding at the bottom for gap */
+    padding-bottom: 30px;
+    /* Added extra padding at the bottom for gap */
     overflow-y: auto;
-    
+    -webkit-overflow-scrolling: touch;
+    /* Better momentum scrolling for iOS */
+
     &::-webkit-scrollbar {
       width: 8px;
     }
-    
+
     &::-webkit-scrollbar-track {
       background: #2a2a2a;
     }
-    
+
     &::-webkit-scrollbar-thumb {
       background-color: #555;
       border-radius: 4px;
     }
-    
+
     .terminal-line {
       margin: 5px 0;
       line-height: 1.5;
-      
+
       &.user-text {
         color: #64b5f6;
       }
-      
+
       &.system-text {
         color: #e0e0e0;
       }
-      
+
       &.error-text {
         color: #ef5350;
       }
-      
+
       &.success-text {
         color: #66bb6a;
       }
-      
+
       &.content-text {
         color: #ffee58;
       }
     }
   }
-  
+
   .terminal-input-area {
     border-top: 1px solid #444;
     padding: 10px 15px;
     background-color: #2a2a2a;
-    margin-top: 10px; /* Added margin at the top for additional spacing */
-    
+    margin-top: 10px;
+    /* Added margin at the top for additional spacing */
+    flex-shrink: 0;
+    /* Prevent input area from shrinking when keyboard appears */
+    position: relative;
+    /* Positioning context for possible absolute positioning if needed */
+    z-index: 10;
+    /* Ensure input area stays above content */
+
     .terminal-prompt {
       display: flex;
       align-items: center;
-      
+
       .prompt-symbol {
         color: #4caf50;
         margin-right: 10px;
         font-weight: bold;
       }
-      
+
       .terminal-input {
         flex: 1;
         background-color: transparent;
@@ -113,8 +147,9 @@
         outline: none;
         color: #ffffff;
         font-family: 'JetBrains Mono', monospace;
-        font-size: 1rem;
-        
+        font-size: 16px;
+        /* Minimum 16px to prevent iOS zoom on focus */
+
         &::placeholder {
           color: #888;
         }
@@ -125,15 +160,22 @@
 
 /* Animation effects */
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
 }
 
 .terminal-body {
   .terminal-line {
     opacity: 0;
     animation: fadeIn 0.2s ease-in-out forwards;
-    
+
     @for $i from 1 through 20 {
       &:nth-last-child(#{$i}) {
         animation-delay: #{$i * 0.05}s;
@@ -143,25 +185,97 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(5px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .treasure-hunt-terminal {
     border-radius: 0;
-    height: 100vh;
-    
+    display: flex;
+    margin-top: 15px;
+    justify-self: center;
+    white-space: pre;
+    width: 98%;
+    height: 90%;
+    box-shadow: none;
+
     .terminal-header {
+      padding: 8px 12px;
+
       .terminal-title {
-        font-size: 1rem;
+        font-size: 1.2rem;
+      }
+
+      .terminal-icon {
+        width: 16px;
+        height: 16px;
       }
     }
-    
+
     .terminal-body {
       padding: 10px;
-      padding-bottom: 25px; /* Adjusted for mobile */
+      padding-bottom: 15px;
+      font-size: 1.5rem;
+
+      .terminal-line {
+        margin: 4px 0;
+        line-height: 1.4;
+      }
+    }
+
+    .terminal-input-area {
+      padding: 8px 12px;
+
+      .terminal-prompt {
+        .prompt-symbol {
+          margin-right: 8px;
+        }
+
+        .terminal-input {
+          font-size: 16px;
+          /* Prevents zoom on iOS */
+        }
+      }
+    }
+  }
+}
+
+/* Fix for body when keyboard is shown */
+body[data-keyboard-open="true"] {
+  /* Prevent scrolling of background content when keyboard is open */
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+/* Add smaller screen size breakpoint */
+@media (max-width: 375px) {
+  .treasure-hunt-terminal {
+    .terminal-header {
+      padding: 6px 10px;
+
+      .terminal-title {
+        font-size: 0.85rem;
+      }
+    }
+
+    .terminal-body {
+      padding: 8px;
+      font-size: 0.85rem;
+    }
+
+    .terminal-input-area {
+      padding: 6px 10px;
     }
   }
 }

@@ -3,16 +3,16 @@ import './TreasureHunt.scss';
 
 // Terminal icon as inline SVG
 const TerminalIcon = () => (
-  <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    width="20" 
-    height="20" 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth="2" 
-    strokeLinecap="round" 
-    strokeLinejoin="round" 
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
     className="terminal-svg-icon"
   >
     <polyline points="4 17 10 11 4 5"></polyline>
@@ -24,15 +24,16 @@ const TreasureHunt = () => {
   const [input, setInput] = useState('');
   const [history, setHistory] = useState([
     { type: 'system', text: '안녕하세요! 보물찾기에 참여하신 것을 환영합니다.' },
-    { type: 'system', text: '이 터미널에서 다양한 명령어를 입력하여 보물을 찾아보세요.' },
+    { type: 'system', text: '여러분은 이제부터 해커가 되어 단서를 모아 보세요.' },
+    { type: 'system', text: '이 터미널를 통해 다양한 명령어를 입력 할 수 있습니다.' },
     { type: 'system', text: '시작하려면 "help"를 입력해보세요.' }
   ]);
-  
+
   const [availableCommands, setAvailableCommands] = useState(['help', 'clear']);
   const [puzzles, setPuzzles] = useState({
     '첫번째문제': {
       solved: false,
-      question: '터미널에서 파일을 확인하는 명령어는 무엇일까요? (영어로 두 단어를 입력하세요)\n힌트: li__ _ile_',
+      question: '이제 터미널에서 파일 목록을 확인 할 차례입니다.\n파일 목록을 한번에 확인 할 명령어는 무엇일까요? \n(영어로 두 단어를 입력하세요)\n힌트: li__ _ile_',
       answer: 'list files',
       reward: '새로운 명령어: list files'
     },
@@ -61,7 +62,7 @@ const TreasureHunt = () => {
       reward: 'none'
     }
   });
-  
+
   const [passwords, setPasswords] = useState({
     '🔑 첫번째단서': '8282',
     '🔑 두번째단서': '1472',
@@ -71,9 +72,9 @@ const TreasureHunt = () => {
     '🧩 해독해봐': 'decrypt',  // Password for fourth problem
     '🧩 사진이야': 'uqid25'  // Password for fifth problem
   });
-  
+
   const [files, setFiles] = useState({
-    '📋 게임규칙': '잘 오셨습니다.\n이 게임은 여러 퍼즐들을 풀어 내서 최종 행동 지령을\n알아내는 것이 목적입니다. 최종 행동 지령을 수행하는\n 순서대로 다음과 같이 점수를 지급합니다.\n 1등: 25점\n 2등: 15점\n 3등: 10점\n\n* 퍼즐을 풀어내는데 인터넷의 도움을 받아도 좋습니다.\n도움이 될진 모르겠지만 말이죠.\n* 단서를 찾는 과정중 다른 조에게 들키지 않도록 조심하십시오.\n* 단서를 찾고 파기하는 것은 불가능합니다.',
+    '📋 게임규칙': '잘 오셨습니다.\n이 게임은 여러 퍼즐들을 풀어 내서 최종 행동 지령을\n알아내는 것이 목적입니다. 최종 행동 지령을 수행하는\n순서대로 다음과 같이 점수를 지급합니다.\n 1등: 30점\n 2등: 20점\n 3등: 15점\n\n* 퍼즐을 풀어내는데 인터넷의 도움을 받아도 좋습니다.\n도움이 될진 모르겠지만 말이죠.\n* 단서를 찾는 과정중 다른 조에게 들키지 않도록 조심하십시오.\n* 단서를 찾고 파기하는 것은 불가능합니다.',
     '🧩 챌린지': puzzles['두번째문제'].question,
     '🔑 첫번째단서': {
       locked: true,
@@ -111,110 +112,148 @@ const TreasureHunt = () => {
       type: 'clue'
     }
   });
-  
+
   const [pendingPassword, setPendingPassword] = useState(null);
   const [score, setScore] = useState(0);
-  
+
   const terminalRef = useRef(null);
   const inputRef = useRef(null);
-  
+  const originalHeightRef = useRef(window.innerHeight);
+  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
+
   useEffect(() => {
     if (terminalRef.current) {
       terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
     }
   }, [history]);
-  
+
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current.focus();
     }
+
+    // Keyboard detection setup
+    setupKeyboardDetection();
+
+    return () => {
+      // Cleanup resize listener when component unmounts
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
-  
+
+  // Function to detect keyboard open/close on mobile
+  const setupKeyboardDetection = () => {
+    originalHeightRef.current = window.innerHeight;
+    window.addEventListener('resize', handleResize);
+  };
+
+  const handleResize = () => {
+    const currentHeight = window.innerHeight;
+    const heightDifference = originalHeightRef.current - currentHeight;
+
+    // If height significantly decreases, keyboard is likely open
+    // Threshold of 150px accounts for mobile browser UI differences
+    if (heightDifference > 150) {
+      setIsKeyboardOpen(true);
+      document.body.setAttribute('data-keyboard-open', 'true');
+    } else {
+      setIsKeyboardOpen(false);
+      document.body.setAttribute('data-keyboard-open', 'false');
+    }
+
+    // Scroll to bottom when keyboard opens
+    if (terminalRef.current) {
+      setTimeout(() => {
+        terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
+      }, 100);
+    }
+  };
+
   const handleInputChange = (e) => {
     setInput(e.target.value);
   };
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     const trimmedInput = input.trim().toLowerCase();
-    
+
     if (trimmedInput === '') return;
-    
+
     const newHistoryItem = { type: 'user', text: `> ${input}` };
     const newHistory = [...history, newHistoryItem];
-    
+
     // Add to history and clear input
     setHistory(newHistory);
     setInput('');
-    
+
     // Process pending password inputs
     if (pendingPassword) {
       processPasswordInput(trimmedInput, pendingPassword);
       return;
     }
-    
+
     // Process commands
     processCommand(trimmedInput, newHistory);
   };
-  
+
   const processPasswordInput = (input, fileToUnlock) => {
     if (input === passwords[fileToUnlock]) {
       // Correct password
       const newFiles = { ...files };
       newFiles[fileToUnlock].locked = false;
       setFiles(newFiles);
-      
+
       setHistory([
-        ...history, 
+        ...history,
         { type: 'user', text: `> [비밀번호 입력]` },
         { type: 'success', text: `비밀번호가 맞습니다! ${fileToUnlock}가 열렸습니다.` },
         { type: 'content', text: newFiles[fileToUnlock].content }
       ]);
-      
+
       setScore(score + 100);
       setPendingPassword(null);
     } else {
       // Wrong password
       setHistory([
-        ...history, 
+        ...history,
         { type: 'user', text: `> [비밀번호 입력]` },
         { type: 'error', text: '비밀번호가 틀렸습니다. 다시 시도하세요.' }
       ]);
       setPendingPassword(null);
     }
   };
-  
+
   const processCommand = (command, currentHistory) => {
     // Check if the input is an answer to a puzzle
-    const puzzleEntry = Object.entries(puzzles).find(([_, puzzle]) => 
+    const puzzleEntry = Object.entries(puzzles).find(([_, puzzle]) =>
       !puzzle.solved && puzzle.answer.toLowerCase() === command
     );
-    
+
     if (puzzleEntry) {
       const [puzzleKey, puzzle] = puzzleEntry;
-      
+
       // Mark as solved
       const newPuzzles = { ...puzzles };
       newPuzzles[puzzleKey].solved = true;
       setPuzzles(newPuzzles);
-      
+
       // Add new command if it's the first puzzle
       if (puzzleKey === '첫번째문제') {
         setAvailableCommands([...availableCommands, 'list files']);
       }
-      
+
       // Update history
       setHistory([
         ...currentHistory,
         { type: 'success', text: `정답입니다! ${puzzle.reward}` }
       ]);
-      
+
       // Update score
       setScore(score + 200);
       return;
     }
-    
+
     // Process regular commands - FIXED to check for the full command string
     // Check for exact matches first (for multi-word commands)
     if (availableCommands.includes(command)) {
@@ -223,24 +262,24 @@ const TreasureHunt = () => {
         const helpText = [
           '‎',
           '=== 보물찾기의 목표 ===',
-          '이 보물찾기의 최종 목표는 특정 행동을 수행하는 것입니다.',
-          '터미널을 통해 총 4개의 단서를 수집할 수 있습니다.',
-          '모든 단서를 모으면 최종 행동 지령을 알 수 있습니다.',
-          '팀은 이 행동 지령을 수행하여 보물찾기를 완료해야 합니다.',
+          '여러분의 최종 목표는 특정 행동을 수행하는 것입니다.',
+          '터미널을 통해 총 4개의 단서를 수집해야 합니다.',
+          '모든 단서를 모으면 최종 행동 지령을 알아내세요.',
+          '조 전체가 행동 지령을 수행하면 보물찾기를 완료합니다.',
           '‎',
           '=== 터미널 사용법 ===',
-          '적절한 명령어를 입력하여 원하는 파일을 열람할 수 있습니다.',
+          '정확한 명령어를 입력하여 원하는 파일을 열람하세요.',
           '아래 현재 사용 가능한 명령어들입니다.',
           '‎',
           '=== 사용 가능한 명령어 ===',
           ...availableCommands.map(cmd => `  ㄴ ${cmd}`),
           '‎'
         ];
-        
+
         if (!puzzles['첫번째문제'].solved) {
           helpText.push('', '첫번째 문제:', puzzles['첫번째문제'].question);
         }
-        
+
         setHistory([
           ...currentHistory,
           { type: 'system', text: helpText.join('\n') }
@@ -250,11 +289,11 @@ const TreasureHunt = () => {
         const puzzleFiles = [];
         const clueFiles = [];
         const otherFiles = [];
-        
+
         Object.keys(files).forEach(name => {
           const file = files[name];
           const prefix = (typeof file === 'object' && file.locked) ? '🔒 ' : '';
-          
+
           if (name.includes('🧩')) {
             puzzleFiles.push(`ㄴ ${prefix}${name}`);
           } else if (name.includes('🔑')) {
@@ -263,7 +302,7 @@ const TreasureHunt = () => {
             otherFiles.push(`ㄴ ${prefix}${name}`);
           }
         });
-        
+
         setHistory([
           ...currentHistory,
           { type: 'system', text: '=== 파일 목록 ===' },
@@ -274,9 +313,9 @@ const TreasureHunt = () => {
           { type: 'system', text: '🔑 단서:' },
           { type: 'system', text: clueFiles.join('\n') },
           { type: 'system', text: '‎' },
-          { type: 'system', text: '파일들을 잘 찾았군요. view 명령어를 사용해서 열람하세요. \n예) view 게임규칙' }
+          { type: 'system', text: '파일들을 잘 찾았군요. \nview 명령어를 사용해서 열람하세요. \n예) view 게임규칙' }
         ]);
-        
+
         // Add view command if not already available
         if (!availableCommands.includes('view')) {
           setAvailableCommands([...availableCommands, 'view']);
@@ -285,7 +324,8 @@ const TreasureHunt = () => {
         // Clear terminal history but keep initial welcome messages
         setHistory([
           { type: 'system', text: '안녕하세요! 보물찾기에 참여하신 것을 환영합니다.' },
-          { type: 'system', text: '이 터미널에서 다양한 명령어를 입력하여 보물을 찾아보세요.' },
+          { type: 'system', text: '여러분은 이제부터 해커가 되어 단서를 모아 보세요.' },
+          { type: 'system', text: '이 터미널를 통해 다양한 명령어를 입력 할 수 있습니다.' },
           { type: 'system', text: '시작하려면 "help"를 입력해보세요.' }
         ]);
       }
@@ -293,7 +333,7 @@ const TreasureHunt = () => {
       // Check for single-word commands or commands with arguments
       const parts = command.split(' ');
       const mainCommand = parts[0];
-      
+
       if (mainCommand === 'view') {
         if (parts.length < 2) {
           setHistory([
@@ -302,15 +342,15 @@ const TreasureHunt = () => {
           ]);
           return;
         }
-        
+
         const searchName = parts.slice(1).join(' ').toLowerCase();
-        
+
         // Find file by partial match (ignoring emojis)
-        const fileName = Object.keys(files).find(name => 
-          name.toLowerCase().includes(searchName) || 
+        const fileName = Object.keys(files).find(name =>
+          name.toLowerCase().includes(searchName) ||
           name.replace(/[^\w\s\-가-힣]/g, '').toLowerCase().includes(searchName)
         );
-        
+
         if (!fileName) {
           setHistory([
             ...currentHistory,
@@ -318,7 +358,7 @@ const TreasureHunt = () => {
           ]);
           return;
         }
-        
+
         if (typeof files[fileName] === 'object' && files[fileName].locked) {
           setHistory([
             ...currentHistory,
@@ -343,7 +383,7 @@ const TreasureHunt = () => {
       }
     }
   };
-  
+
   const getTextClass = (type) => {
     switch (type) {
       case 'user':
@@ -360,17 +400,20 @@ const TreasureHunt = () => {
         return '';
     }
   };
-  
+
+  // Create terminal container class with keyboard state
+  const terminalContainerClass = `treasure-hunt-terminal ${isKeyboardOpen ? 'keyboard-open' : ''}`;
+
   return (
-    <div className="treasure-hunt-terminal">
+    <div className={terminalContainerClass}>
       <div className="terminal-header">
         <div className="terminal-icon">
           <TerminalIcon />
         </div>
         <div className="terminal-title">보물찾기 터미널</div>
       </div>
-      
-      <div 
+
+      <div
         ref={terminalRef}
         className="terminal-body"
       >
@@ -382,7 +425,7 @@ const TreasureHunt = () => {
           </div>
         ))}
       </div>
-      
+
       <form onSubmit={handleSubmit} className="terminal-input-area">
         <div className="terminal-prompt">
           <span className="prompt-symbol">$</span>
