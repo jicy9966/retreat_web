@@ -202,18 +202,33 @@ const GoldenBellPage = () => {
                     <div className="modal-box">
                         <h2 className="modal-topic">{selectedQuestion.topic}</h2>
                         <div className="question-display">
+                            {/* Show question image if exists */}
                             {!showAnswer && selectedQuestion.question.image && (
                                 <img
-                                    src={selectedQuestion.question.image}
+                                    src={selectedQuestion.question.image?.default || selectedQuestion.question.image}
                                     alt="Question"
                                     className="question-image"
                                 />
                             )}
-                            <p className="question-text">
-                                {showAnswer
-                                    ? selectedQuestion.question.answer
-                                    : selectedQuestion.question.question}
-                            </p>
+
+                            {/* Show question text if exists */}
+                            {!showAnswer && selectedQuestion.question.question && (
+                                <p className="question-text">{selectedQuestion.question.question}</p>
+                            )}
+
+                            {/* Show answer text */}
+                            {showAnswer && selectedQuestion.question.answer && (
+                                <p className="question-text">{selectedQuestion.question.answer}</p>
+                            )}
+
+                            {/* Show answer image if answerImage exists */}
+                            {showAnswer && selectedQuestion.question.answerImage && (
+                                <img
+                                    src={selectedQuestion.question.answerImage?.default || selectedQuestion.question.answerImage}
+                                    alt="Answer"
+                                    className="answer-image"
+                                />
+                            )}
                         </div>
                         {!showAnswer ? (
                             <button className="primary-btn" onClick={() => setShowAnswer(true)}>정답보기</button>
