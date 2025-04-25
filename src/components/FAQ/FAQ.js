@@ -41,7 +41,7 @@ const FAQ = ({ onClose }) => {
                     <hr style={{ margin: "10px 0", borderTop: "1px dotted #999" }} />
 
                     <p><strong>Q: 무엇을 준비해야 하나요?</strong><br />
-                        A: 준비물은 성경책, 침낭, 세면도구, 수건, <br />&nbsp;&nbsp;&nbsp;&nbsp;
+                        A: 성경책, 큐티책, 침낭, 세면도구, 수건,<br />&nbsp;&nbsp;&nbsp;&nbsp;
                         필기도구, 운동화, 슬리퍼, 따뜻한 옷!</p>
 
                     <hr style={{ margin: "10px 0", borderTop: "1px dotted #999" }} />
@@ -57,21 +57,22 @@ const FAQ = ({ onClose }) => {
                         (☎️ 626-354-8309)으로<br />&nbsp;&nbsp;&nbsp;
                         연락해주세요!</p>
 
-                    {/* <hr style={{ margin: "10px 0", borderTop: "1px dotted #999" }} /> */}
+                    {/* <hr style={{ margin: "10px 0", borderTop: "1px dotted #999" }} />
 
-                    {/* <div className="secret-answer">
-                        <p><strong>Q: 세번째 문제의 정답은 무엇인가요?</strong><br />
+                    <div className="secret-answer">
+                        <p><strong>궁금한게 있다고?</strong><br />
                             <span 
                                 className="reveal-button" 
                                 onClick={toggleAnswer}
                             >
-                                {showAnswer ? "숨기기" : "A: 이 텍스트를 눌러 확인하십시오"}
+                                {showAnswer ? "숨기기" : "궁금하면 물어봐야지!"}
                             </span>
                             {showAnswer && (
                                 <span className="binary-answer">
-                                    <br />A: 01100111 01110010 01100001 01100011<br />&nbsp;&nbsp;&nbsp;
-                                    01100101 01100001 01101110 01100100<br />&nbsp;&nbsp;&nbsp;
-                                    01110010 01100101 01110011 01110100<br />&nbsp;&nbsp;&nbsp;
+                                    <br />
+                                    A: 00000111 00010010 00000001 00000011<br />&nbsp;&nbsp;
+                                    00000101 00000001 00001110 00000100<br />&nbsp;&nbsp;
+                                    00010010 00000101 00010011 00010100<br />&nbsp;&nbsp;&nbsp;
                                     <br />
                                     * 힌트: 위 암호를 해독해야 합니다 *
                                 </span>
