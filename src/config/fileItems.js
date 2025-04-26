@@ -47,10 +47,10 @@ export const fileItems = [
         action: "page",
         path: "/arcade"
     },
-    {
-        icon: "🧭",
-        name: "보물찾기.hunt",
-        action: "page",
-        path: "/treasure-hunt"
-    },
+    // {
+    //     icon: "🧭",
+    //     name: "보물찾기.hunt",
+    //     action: "page",
+    //     path: "/treasure-hunt"
+    // },
 ];
