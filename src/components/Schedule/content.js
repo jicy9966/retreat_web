@@ -14,9 +14,9 @@ const Content = ({ day = "day1", viewMode = "list" }) => {
         day2: [
             { time: "08:00 AM", activity: "기상 / \n아침 식사" },
             { time: "10:00 AM", activity: "QT모임" },
-            { time: "10:30 AM", activity: "단체 활동 (???)" },
+            { time: "10:30 AM", activity: "단체 활동 (골든벨)" },
             { time: "12:00 PM", activity: "점심 시간" },
-            { time: "02:00 PM", activity: "레크레이션 (???)" },
+            { time: "02:00 PM", activity: "레크레이션 (지락실)" },
             { time: "06:00 PM", activity: "저녁 식사" },
             { time: "07:30 PM", activity: "휴식 및 집회 준비" },
             { time: "08:00 PM", activity: "저녁 집회 2일차" },

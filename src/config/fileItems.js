@@ -9,7 +9,7 @@ export const fileItems = [
         icon: "✝️",
         name: "큐티.qtin",
         action: "page",
-        path: "/QTin/2025-04-25" //change accordingly to today's date
+        path: "/QTin/2025-04-26" //change accordingly to today's date
     },
     {
         icon: "💿",
@@ -17,18 +17,18 @@ export const fileItems = [
         action: "external",
         url: "https://youtube.com/playlist?list=PLTZLQpiVasvLHMlkEkCFEGCFYrfY592Ck&si=RB_NmeVKVnyNnl5Q"
     },
-    // {
-    //     icon: "👥",
-    //     name: "조편성.team",
-    //     action: "window",
-    //     component: "Team"
-    // },
-    // {
-    //     icon: "🎮",
-    //     name: "레크레이션.bat",
-    //     action: "page",
-    //     path: "/jirakshil"
-    // },
+    {
+        icon: "👥",
+        name: "조편성.team",
+        action: "window",
+        component: "Team"
+    },
+    {
+        icon: "🎮",
+        name: "레크레이션.bat",
+        action: "page",
+        path: "/jirakshil"
+    },
     {
         icon: "🍽️",
         name: "음식.menu",
